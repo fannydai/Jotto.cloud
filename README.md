@@ -18,11 +18,11 @@ https://www2.cs.duke.edu/courses/spring06/cps100/assign/jotto/code/kwords5.txt
 * Pc should be able to win. Randomly.
 
 ### Pages
-* Registration
-* Login
+* Home Page - Registration & Login
 * Game play
 * See previous plays (list) clickable
 * See previous plays
+* About (optional)
 
 ### Database
 * Each user needs an account - username & password
