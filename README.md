@@ -1,9 +1,10 @@
 # Jotto - ONLY ONE SUBMISSION
 
-* Use Spring
-* Download intellij IDEA
-* Javascript 
+* Use Springboot
+* Download intellij IDEA 
 * Mongo db for database
+* angular/react/vu
+
 
 * number of letter (5 letters, no repeating letters)
 * Array of 26 (alphabets) which is displayed on the web
@@ -30,3 +31,4 @@ https://www2.cs.duke.edu/courses/spring06/cps100/assign/jotto/code/kwords5.txt
 * Database for the past game results - the words and process
 
 https://www2.cs.duke.edu/courses/spring06/cps100/assign/jotto/
+
