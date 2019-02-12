@@ -2,6 +2,7 @@
 
 * Use Spring
 * Download intellij IDEA
+* Javascript frontend
 
 * number of letter (5 letters, no repeating letters)
 * Array of 26 (alphabets) which is displayed on the web
@@ -13,3 +14,12 @@
 * Play new game
 * Show previous game
 * Pc should be able to win. Randomly.
+
+### Database
+* Each user needs an account - username & password
+* Database for words?
+* Database for the past game results - the words and process
+
+https://www2.cs.duke.edu/courses/spring06/cps100/assign/jotto/
+5 letter words
+https://www2.cs.duke.edu/courses/spring06/cps100/assign/jotto/code/kwords5.txt
