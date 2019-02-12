@@ -2,7 +2,8 @@
 
 * Use Spring
 * Download intellij IDEA
-* Javascript frontend
+* Javascript 
+* Mongo db for database
 
 * number of letter (5 letters, no repeating letters)
 * Array of 26 (alphabets) which is displayed on the web
@@ -14,6 +15,11 @@
 * Play new game
 * Show previous game
 * Pc should be able to win. Randomly.
+
+### Pages
+* Registration
+* Login
+* Game play
 
 ### Database
 * Each user needs an account - username & password
