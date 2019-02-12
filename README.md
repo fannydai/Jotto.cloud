@@ -11,6 +11,7 @@
 * Each time the user guesses the a word, you tell them how many of those also appear in your word (which they are guessing)
 
 * Give the game a dictionary so that user cannot enter random words (optional)
+https://www2.cs.duke.edu/courses/spring06/cps100/assign/jotto/code/kwords5.txt
 
 * Play new game
 * Show previous game
@@ -20,6 +21,8 @@
 * Registration
 * Login
 * Game play
+* See previous plays (list) clickable
+* See previous plays
 
 ### Database
 * Each user needs an account - username & password
@@ -27,5 +30,3 @@
 * Database for the past game results - the words and process
 
 https://www2.cs.duke.edu/courses/spring06/cps100/assign/jotto/
-5 letter words
-https://www2.cs.duke.edu/courses/spring06/cps100/assign/jotto/code/kwords5.txt
