@@ -5,13 +5,13 @@
 * Java 11
 * Intellij IDEA 
 * MongoDB -- Spring Data MongoDB
-* Can we use Angular
+* Angular 6
 
 ### Build and run instructions
 * To build and run project through Maven
 From Jotto Server directory run:
 ```
-mvn spring-boot :run
+mvn spring-boot:run
 ```
 * To run Mongodb database
 ```
