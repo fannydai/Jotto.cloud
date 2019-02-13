@@ -15,7 +15,7 @@ mvn spring-boot :run
 ```
 * To run Mongodb database
 ```
-mongod --dbpath localuserpathto/Jottodir/Jotto/data/db
+mongod --dbpath localuserpathtoJottodir/Jotto/data/db
 ```
 * To open an instance of mongo shell (while db is open)
 ```
