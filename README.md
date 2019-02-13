@@ -31,6 +31,7 @@ https://www2.cs.duke.edu/courses/spring06/cps100/assign/jotto/code/kwords5.txt
 * Each user needs an account - username & password
 * Database for words?
 * Database for the past game results - the words and process
+* Database files stored in /data
 
 https://www2.cs.duke.edu/courses/spring06/cps100/assign/jotto/
 
