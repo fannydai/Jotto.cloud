@@ -7,7 +7,21 @@
 * MongoDB -- Spring Data MongoDB
 * Can we use Angular
 
-
+### Build and run instructions
+* To build and run project through Maven
+From Jotto Server directory run:
+```
+mvn spring-boot :run
+```
+* To run Mongodb database
+```
+mongod --dbpath localuserpathto/Jottodir/Jotto/data/db
+```
+* To open an instance of mongo shell (while db is open)
+```
+mongo
+```
+### Rules of Jotto
 * number of letter (5 letters, no repeating letters)
 * Array of 26 (alphabets) which is displayed on the web
 * These letters can be toggled by the user to change color (black, red, & green)
