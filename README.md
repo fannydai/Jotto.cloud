@@ -1,9 +1,11 @@
 # Jotto - ONLY ONE SUBMISSION
 
-* Use Springboot
-* Download intellij IDEA 
-* Mongo db for database
-* angular/react/vu
+### Technologies
+* Spring Boot 2.1
+* Java 11
+* Intellij IDEA 
+* MongoDB -- Spring Data MongoDB
+* Can we use Angular
 
 
 * number of letter (5 letters, no repeating letters)
