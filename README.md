@@ -7,7 +7,7 @@
 * MongoDB -- Spring Data MongoDB
 * Angular 6
 
-### Build and run instructions
+### Build and run instructions (Backend)
 * To build and run project through Maven
 From Jotto Server directory run:
 ```
@@ -21,6 +21,14 @@ mongod --dbpath localuserpathtoJottodir/Jotto/data/db
 ```
 mongo
 ```
+
+### Front-end Instructions
+* :coffee: Install npm along with node using `brew install node` or going to https://nodejs.org/en/
+* On MacOS: npm install --save-dev @angular-devkit/build-angular
+* :whale: Install Angular CLI using `npm install -g @angular/cli`
+* :running: Run the application using `npm start`
+* :computer: Go to http://localhost:4200 to view the app
+
 ### Rules of Jotto
 * number of letter (5 letters, no repeating letters)
 * Array of 26 (alphabets) which is displayed on the web
@@ -46,12 +54,6 @@ https://www2.cs.duke.edu/courses/spring06/cps100/assign/jotto/code/kwords5.txt
 * Database for words?
 * Database for the past game results - the words and process
 * Database files stored in /data
-
-### Front-end
-* :coffee: Install npm along with node using `brew install node` or going to https://nodejs.org/en/
-* :whale: Install Angular CLI using `npm install -g @angular/cli`
-* :running: Run the application using `npm start`
-* :computer: Go to http://localhost:4200 to view the app
 
 https://www2.cs.duke.edu/courses/spring06/cps100/assign/jotto/
 

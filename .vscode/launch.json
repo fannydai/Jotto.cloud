@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - JottoApplication",
+            "request": "launch",
+            "mainClass": "server.Jotto.JottoApplication",
+            "projectName": "Jotto"
+        }
+    ]
+}
