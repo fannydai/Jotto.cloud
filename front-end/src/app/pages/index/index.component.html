@@ -1,0 +1,13 @@
+<div class="index-container row">
+  <div *ngIf="loggedIn; else info">
+
+  </div>
+  <ng-template #info>
+    <div class="col d-none d-sm-block" id="background-div">some image</div>
+    <div class="col info-panel">
+      <div class="container">
+        <h1>About Jotto</h1>
+      </div>
+    </div>
+  </ng-template>
+</div>
