@@ -47,5 +47,11 @@ https://www2.cs.duke.edu/courses/spring06/cps100/assign/jotto/code/kwords5.txt
 * Database for the past game results - the words and process
 * Database files stored in /data
 
+### Front-end
+* :coffee: Install npm along with node using `brew install node` or going to https://nodejs.org/en/
+* :whale: Install Angular CLI using `npm install -g @angular/cli`
+* :running: Run the application using `npm start`
+* :computer: Go to http://localhost:4200 to view the app
+
 https://www2.cs.duke.edu/courses/spring06/cps100/assign/jotto/
 
