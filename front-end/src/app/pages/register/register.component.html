@@ -3,7 +3,7 @@
   <hr>
   <div class="card container">
     <form #create="ngForm" (ngSubmit)="onSubmit();">
-      <div *ngIf="errorMessage" class="register-message">{{errorMessage}}</div>
+      <div *ngIf="errorMessage" class="register-warning-message">{{errorMessage}}</div>
       <div class="form-group row">
         <label class="col-3 col-form-label " for="username">Username</label>
         <div class="col">
