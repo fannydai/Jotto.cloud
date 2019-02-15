@@ -21,15 +21,15 @@ public class UserRestController{
     }
     /**
      * Controller for registration form POST
+     * Enforces unique username requirement -- pasword requirements should be enforced on the front-end.
      * Input: RequestBody (JSON) mapping to RegistrationForm (Class)
      * Output: ResponseBody (JSON) Parameters: 'status': 'success' or 'failure', 'username' : logged in user's username
      */
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/register", method = RequestMethod.POST, consumes = {"application/json"})
     @ResponseBody
-    public RegistrationResult register(@RequestBody RegistrationForm regform ){
-        System.out.println(regform.getUsername());
-        RegistrationResult res = new RegistrationResult();
+    public RegistrationLoginResult register(@RequestBody RegistrationLoginForm regform ){
+        RegistrationLoginResult res = new RegistrationLoginResult();
 
         if(userRepository.findByusername(regform.getUsername()) == null){
             User user = new User(regform.getUsername(),regform.getPassword());
@@ -49,10 +49,28 @@ public class UserRestController{
         return res;
     }
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public boolean login(@RequestBody User user){
-        System.out.println("dsadasd");
-        return true;
+    @RequestMapping(value = "/login",method = RequestMethod.POST, consumes = {"application/json"})
+    @ResponseBody
+    public RegistrationLoginResult login(@RequestBody RegistrationLoginForm logform){
+        RegistrationLoginResult res = new RegistrationLoginResult();
+        User loginRequestUser = userRepository.findByusername(logform.getUsername());
+        if(loginRequestUser != null){
+            if(loginRequestUser.password.equals(logform.getPassword())){
+                //TODO -- configure Java Security Token for Angular -- I need to learn it first (Sean)
+                // For now we just pass username and success statement to the front end to imitate 
+                res.setStatus("success");
+                res.setUsername(loginRequestUser.username);
+            }else{
+                //Incorrect login details
+                res.setStatus("failure");
+                res.setUsername("");
+            }
+        }else{
+            //Incorrect login details
+            res.setStatus("failure");
+            res.setUsername("");
+        }
+        return res;
     }
 
 }
