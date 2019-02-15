@@ -10,19 +10,24 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import org.springframework.security.core.userdetails.User;
 
+
 @RestController
-@CrossOrigin
 public class UserRestController{
 
     @RequestMapping("/user")
     public Principal user(Principal user){
         return user;
     }
-
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public boolean register(@RequestParam("username")String username, @RequestParam("password")String password){
+        System.out.println(username+ password);
+        return true;
+    }
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public boolean login(@RequestBody User user){
         System.out.println("dsadasd");
         return true;
-
     }
 }
