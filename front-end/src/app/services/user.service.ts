@@ -36,7 +36,7 @@ export class UserService {
    * @param username - name of user
    * @param password - password of user
    */
-  register(username: string, password: string) {
+  register(username: string, password: string): Observable<any> {
     return this.http.post<any>(`${environment.api_path}/register`, { username: username, password: password })
       .pipe(
         map(result => {
@@ -45,5 +45,9 @@ export class UserService {
         }),
         catchError(err => null)
       );
+  }
+
+  logout(): void {
+    localStorage.removeItem('username');
   }
 }
