@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
       .subscribe((data) => {
         if (data === null) {
           this.errorMessage = 'Error logging in';
-        } else if (data.success === 'success') {
+        } else if (data.status === 'success') {
           localStorage.setItem('username', data.username);
           this.router.navigate(['/']);
         } else {

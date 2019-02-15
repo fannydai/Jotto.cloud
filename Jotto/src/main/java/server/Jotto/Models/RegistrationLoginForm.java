@@ -1,6 +1,6 @@
 package server.Jotto.Models;
 
-public class RegistrationForm{
+public class RegistrationLoginForm{
     private String username;
     private String password;
 
