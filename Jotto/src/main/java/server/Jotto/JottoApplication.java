@@ -22,7 +22,7 @@ public class JottoApplication {
         http.addFilterBefore(new CorsSupport(), ChannelProcessingFilter.class);
         http
         .authorizeRequests()
-        .antMatchers("/","/register")
+        .antMatchers("/","/register","/login")
         .permitAll()
         .and()
 .authorizeRequests()
