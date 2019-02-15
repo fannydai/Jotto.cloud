@@ -7,7 +7,7 @@
       <div class="form-group row">
         <label class="col-3 col-form-label " for="username">Username</label>
         <div class="col">
-          <input name="username" type="text" class="form-control" id="username" [(ngModel)]="userName" #name="ngModel"
+          <input name="username" type="text" class="form-control" id="username" [(ngModel)]="username" #name="ngModel"
             required>
           <div class="register-warning-message" *ngIf="name.touched && name.errors?.required">Please enter a username.</div>
         </div>
