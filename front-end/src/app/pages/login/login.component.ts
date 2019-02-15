@@ -24,9 +24,14 @@ export class LoginComponent implements OnInit {
     this.errorMessage = '';
     this.user.login(this.username, this.userPassword)
       .subscribe((data) => {
-        // Server needs to send something that indicates success or error
-        // Set the local storage to check logged on main page
-        this.router.navigate(['/']);
+        if (data === null) {
+          this.errorMessage = 'Error logging in';
+        } else if (data.success === 'success') {
+          localStorage.setItem('username', data.username);
+          this.router.navigate(['/']);
+        } else {
+          this.errorMessage = 'Username has already been taken.';
+        }
       });
   }
 
