@@ -26,9 +26,6 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 public class JottoApplication {
 
-    @Autowired
-    private UserRepository userRepository;
-
 	public static void main(String[] args) {
 		SpringApplication.run(JottoApplication.class, args);
 	}
