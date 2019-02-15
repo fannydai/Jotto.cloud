@@ -1,6 +1,9 @@
 package server.Jotto;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import server.Jotto.Models.*;
@@ -26,11 +29,23 @@ public class UserRestController{
     @ResponseBody
     public RegistrationResult register(@RequestBody RegistrationForm regform ){
         System.out.println(regform.getUsername());
-        User user = new User(regform.getUsername(),regform.getPassword());
-        userRepository.save(user);
         RegistrationResult res = new RegistrationResult();
-        res.setStatus("success");
-        res.setUsername(user.username);
+
+        if(userRepository.findByusername(regform.getUsername()) == null){
+            User user = new User(regform.getUsername(),regform.getPassword());
+            userRepository.save(user);
+            res.setStatus("success");
+            res.setUsername(user.username);
+        }else{
+            //user with username already exists
+            res.setStatus("failure");
+            res.setUsername("");
+        }
+        /** 
+         * Query checkIfExistUser = new Query();
+        checkIfExistUser.addCriteria(Criteria.where("username").is(regform.getUsername()));
+        List<User> users = mongoTemplate.find(checkIfExistUser,User.class);
+        */
         return res;
     }
     @CrossOrigin(origins = "http://localhost:4200")
