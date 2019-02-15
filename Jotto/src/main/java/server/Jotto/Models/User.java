@@ -2,6 +2,10 @@ package server.Jotto.Models;
 
 import org.springframework.data.annotation.Id;
 
+/**
+ * The User class is the User model stored into mongodb
+ */
+
 //todo -- password hashing, currently password is stored in plain text on the database
 
 public class User{

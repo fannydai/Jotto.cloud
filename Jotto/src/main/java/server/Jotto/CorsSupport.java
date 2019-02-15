@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
  
+
+/**
+ * Boilerplate code, allows for CORS communication between back-end and front-end code
+ */
 public class CorsSupport extends OncePerRequestFilter {
  
     @Override
