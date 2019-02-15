@@ -1,12 +1,6 @@
 package server.Jotto;
 
-import java.util.ArrayList;
-
-import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import server.Jotto.Models.*;
@@ -28,9 +22,9 @@ public class UserRestController{
      * Output: ResponseBody (JSON) Parameters: 'status': 'success' or 'failure', 'username' : logged in user's username
      */
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.POST, consumes = {"application/json"})
     @ResponseBody
-    public RegistrationResult register(@RequestBody RegistrationForm regform){
+    public RegistrationResult register(@RequestBody RegistrationForm regform ){
         System.out.println(regform.getUsername());
         User user = new User(regform.getUsername(),regform.getPassword());
         userRepository.save(user);
