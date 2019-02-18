@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 //todo -- password hashing, currently password is stored in plain text on the database
 
-public class User{
+public class UserModel{
     @Id
     public String id;
 
@@ -16,11 +16,11 @@ public class User{
     public String password;
     private ArrayList<JottoGameModel> games;    
 
-    public User(){
+    public UserModel(){
 
     }
 
-    public User(String username, String password){
+    public UserModel(String username, String password){
         this.username = username;
         this.password = password;
         this.games = new ArrayList<JottoGameModel>();
