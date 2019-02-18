@@ -3,10 +3,19 @@
 
   </div>
   <ng-template #info>
-    <div class="col d-none d-sm-block" id="background-div">some image</div>
+    <div class="col d-none d-sm-block" id="background-div"></div>
     <div class="col info-panel">
       <div class="container">
         <h1>About Jotto</h1>
+        <p>Jotto is a two player word game in which each player attempts to guess that other player's word.
+          Each player has to come up with a five-letter word without repeating characters. The players take
+          turns guessing five-letter words. After a guess, the other player then says how many letters in the guess match 
+          a unique letter in their word. This repeats until one of the players guesses their opponent's word. </p>
+      </div>
+      <div class="bottom-contents">
+        <p>Log in or sign up to play against a computer.</p>
+        <a href="/login" class="btn btn-primary active" role="button" aria-pressed="true">Log in</a>
+        <a href="/register" class="btn btn-primary active" role="button" aria-pressed="true">Sign up</a>
       </div>
     </div>
   </ng-template>

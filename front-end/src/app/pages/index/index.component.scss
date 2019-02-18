@@ -1,0 +1,19 @@
+.index-container {
+    height: 100vh;
+    width: 100%;
+
+    #background-div {
+        background-size: cover;
+        background-image: url("../../../assets/jotto-background.jpg");
+    }
+    .bottom-contents {
+        width: 50%;
+        margin: 0 auto;
+        p {
+            font-weight: bold;
+        }
+        a {
+            margin-left: 12.5%;
+        }
+    }
+}
