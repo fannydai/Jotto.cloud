@@ -1,6 +1,9 @@
 package server.Jotto;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -8,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import server.Jotto.Models.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Collection;
 
 @RestController
 public class UserRestController{
@@ -32,7 +38,7 @@ public class UserRestController{
         RegistrationLoginResult res = new RegistrationLoginResult();
 
         if(userRepository.findByusername(regform.getUsername()) == null){
-            User user = new User(regform.getUsername(),regform.getPassword());
+            UserModel user = new UserModel(regform.getUsername(),regform.getPassword());
             userRepository.save(user);
             res.setStatus("success");
             res.setUsername(user.username);
@@ -53,11 +59,14 @@ public class UserRestController{
     @ResponseBody
     public RegistrationLoginResult login(@RequestBody RegistrationLoginForm logform){
         RegistrationLoginResult res = new RegistrationLoginResult();
-        User loginRequestUser = userRepository.findByusername(logform.getUsername());
+        UserModel loginRequestUser = userRepository.findByusername(logform.getUsername());
         if(loginRequestUser != null){
             if(loginRequestUser.password.equals(logform.getPassword())){
                 //TODO -- configure Java Security Token for Angular -- I need to learn it first (Sean)
                 // For now we just pass username and success statement to the front end to imitate 
+
+                User securityUser = new User(loginRequestUser.getUsername(),loginRequestUser.getPassword(),true,true,true,true,getAuthorities());
+                    
                 res.setStatus("success");
                 res.setUsername(loginRequestUser.username);
             }else{
@@ -71,6 +80,12 @@ public class UserRestController{
             res.setUsername("");
         }
         return res;
+    }
+
+    public List<GrantedAuthority> getAuthorities(){
+        List<GrantedAuthority> authList = new ArrayList<GrantedAuthority>();
+        authList.add(new SimpleGrantedAuthority("ROLE_USER"));
+        return authList;
     }
 
 }
