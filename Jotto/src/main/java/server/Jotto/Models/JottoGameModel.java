@@ -1,10 +1,14 @@
 package server.Jotto.Models;
 
 import java.util.ArrayList;
+import org.springframework.data.annotation.Id;
+
 /**
  * POJO representation of Jotto game
  */
 public class JottoGameModel{
+    @Id
+    public String id;
     private String answerword;
     private ArrayList<JottoMoveModel> moves;
     private int moveamount;
