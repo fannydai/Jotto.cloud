@@ -1,69 +1,50 @@
 <div class="register-container">
   <h1>Sign up</h1>
   <hr>
-  <div class="card container">
-    <form #create="ngForm" (ngSubmit)="onSubmit();">
-      <div *ngIf="errorMessage" class="register-warning-message">{{errorMessage}}</div>
-      <div class="form-group row">
-        <label class="col-3 col-form-label" for="username">Username</label>
-        <div class="col">
-          <input name="username" type="text" class="form-control" id="username" [(ngModel)]="username" #name="ngModel"
-            required>
-          <div class="register-warning-message" *ngIf="name.touched && name.errors?.required">Please enter a username.</div>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-3 col-form-label" for="password">Password</label>
-        <div class="col">
-          <input name="password" type="password" class="form-control col" id="password" [(ngModel)]="password"
-            #pw="ngModel" required>
-          <div class="register-warning-message" *ngIf="pw.dirty">
-            <div *ngIf="!checkPassword(pw.value)">
-              Password must be at least 10 characters long and must contain at least 1 uppercase letter, 1 lowercase letter, 1 digit, and 1 symbol.
+  <div class="row">
+    <div class="col">
+      <div class="card container">
+        <form #create="ngForm" (ngSubmit)="onSubmit();">
+          <div *ngIf="errorMessage" class="register-warning-message">{{errorMessage}}</div>
+          <div class="form-group row">
+            <label class="col-3 col-form-label" for="username">Username</label>
+            <div class="col">
+              <input name="username" type="text" class="form-control" id="username" [(ngModel)]="username" #name="ngModel"
+                required>
+              <div class="register-warning-message" *ngIf="name.touched && name.errors?.required">Please enter a username.</div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="text-center">
-        <button type="submit" class="btn btn-success" [disabled]="!create.form.valid || !checkPassword(pw.value)">Submit</button>
-      </div>
-    </form>
-    <!--
-    <form [formGroup]="registerForm" #create="ngForm" (ngSubmit)="onSubmit();">
-      <div *ngIf="errorMessage" class="register-warning-message">{{errorMessage}}</div>
-      <div class="form-group row">
-        <label class="col-3 col-form-label" for="username">Username</label>
-        <div class="col">
-          <input name="username" type="text" class="form-control" id="username" formControlName="username">
-          <div class="register-warning-message" *ngIf="username.invalid && (username.dirty || username.touched)">
-            <div *ngIf="username.errors.required">
-              Please enter an username.
-            </div>
-            <div *ngIf="username.errors.minlength">
-              Username has to be at least 6 characters.
+          <div class="form-group row">
+            <label class="col-3 col-form-label" for="password">Password</label>
+            <div class="col">
+              <input name="password" type="password" class="form-control col" id="password" [(ngModel)]="password"
+                #pw="ngModel" required>
+              <div class="register-warning-message" *ngIf="pw.dirty">
+                <div *ngIf="!checkPassword(pw.value)">
+                  Password must be at least 10 characters long and must contain at least 1 uppercase letter, 1 lowercase letter, 1 digit, and 1 symbol.
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-3 col-form-label" for="password">Password</label>
-        <div class="col">
-          <input name="password" type="password" class="form-control col" id="password" formControlName="password">
-          <div class="register-warning-message" *ngIf="password.invalid && (password.dirty || password.touched)">
-            <div *ngIf="password.errors.minlength">
-              Password must be at least 10 characters long.
-            </div>
-            <div *ngIf="password.errors.passwordError">
-              Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 digit, and 1 symbol.
-            </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-success" [disabled]="!create.form.valid || !checkPassword(pw.value)">Submit</button>
           </div>
-        </div>
+        </form>
+        <p><a routerLink="/login">Log in</a></p>
       </div>
-      <div class="text-center">
-        <button type="submit" class="btn btn-success" [disabled]="!create.form.valid">Submit</button>
-      </div>
-    </form>
-    -->
-    <p><a routerLink="/login">Log in</a></p>
+    </div>
+    <div class="col">
+      <h5>Username Requirements</h5>
+      <ul class="list-group">
+        <li class="list-group-item">Minimum 6 characters in length.</li>
+      </ul>
+      <h5>Password Requirements</h5>
+      <ul class="list-group">
+        <li class="list-group-item">Minimum 10 characters in length.</li>
+        <li class="list-group-item">Includes at least one lowercase letter.</li>
+        <li class="list-group-item">Includes at least one uppercase letter.</li>
+        <li class="list-group-item">Includes at least one symbol:</li>
+      </ul>
+    </div>
   </div>
 </div>
