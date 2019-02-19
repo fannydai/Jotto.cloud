@@ -15,7 +15,6 @@ public class JottoGameModel{
         this.answerword = generateAnswerWord();
         this.moveamount = 0;
         this.moves = new ArrayList<JottoMoveModel>();
-
     }
 
     public boolean evaluate(){
