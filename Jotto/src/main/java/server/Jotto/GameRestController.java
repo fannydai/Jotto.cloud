@@ -13,9 +13,9 @@ public class GameRestController{
     //add decorators and spring shit
     // finish this class and add more models
 
-    @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/playPage", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
-    @ResponseBody
+    // @CrossOrigin(origins = "http://localhost:4200")
+    // @RequestMapping(value = "/playPage", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
+    // @ResponseBody
     public void UserMakeGuess(){
         //validate guess
         //cal num matching letters
@@ -41,17 +41,17 @@ public class GameRestController{
         return userGuess.equals(compWord);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/playPage", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
-    @ResponseBody
+    // @CrossOrigin(origins = "http://localhost:4200")
+    // @RequestMapping(value = "/playPage", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
+    // @ResponseBody
     public void ShowGuesses(){ //of current game of user and comp **add current user as arg**
         //go through db and get guesses
         //cal num matching letters
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/", method = RequestMethod.POST, consumes = {"application/json"}) //index page??
-    @ResponseBody
+    // @CrossOrigin(origins = "http://localhost:4200")
+    // @RequestMapping(value = "/", method = RequestMethod.POST, consumes = {"application/json"}) //index page??
+    // @ResponseBody
     public void ShowPastGameResults(){ //add user as arg
         //go thorugh db and shows games results
     }
@@ -69,9 +69,9 @@ public class GameRestController{
         return numMatches;
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/playPage", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
-    @ResponseBody
+    // @CrossOrigin(origins = "http://localhost:4200")
+    // @RequestMapping(value = "/playPage", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
+    // @ResponseBody
     public void CalcCompGuess(@RequestBody String prevUserGuess){ //change arg for later (user)
 
     }
