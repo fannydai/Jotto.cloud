@@ -27,10 +27,10 @@ export class LoginComponent implements OnInit {
         if (data === null) {
           this.errorMessage = 'Error logging in';
         } else if (data.status === 'success') {
-          localStorage.setItem('username', data.username);
-          this.router.navigate(['/']);
+          this.user.setLoggedIn(data.username);
+          this.router.navigate(['/game']);
         } else {
-          this.errorMessage = 'Username has already been taken.';
+          this.errorMessage = 'Incorrect username and/or password.';
         }
       });
   }

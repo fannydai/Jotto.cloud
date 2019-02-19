@@ -27,8 +27,8 @@ export class RegisterComponent implements OnInit {
         if (data === null) {
           this.errorMessage = 'Error signing up';
         } else if (data.status === 'success') {
-          localStorage.setItem('username', data.username);
-          this.router.navigate(['/']);
+          this.user.setLoggedIn(data.username);
+          this.router.navigate(['/game']);
         } else {
           this.errorMessage = 'Username has already been taken.';
         }

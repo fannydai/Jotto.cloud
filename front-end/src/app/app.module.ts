@@ -9,13 +9,17 @@ import { RegisterComponent } from './pages/register/register.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { IndexComponent } from './pages/index/index.component';
+import { GameComponent } from './pages/game/game.component';
+import { NavbarComponent } from './pages/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    IndexComponent
+    IndexComponent,
+    GameComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

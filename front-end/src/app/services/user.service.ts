@@ -26,7 +26,7 @@ export class UserService {
           console.log(result);
           return result;
         }),
-        catchError(err => null)
+        catchError(err => of(null))
       );
   }
 
@@ -43,8 +43,16 @@ export class UserService {
           console.log(result);
           return result;
         }),
-        catchError(err => null)
+        catchError(err => of(null))
       );
+  }
+
+  setLoggedIn(username: string): void {
+    localStorage.setItem('username', username);
+  }
+
+  isLoggedIn(): boolean {
+    return localStorage.getItem('username') != null;
   }
 
   logout(): void {
