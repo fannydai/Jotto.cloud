@@ -8,7 +8,7 @@ import org.springframework.data.annotation.Id;
 public class JottoMoveModel{
     @Id
     public String id;
-    String guessedword;
+    public String guessedword;
 
     
 }
