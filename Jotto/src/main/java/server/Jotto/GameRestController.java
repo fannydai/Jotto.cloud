@@ -44,7 +44,7 @@ public class GameRestController{
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/playPage", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
     @ResponseBody
-    public void ShowGuesses(){ //of current game of user and comp
+    public void ShowGuesses(){ //of current game of user and comp **add current user as arg**
         //go through db and get guesses
         //cal num matching letters
     }
@@ -52,7 +52,7 @@ public class GameRestController{
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/", method = RequestMethod.POST, consumes = {"application/json"}) //index page??
     @ResponseBody
-    public void ShowPastGameResults(){
+    public void ShowPastGameResults(){ //add user as arg
         //go thorugh db and shows games results
     }
 
@@ -72,7 +72,7 @@ public class GameRestController{
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/playPage", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
     @ResponseBody
-    public void CalcCompGuess(String prevUserGuess){ //comp algo
+    public void CalcCompGuess(@RequestBody String prevUserGuess){ //change arg for later (user)
 
     }
 }
