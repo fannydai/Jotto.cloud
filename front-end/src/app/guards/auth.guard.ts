@@ -14,6 +14,16 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    // Block login and register pages for logged in user
+    if (state.url === '/login' || state.url === '/register') {
+      if (this.user.isLoggedIn()) {
+        this.router.navigate(['/']);
+        return false;
+      } else {
+        return true;
+      }
+    }
+    // Block game page for logged out user
     if (this.user.isLoggedIn()) {
       return true;
     }
