@@ -13,9 +13,14 @@ public class GameRestController{
     //add decorators and spring shit
     // finish this class and add more models
 
-
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "/playPage", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
+    @ResponseBody
     public void UserMakeGuess(){
-
+        //validate guess
+        //cal num matching letters
+        //add to db 
+        //check winner
     }
 
     public boolean ValidateWord(String to_check){
@@ -36,19 +41,38 @@ public class GameRestController{
         return userGuess.equals(compWord);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "/playPage", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
+    @ResponseBody
     public void ShowGuesses(){ //of current game of user and comp
-
+        //go through db and get guesses
+        //cal num matching letters
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "/", method = RequestMethod.POST, consumes = {"application/json"}) //index page??
+    @ResponseBody
     public void ShowPastGameResults(){
-
+        //go thorugh db and shows games results
     }
 
-    public void CalNumMatchingLetters(String guess, String realWord){
-
+    public int CalNumMatchingLetters(String guess, String realWord){
+        int numMatches = 0;
+        for(int i=0; i<realWord.length(); i++){
+            for(int j=0; j<guess.length(); j++){
+                if((realWord.charAt(i) == guess.charAt(j)) && 
+                    (guess.lastIndexOf(guess.charAt(j)) == realWord.lastIndexOf(realWord.charAt(j)))){ //second statement checks for duplicate letters
+                    numMatches+=1;
+                }
+            }
+        }
+        return numMatches;
     }
 
-    public void CalcCompGuess(String prevUserGuess){
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "/playPage", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
+    @ResponseBody
+    public void CalcCompGuess(String prevUserGuess){ //comp algo
 
     }
 }
