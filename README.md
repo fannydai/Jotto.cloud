@@ -7,9 +7,9 @@
 * MongoDB -- Spring Data MongoDB
 * Angular 6
 
-### Build and run instructions (Backend)
+### Build and run instructions (Backend Instructions)
 * To build and run project through Maven
-From Jotto Server directory run:
+From Jotto Server directory (Hot_Pink_hw1/Jotto) run:
 ```
 mvn spring-boot:run
 ```
@@ -25,7 +25,7 @@ mongo
 ### Front-end Instructions
 * :coffee: Install npm along with node using `brew install node` or going to https://nodejs.org/en/
 * On MacOS: npm install --save-dev @angular-devkit/build-angular
-* :whale: Install Angular CLI using `npm install -g @angular/cli`
+* :whale: Install Angular CLI using `npm install -g @angular/cli` & `npm install`
 * :running: Run the application using `npm start`
 * :computer: Go to http://localhost:4200 to view the app
 
@@ -44,10 +44,11 @@ https://www2.cs.duke.edu/courses/spring06/cps100/assign/jotto/code/kwords5.txt
 
 ### Pages
 * Home Page - Registration & Login
+* Login Page
+* Registration Page
 * Game play
 * See previous plays (list) clickable
 * See previous plays
-* About (optional)
 
 ### Database
 * Each user needs an account - username & password
