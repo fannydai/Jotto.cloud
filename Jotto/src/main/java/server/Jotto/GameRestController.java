@@ -3,7 +3,7 @@ package server.Jotto;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class GameRestController{
+public class GameRestController {
     private int size = 5;
     //add decorators and spring shit
     // finish this class and add more models
@@ -11,7 +11,7 @@ public class GameRestController{
     // @CrossOrigin(origins = "http://localhost:4200")
     // @RequestMapping(value = "/playPage", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
     // @ResponseBody
-    public void UserMakeGuess(){
+    public void UserMakeGuess() {
         //validate guess
         //cal num matching letters
         //add to db 
@@ -38,14 +38,14 @@ public class GameRestController{
         return false;
     }
 
-    public boolean checkWinner(String userGuess, String compWord){
+    public boolean checkWinner(String userGuess, String compWord) {
         return userGuess.equals(compWord);
     }
 
-    // @CrossOrigin(origins = "http://localhost:4200")
-    // @RequestMapping(value = "/playPage", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
-    // @ResponseBody
-    public void showGuesses(){ //of current game of user and comp **add current user as arg**
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "/playPage", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
+    @ResponseBody
+    public void showGuesses() { //of current game of user and comp **add current user as arg**
         //go through db and get guesses
         //cal num matching letters
     }
@@ -53,7 +53,7 @@ public class GameRestController{
     // @CrossOrigin(origins = "http://localhost:4200")
     // @RequestMapping(value = "/", method = RequestMethod.POST, consumes = {"application/json"}) //index page??
     // @ResponseBody
-    public void showPastGameResults(){ //add user as arg
+    public void showPastGameResults() { //add user as arg
         //go thorugh db and shows games results
     }
 
@@ -65,7 +65,7 @@ public class GameRestController{
      * 
      * @return          The total amount of letters that overlap btw guess & actual
      */
-    public int amtMatch(String guess, String actual){
+    public int amtMatch(String guess, String actual) {
         int counter = 0;
         boolean[] letters = new boolean[26];
         
@@ -86,7 +86,7 @@ public class GameRestController{
     // @CrossOrigin(origins = "http://localhost:4200")
     // @RequestMapping(value = "/playPage", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
     // @ResponseBody
-    public void calcCompGuess(@RequestBody String prevUserGuess){ //change arg for later (user)
+    public void calcCompGuess(@RequestBody String prevUserGuess) { //change arg for later (user)
 
     }
 }

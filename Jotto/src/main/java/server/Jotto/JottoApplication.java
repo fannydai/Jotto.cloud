@@ -12,7 +12,6 @@ import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 
 @SpringBootApplication
 public class JottoApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(JottoApplication.class, args);
 	}
@@ -22,20 +21,20 @@ public class JottoApplication {
     protected static class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         
         @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.addFilterBefore(new CorsSupport(), ChannelProcessingFilter.class);
-        http
-        .authorizeRequests()
-        .antMatchers("/","/register","/login")
-        .permitAll()
-        .and()
-.authorizeRequests()
-        .anyRequest()
-        .authenticated()
-        .and().csrf().disable();
-    }
-		}
-    }
+        protected void configure(HttpSecurity http) throws Exception {
+            http.addFilterBefore(new CorsSupport(), ChannelProcessingFilter.class);
+            http
+            .authorizeRequests()
+            .antMatchers("/","/register","/login")
+            .permitAll()
+            .and()
+            .authorizeRequests()
+            .anyRequest()
+            .authenticated()
+            .and().csrf().disable();
+        }
+	}
+}
 
 
 

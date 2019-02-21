@@ -22,7 +22,7 @@ public class UserRestController{
     private UserRepository userRepository;
 
     @RequestMapping("/user")
-    public Principal user(Principal user){
+    public Principal user(Principal user) {
         return user;
     }
     /**
@@ -34,15 +34,15 @@ public class UserRestController{
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/register", method = RequestMethod.POST, consumes = {"application/json"})
     @ResponseBody
-    public RegistrationLoginResult register(@RequestBody RegistrationLoginForm regform ){
+    public RegistrationLoginResult register(@RequestBody RegistrationLoginForm regform) {
         RegistrationLoginResult res = new RegistrationLoginResult();
 
-        if(userRepository.findByusername(regform.getUsername()) == null){
+        if(userRepository.findByusername(regform.getUsername()) == null) {
             UserModel user = new UserModel(regform.getUsername(),regform.getPassword());
             userRepository.save(user);
             res.setStatus("success");
             res.setUsername(user.username);
-        }else{
+        } else {
             //user with username already exists
             res.setStatus("failure");
             res.setUsername("");
@@ -60,8 +60,8 @@ public class UserRestController{
     public RegistrationLoginResult login(@RequestBody RegistrationLoginForm logform){
         RegistrationLoginResult res = new RegistrationLoginResult();
         UserModel loginRequestUser = userRepository.findByusername(logform.getUsername());
-        if(loginRequestUser != null){
-            if(loginRequestUser.password.equals(logform.getPassword())){
+        if(loginRequestUser != null) {
+            if(loginRequestUser.password.equals(logform.getPassword())) {
                 //TODO -- configure Java Security Token for Angular -- I need to learn it first (Sean)
                 // For now we just pass username and success statement to the front end to imitate 
 
@@ -74,7 +74,7 @@ public class UserRestController{
                 res.setStatus("failure");
                 res.setUsername("");
             }
-        }else{
+        } else {
             //Incorrect login details
             res.setStatus("failure");
             res.setUsername("");
@@ -82,7 +82,7 @@ public class UserRestController{
         return res;
     }
 
-    public List<GrantedAuthority> getAuthorities(){
+    public List<GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authList = new ArrayList<GrantedAuthority>();
         authList.add(new SimpleGrantedAuthority("ROLE_USER"));
         return authList;

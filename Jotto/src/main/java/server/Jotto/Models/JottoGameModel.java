@@ -6,7 +6,7 @@ import org.springframework.data.annotation.Id;
 /**
  * POJO representation of Jotto game
  */
-public class JottoGameModel{
+public class JottoGameModel {
     @Id
     public String id;
     private String answerword;
@@ -14,42 +14,42 @@ public class JottoGameModel{
     private int moveamount;
     private final int moveLimit;
 
-    public JottoGameModel(){
+    public JottoGameModel() {
         this.moveLimit = 15;
         this.answerword = generateAnswerWord();
         this.moveamount = 0;
         this.moves = new ArrayList<JottoMoveModel>();
     }
 
-    public boolean evaluate(){
+    public boolean evaluate() {
         return true;
     }
 
-    private String generateAnswerWord(){
+    private String generateAnswerWord() {
         return "Answer";
     }
 
-    public void addNewMove(JottoMoveModel newMove){
+    public void addNewMove(JottoMoveModel newMove) {
         this.moves.add(newMove);
     }
 
     public String getAnswerWord(){
         return this.answerword;
     }
-    public void setAnswerWord(String newAnswerWord){
+    public void setAnswerWord(String newAnswerWord) {
         this.answerword = newAnswerWord;
     }
-    public ArrayList<JottoMoveModel> getMoves(){
+    public ArrayList<JottoMoveModel> getMoves() {
         return this.moves;
     }
-    public void setMoves(ArrayList<JottoMoveModel> newMoveList){
+    public void setMoves(ArrayList<JottoMoveModel> newMoveList) {
         this.moves = newMoveList;
         this.moveamount = moves.size();
     }
-    public int getMoveAmount(){
+    public int getMoveAmount() {
         return this.moveamount;
     }
-    public int getMoveLimit(){
+    public int getMoveLimit() {
         return this.moveLimit;
     }
 }
