@@ -27,15 +27,18 @@ public class GameRestController implements JottoGameModelRepository{
 		BufferedReader buffReader = new BufferedReader(fileReader);
 		String word;
 		while ((word = buffReader.readLine()) != null) {
-            if(validateWord(word)) //validate and populate list (for testing purposes)
+           
                 random5LetterWords.add(word);
 		}
 		fileReader.close();
     }
     
-    // public List<JottoGameModel> findAll(){
-        
-    // }
+    public JottoGameModel findByid(String id) {
+        return NULL;
+    }
+    public List<JottoGameModel> findAll(){
+        return NULL;
+    }
 
     // @CrossOrigin(origins = "http://localhost:4200")
     // @RequestMapping(value = "/playPage", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
@@ -45,26 +48,6 @@ public class GameRestController implements JottoGameModelRepository{
         //cal num matching letters
         //add to db 
         //check winner
-    }
-
-    /*
-     * Checks to ensure passed in parameter is exactly length 5 and all leters are unique.
-     * @param word      String which the user typed & needs to be checked
-     * @return          true if word is length 5 and all letters are unique (case insensitive)
-     */
-    public boolean validateWord(String word) {
-        boolean[] letters = new boolean[26];
-        if(word.length() == size) {
-            word = word.toUpperCase();
-            for(int i=0; i<size; i++) {
-                if(letters[word.charAt(i)-65] == true)
-                    return false;
-                else
-                    letters[word.charAt(i)-65] = true;
-            }
-            return true;
-        }
-        return false;
     }
 
     public boolean checkWinner(String userGuess, String compWord) {
