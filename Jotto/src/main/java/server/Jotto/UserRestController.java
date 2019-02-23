@@ -37,12 +37,12 @@ public class UserRestController {
             res.setStatus("success");
             res.setUsername(user.getUsername());
         } else {
-            //user with username already exists
+            // user with username already exists
             res.setStatus("failure");
             res.setUsername("");
         }
-        /** 
-         * Query checkIfExistUser = new Query();
+        /*
+        Query checkIfExistUser = new Query();
         checkIfExistUser.addCriteria(Criteria.where("username").is(regform.getUsername()));
         List<User> users = mongoTemplate.find(checkIfExistUser,User.class);
         */
@@ -63,7 +63,7 @@ public class UserRestController {
                 User securityUser = new User(loginRequestUser.getUsername(),loginRequestUser.getPassword(),true,true,true,true,getAuthorities());
                     
                 res.setStatus("success");
-                res.setUsername(loginRequestUser.getPassword());
+                res.setUsername(loginRequestUser.getUsername());
             } else {
                 //Incorrect login details
                 res.setStatus("failure");

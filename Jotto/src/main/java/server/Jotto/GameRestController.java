@@ -1,15 +1,15 @@
 package server.Jotto;
 
 import java.util.ArrayList;
-import java.util.concurrent.ThreadLocalRandom;
+
 import org.springframework.web.bind.annotation.*;
 import server.Jotto.Models.JottoGameModelRepository;
+
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import server.Jotto.Models.*;
-import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 @RestController
 public class GameRestController /*implements JottoGameModelRepository*/{
@@ -26,23 +26,17 @@ public class GameRestController /*implements JottoGameModelRepository*/{
 		BufferedReader buffReader = new BufferedReader(fileReader);
 		String word;
 		while ((word = buffReader.readLine()) != null) {
-            random5LetterWords.add(word);
+           
+                random5LetterWords.add(word);
 		}
 		fileReader.close();
     }
-    /**
-     * IMPLEMENT THESE 2 LATER
-     */
-
-    // public JottoGameModel findByid(String id) { 
+    
+    // public JottoGameModel findByid(String id) {
     //     return NULL;
     // }
     // public List<JottoGameModel> findAll(){
     //     return NULL;
-    // }
-
-    // public JottoGameModel findByid(String id){
-
     // }
 
     // @CrossOrigin(origins = "http://localhost:4200")
@@ -62,7 +56,7 @@ public class GameRestController /*implements JottoGameModelRepository*/{
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/playPage", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
     @ResponseBody
-    public void showGuesses() { //of current game of user and comp 
+    public void showGuesses() { //of current game of user and comp **add current user as arg**
         //go through db and get guesses
         //cal num matching letters
         //sends back json
