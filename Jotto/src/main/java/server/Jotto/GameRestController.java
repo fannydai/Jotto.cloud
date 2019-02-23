@@ -13,7 +13,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class GameRestController {
     private int size = 5;
     ArrayList<String> random5LetterWords; // using for testing, gonna get rid of later
-    
+
     // add decorators and spring shit
     // finish this class and add more models
 
