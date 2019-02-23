@@ -2802,14 +2802,11 @@ ikats
 ikons
 ileum
 ileus
-iliac
-ilium
 image
 imago
 imams
 imbed
 imbue
-immix
 impel
 imply
 impro

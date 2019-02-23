@@ -2,6 +2,7 @@ package server.Jotto.Models;
 
 import org.springframework.data.annotation.Id;
 import java.util.ArrayList;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 /**
  * The User class is the User model stored into mongodb
  */
@@ -11,10 +12,10 @@ import java.util.ArrayList;
 public class UserModel {
     @Id
     public String id;
-
-    public String username;
-    public String password;
-    private ArrayList<JottoGameModel> games;    
+    private String username;
+    private String password;
+    private String salt;
+    private ArrayList<JottoGameModel> games;
 
     public UserModel() {
 
@@ -22,7 +23,7 @@ public class UserModel {
 
     public UserModel(String username, String password) {
         this.username = username;
-        this.password = password;
+        this.setPassword(password);
         this.games = new ArrayList<JottoGameModel>();
     }
 
@@ -38,10 +39,17 @@ public class UserModel {
         return this.username;
     }
     public void setPassword(String password) {
-        this.password = password;
+        this.salt = BCrypt.gensalt();
+        this.password = BCrypt.hashpw(password, this.salt);
     }
     public String getPassword() {
         return this.password;
+    }
+    public boolean checkPassword(String password) {
+        if (BCrypt.checkpw(password, this.password))
+            return true;
+        else
+            return false;
     }
     public ArrayList<JottoGameModel> getGamesList() {
         return this.games;

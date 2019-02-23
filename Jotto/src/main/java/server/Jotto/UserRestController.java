@@ -35,7 +35,7 @@ public class UserRestController {
             UserModel user = new UserModel(regform.getUsername(),regform.getPassword());
             userRepository.save(user);
             res.setStatus("success");
-            res.setUsername(user.username);
+            res.setUsername(user.getUsername());
         } else {
             //user with username already exists
             res.setStatus("failure");
@@ -48,6 +48,7 @@ public class UserRestController {
         */
         return res;
     }
+    
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/login",method = RequestMethod.POST, consumes = {"application/json"})
     @ResponseBody
@@ -55,14 +56,14 @@ public class UserRestController {
         RegistrationLoginResult res = new RegistrationLoginResult();
         UserModel loginRequestUser = userRepository.findByusername(logform.getUsername());
         if(loginRequestUser != null) {
-            if(loginRequestUser.password.equals(logform.getPassword())) {
+            if(loginRequestUser.checkPassword(logform.getPassword())) {
                 //TODO -- configure Java Security Token for Angular -- I need to learn it first (Sean)
                 // For now we just pass username and success statement to the front end to imitate 
 
                 User securityUser = new User(loginRequestUser.getUsername(),loginRequestUser.getPassword(),true,true,true,true,getAuthorities());
                     
                 res.setStatus("success");
-                res.setUsername(loginRequestUser.username);
+                res.setUsername(loginRequestUser.getPassword());
             } else {
                 //Incorrect login details
                 res.setStatus("failure");

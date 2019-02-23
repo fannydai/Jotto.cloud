@@ -8,32 +8,19 @@ import org.springframework.data.annotation.Id;
  */
 public class JottoGameModel {
     @Id
-    public String id;
+    // public String id;
     private String answerword;
     private ArrayList<JottoMoveModel> moves;
-    private int moveamount;
-    private final int moveLimit;
 
     public JottoGameModel() {
-        this.moveLimit = 15;
-        this.answerword = generateAnswerWord();
-        this.moveamount = 0;
         this.moves = new ArrayList<JottoMoveModel>();
-    }
-
-    public boolean evaluate() {
-        return true;
-    }
-
-    private String generateAnswerWord() {
-        return "Answer";
     }
 
     public void addNewMove(JottoMoveModel newMove) {
         this.moves.add(newMove);
     }
 
-    public String getAnswerWord(){
+    public String getAnswerWord() {
         return this.answerword;
     }
     public void setAnswerWord(String newAnswerWord) {
@@ -44,12 +31,5 @@ public class JottoGameModel {
     }
     public void setMoves(ArrayList<JottoMoveModel> newMoveList) {
         this.moves = newMoveList;
-        this.moveamount = moves.size();
-    }
-    public int getMoveAmount() {
-        return this.moveamount;
-    }
-    public int getMoveLimit() {
-        return this.moveLimit;
     }
 }
