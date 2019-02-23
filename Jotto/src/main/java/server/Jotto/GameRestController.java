@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.concurrent.ThreadLocalRandom;
 
 @RestController
-public class GameRestController implements JottoGameModelRepository{
+public class GameRestController /*implements JottoGameModelRepository*/{
     private int size = 5;
     ArrayList<String> random5LetterWords; // using for testing, gonna get rid of later
 
@@ -40,10 +40,14 @@ public class GameRestController implements JottoGameModelRepository{
         return NULL;
     }
 
+    // public JottoGameModel findByid(String id){
+
+    // }
+
     // @CrossOrigin(origins = "http://localhost:4200")
     // @RequestMapping(value = "/playPage", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
     // @ResponseBody
-    public void UserMakeGuess() { //takes json, send back matching num letters as json
+    public void UserMakeGuess(@RequestBody String user) { //takes json, send back matching num letters as json
         //validate guess
         //cal num matching letters
         //add to db 
@@ -60,13 +64,16 @@ public class GameRestController implements JottoGameModelRepository{
     public void showGuesses() { //of current game of user and comp **add current user as arg**
         //go through db and get guesses
         //cal num matching letters
+        //sends back json
     }
 
     // @CrossOrigin(origins = "http://localhost:4200")
     // @RequestMapping(value = "/", method = RequestMethod.POST, consumes = {"application/json"}) //index page??
     // @ResponseBody
-    public void showPastGameResults() { //add user as arg
+    public void showPastGameResults(@RequestBody String user) { //add user as arg
         //go thorugh db and shows games results
+        //takes a user as json
+        //sends back json
     }
 
     /*
