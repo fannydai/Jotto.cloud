@@ -3,7 +3,6 @@ package server.Jotto;
 import java.util.ArrayList;
 
 import org.springframework.web.bind.annotation.*;
-
 import server.Jotto.Models.JottoGameModelRepository;
 
 import java.io.FileReader;
@@ -33,15 +32,11 @@ public class GameRestController /*implements JottoGameModelRepository*/{
 		fileReader.close();
     }
     
-    public JottoGameModel findByid(String id) {
-        return NULL;
-    }
-    public List<JottoGameModel> findAll(){
-        return NULL;
-    }
-
-    // public JottoGameModel findByid(String id){
-
+    // public JottoGameModel findByid(String id) {
+    //     return NULL;
+    // }
+    // public List<JottoGameModel> findAll(){
+    //     return NULL;
     // }
 
     // @CrossOrigin(origins = "http://localhost:4200")

@@ -45,6 +45,9 @@ public class UserModel {
     public String getPassword() {
         return this.password;
     }
+    public String getSalt() {
+        return this.salt;
+    }
     public boolean checkPassword(String password) {
         if (BCrypt.checkpw(password, this.password))
             return true;
