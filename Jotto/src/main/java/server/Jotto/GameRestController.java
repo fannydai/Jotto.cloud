@@ -7,11 +7,13 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.ThreadLocalRandom;
 
 @RestController
 public class GameRestController {
     private int size = 5;
     ArrayList<String> random5LetterWords; // using for testing, gonna get rid of later
+    
     // add decorators and spring shit
     // finish this class and add more models
 
@@ -106,8 +108,8 @@ public class GameRestController {
     // @CrossOrigin(origins = "http://localhost:4200")
     // @RequestMapping(value = "/playPage", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
     // @ResponseBody
-    public void calcCompGuess() { //GENERATING RANDOM 5 LETTER WORDS FOR NOW
-
-
+    public String calcCompGuess() { //GENERATING RANDOM 5 LETTER WORDS FOR NOW
+        int rand_num = ThreadLocalRandom.current().nextInt(0, random5LetterWords.size()); //2nd arg is exclusive
+        return random5LetterWords.get(rand_num);
     }
 }
