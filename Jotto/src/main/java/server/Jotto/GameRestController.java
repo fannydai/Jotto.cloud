@@ -3,6 +3,9 @@ package server.Jotto;
 import java.util.ArrayList;
 
 import org.springframework.web.bind.annotation.*;
+
+import server.Jotto.Models.JottoGameModelRepository;
+
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,7 +13,7 @@ import java.io.IOException;
 import java.util.concurrent.ThreadLocalRandom;
 
 @RestController
-public class GameRestController {
+public class GameRestController implements JottoGameModelRepository{
     private int size = 5;
     ArrayList<String> random5LetterWords; // using for testing, gonna get rid of later
 
@@ -29,11 +32,15 @@ public class GameRestController {
 		}
 		fileReader.close();
     }
+    
+    // public List<JottoGameModel> findAll(){
+        
+    // }
 
     // @CrossOrigin(origins = "http://localhost:4200")
     // @RequestMapping(value = "/playPage", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
     // @ResponseBody
-    public void UserMakeGuess() {
+    public void UserMakeGuess() { //takes json, send back matching num letters as json
         //validate guess
         //cal num matching letters
         //add to db 
