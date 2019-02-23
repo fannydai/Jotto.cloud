@@ -5,10 +5,10 @@ import java.util.ArrayList;
 /**
  * POJO model representation of computer guessed words
  */
-public class JottoCompGuessModel{
+public class JottoCompGuessModel {
     ArrayList<String> compGuess;
 
-    public JottoCompGuessModel(){
+    public JottoCompGuessModel() {
         compGuess = new ArrayList<String>();
     }
 
