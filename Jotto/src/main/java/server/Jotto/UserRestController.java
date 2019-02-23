@@ -10,7 +10,6 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import server.Jotto.Models.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collection;
@@ -87,5 +86,4 @@ public class UserRestController{
         authList.add(new SimpleGrantedAuthority("ROLE_USER"));
         return authList;
     }
-
 }

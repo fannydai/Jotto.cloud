@@ -1,12 +1,34 @@
 package server.Jotto;
 
+import java.util.ArrayList;
+
 import org.springframework.web.bind.annotation.*;
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.util.concurrent.ThreadLocalRandom;
 
 @RestController
 public class GameRestController {
     private int size = 5;
-    //add decorators and spring shit
+    ArrayList<String> random5LetterWords; // using for testing, gonna get rid of later
+
+    // add decorators and spring shit
     // finish this class and add more models
+
+    public GameRestController() throws IOException {
+        random5LetterWords = new ArrayList<>();
+        File file = new File("temp_words.txt"); //list of most common 5 letter words
+		FileReader fileReader = new FileReader(file);
+		BufferedReader buffReader = new BufferedReader(fileReader);
+		String word;
+		while ((word = buffReader.readLine()) != null) {
+            if(validateWord(word)) //validate and populate list (for testing purposes)
+                random5LetterWords.add(word);
+		}
+		fileReader.close();
+    }
 
     // @CrossOrigin(origins = "http://localhost:4200")
     // @RequestMapping(value = "/playPage", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
@@ -86,7 +108,8 @@ public class GameRestController {
     // @CrossOrigin(origins = "http://localhost:4200")
     // @RequestMapping(value = "/playPage", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
     // @ResponseBody
-    public void calcCompGuess(@RequestBody String prevUserGuess) { //change arg for later (user)
-
+    public String calcCompGuess() { //GENERATING RANDOM 5 LETTER WORDS FOR NOW
+        int rand_num = ThreadLocalRandom.current().nextInt(0, random5LetterWords.size()); //2nd arg is exclusive
+        return random5LetterWords.get(rand_num);
     }
 }
