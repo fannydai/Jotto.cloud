@@ -1,6 +1,8 @@
 package server.Jotto.Models;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.io.IOException;
 import org.springframework.data.annotation.Id;
 
 /**
@@ -9,36 +11,36 @@ import org.springframework.data.annotation.Id;
 public class JottoGameModel {
     @Id
     public String id;
-    private String answerword;
-    private ArrayList<JottoMoveModel> moves;
+    private final int size;
+    private JottoMoveModel userMoves;
+    private JottoMoveModel botMoves;
+    private ArrayList<String> botWordList;
 
-    public JottoGameModel() {
-        this.answerword = generateAnswerWord();
-        this.moves = new ArrayList<JottoMoveModel>();
+    public JottoGameModel(String answerWord) {
+        this.size = 5;
+        fillUpWords();
+        this.userMoves = new JottoMoveModel(generateAnswerWord(), this.size);
+        this.botMoves = new JottoMoveModel(answerWord, this.size);
     }
 
-    public boolean evaluate() {
-        return true;
-    }
+    /*
+     * This method fills up the possible words that the bot can call. It should only be called once!!!
+     */
+    private void fillUpWords() throws IOException {
+        File file = new File("../../../../../../dictionary.txt");
 
+    }
     private String generateAnswerWord() {
         return "Answer";
     }
 
-    public void addNewMove(JottoMoveModel newMove) {
-        this.moves.add(newMove);
+    public JottoMoveModel getUserMoves() {
+        return this.userMoves;
     }
-
-    public String getAnswerWord(){
-        return this.answerword;
+    public JottoMoveModel getBotMoves() {
+        return this.botMoves;
     }
-    public void setAnswerWord(String newAnswerWord) {
-        this.answerword = newAnswerWord;
-    }
-    public ArrayList<JottoMoveModel> getMoves() {
-        return this.moves;
-    }
-    public void setMoves(ArrayList<JottoMoveModel> newMoveList) {
-        this.moves = newMoveList;
-    }
+    
 }
+
+// Computer's word + how many match the users answer word
