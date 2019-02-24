@@ -6,6 +6,8 @@ import java.util.LinkedHashMap;
 /**
  * POJO model representation of move in Jotto game.
  * NOTE: We are assuming all words are UPPER case. Front-end will pass in uppercase & dictionary will ALWAYS be in uppercase
+ * 
+ * This class is the moves of the user and the bot. All moves go here. Verifying the word will also be done here.
  */
 public class JottoMoveModel {
     private String word;
@@ -19,15 +21,17 @@ public class JottoMoveModel {
     }
 
     /* 
-     * Calculates the amount of letters matched. If the word matches, user/bot won.
-     * @param guess             Word which was guessed
-     * @return                  true if the user won
-     *                          false o.w.
+     * Calculates the amount of letters matched.
+     * @param guess     Word which was guessed
+     * @return          The amt of chars that was matched.
+     *                  -1 if the guess word is not valid.
      */
-    public boolean won(String guess) {
+    public int addGuessWord(String guess) {
+        if(!validateWord(guess))
+            return -1;
         int amtMatch = amtMatch(guess);
         this.guessedWord.put(guess, amtMatch);
-        return amtMatch == this.size ? true : false;
+        return amtMatch;
     }
 
     /*
@@ -38,7 +42,7 @@ public class JottoMoveModel {
      * 
      * @return          The total amount of letters that overlap btw guess & actual
      */
-    public int amtMatch(String guess) {
+    private int amtMatch(String guess) {
         int counter = 0;
         boolean[] letters = new boolean[26];
         
@@ -60,7 +64,7 @@ public class JottoMoveModel {
      * @param word      String which the user typed & needs to be checked
      * @return          true if word is length 5 and all letters are unique (case insensitive) and word was not used previously
      */
-    public boolean validateWord(String guess) {
+    private boolean validateWord(String guess) {
         boolean[] letters = new boolean[26];
         if(guess.length() == this.size && !this.guessedWord.containsKey(guess)) {
             // Make sure all letters are unique

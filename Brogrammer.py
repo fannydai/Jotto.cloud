@@ -14,7 +14,7 @@ def unique(word):
 
 def filter():
     lst = []
-    file_path = "./dictionary.txt"
+    file_path = "./Jotto/src/main/java/server/Jotto/dictionary.txt"
     file = open(file_path, "r")
 
     for line in file:
@@ -24,7 +24,7 @@ def filter():
 
     lst = sorted(lst)
 
-    file = open("dictionary.txt","w")
+    file = open("./Jotto/src/main/java/server/Jotto/dictionary.txt","w")
     for i in lst:
         file.write(i + "\n")
     file.close()
