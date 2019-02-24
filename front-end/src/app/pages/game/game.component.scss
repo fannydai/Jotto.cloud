@@ -1,8 +1,10 @@
+@import '../../../styles.scss';
+
 .game-container {
     width: 100%;
     height: 100vh;
     .player-container {
-        background-color: rgb(248, 132, 121);
+        background-color: $bg-color;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -29,6 +31,12 @@
         }
         .guess-alpha-container {
             min-height: 10%;
+            .btn {
+                font-weight: bolder;
+            }
+            .btn-group {
+                width: 100%;
+            }
         }
     }
 

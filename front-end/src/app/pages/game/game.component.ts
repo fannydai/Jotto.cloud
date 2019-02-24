@@ -111,12 +111,11 @@ export class GameComponent implements OnInit {
     const toggleNumber = this.alphaToggle[letter];
     if (toggleNumber === 1) {
       this.alphaToggle[letter] = 2;
-    } else if (this.alphaToggle[letter] = 2) {
+    } else if (toggleNumber === 2) {
       this.alphaToggle[letter] = 3;
     } else {
       this.alphaToggle[letter] = 1;
     }
-
   }
 
 }
