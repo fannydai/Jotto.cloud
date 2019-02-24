@@ -17,11 +17,10 @@ public class JottoGameModel {
     private JottoMoveModel userMoves;
     private JottoMoveModel botMoves;
 
-    // Words that the bot has to calclate
-    private ArrayList<Word> botWords;
-
     // A list of words that the bot can guess.
     private ArrayList<String> botDict;
+    // Words that the bot has to calclate
+    private ArrayList<Word> botWords;
     // -1 = not in word. 0 = idk. 1 = is in word. Chars that indicate if it is in the word the bot is guessing.
     private int[] botLetters;
     
@@ -87,12 +86,11 @@ public class JottoGameModel {
      * Removes all letters from given word.
      * If the value d.n.e in actual word, remove it from the String guess
      * If the value exist (botLettters[char]=1) then remove that letter and also -- on amtMatch
-     * Lastly, add the finished String into botWords
      * 
      * @param guess     Takes in a char and removes words with/without that char       
      */
-    private void removeLetter(String guess, int amtMatch) {
-        
+    private Word removeLetter(Word word) {
+        return null;
     }
 
     /*
@@ -100,13 +98,10 @@ public class JottoGameModel {
      * 
      * @param guess     String1 to look for common letters
      */
-    private void filterBotWord(String guess, int amtMatch) {
-        for(Map.Entry<String, Integer> entry : botWords.entrySet()) {
-            String key = entry.getKey();
-            int value = entry.getValue();
+    private void filterBotWord(Word word) {
+        removeLetter(word);
+        for(Word w : botWords) {
             
-            // remove all letters we know are in/not in the String.
-            removeLetter(guess, amtMatch);
             // case 1: If the difference of the 2 amtMatch are 1 & the String only have 1 value in difference
         }
     }
@@ -118,7 +113,10 @@ public class JottoGameModel {
         } else if(amtMatch == guess.length()) {     // If all the letters matched
             removeWord(guess, true);
         } else {
-            filterBotWord(guess, amtMatch);
+            // remove all letters we know are in/not in the String.
+            Word word = new Word(guess, amtMatch);
+            word = removeLetter(word);
+            filterBotWord(word);
         }
     }
 
