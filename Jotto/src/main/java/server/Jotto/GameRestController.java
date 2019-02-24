@@ -3,40 +3,27 @@ package server.Jotto;
 import java.util.ArrayList;
 
 import org.springframework.web.bind.annotation.*;
-import server.Jotto.Models.JottoGameModelRepository;
 
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
+
 import java.util.concurrent.ThreadLocalRandom;
+
+import java.io.FileNotFoundException;
+import java.util.NoSuchElementException;
+import java.io.IOException;
 
 @RestController
 public class GameRestController /*implements JottoGameModelRepository*/{
-    ArrayList<String> random5LetterWords; // using for testing, gonna get rid of later
+    private static ArrayList<String> dictionary;
 
     // add decorators and spring shit
     // finish this class and add more models
 
     public GameRestController() throws IOException {
-        random5LetterWords = new ArrayList<>();
-        File file = new File("temp_words.txt"); //list of most common 5 letter words
-		FileReader fileReader = new FileReader(file);
-		BufferedReader buffReader = new BufferedReader(fileReader);
-		String word;
-		while ((word = buffReader.readLine()) != null) {
-           
-                random5LetterWords.add(word);
-		}
-		fileReader.close();
+        fillUpWords();
     }
-    
-    // public JottoGameModel findByid(String id) {
-    //     return NULL;
-    // }
-    // public List<JottoGameModel> findAll(){
-    //     return NULL;
-    // }
 
     // @CrossOrigin(origins = "http://localhost:4200")
     // @RequestMapping(value = "/playPage", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
@@ -46,10 +33,6 @@ public class GameRestController /*implements JottoGameModelRepository*/{
         //cal num matching letters
         //add to db 
         //check winner
-    }
-
-    public boolean checkWinner(String userGuess, String compWord) {
-        return userGuess.equals(compWord);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
@@ -73,8 +56,30 @@ public class GameRestController /*implements JottoGameModelRepository*/{
     // @CrossOrigin(origins = "http://localhost:4200")
     // @RequestMapping(value = "/playPage", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
     // @ResponseBody
-    public String calcCompGuess() { //GENERATING RANDOM 5 LETTER WORDS FOR NOW
-        int rand_num = ThreadLocalRandom.current().nextInt(0, random5LetterWords.size()); //2nd arg is exclusive
-        return random5LetterWords.get(rand_num);
+    // public String calcCompGuess() { //GENERATING RANDOM 5 LETTER WORDS FOR NOW
+    //     int rand_num = ThreadLocalRandom.current().nextInt(0, random5LetterWords.size()); //2nd arg is exclusive
+    //     return random5LetterWords.get(rand_num);
+    // }
+
+    /*
+     * This method fills up the possible words that the bot can call. It should only be CALLED ONCE!!!
+     * Bc it will prob take mad long. I'm WARNING YOU!!!
+     */
+    private void fillUpWords() {
+        try {
+            FileReader fileReader = new FileReader(new File("./dictionary.txt"));
+            BufferedReader buffReader = new BufferedReader(fileReader);
+            String word;
+            while ((word = buffReader.readLine()) != null) {
+                dictionary.add(word);
+            }
+            fileReader.close();
+        } catch (FileNotFoundException e) {
+			System.out.println("\nFile Not Found.\n");
+		} catch(NoSuchElementException e){
+			System.out.println("File not correctly formatted.\n");
+		} catch (Exception ex) {
+
+        }
     }
 }
