@@ -1,7 +1,6 @@
 package server.Jotto.Models;
 
-import java.util.Map;
-import java.util.LinkedHashMap;
+import java.util.ArrayList;
 
 /**
  * POJO model representation of move in Jotto game.
@@ -12,12 +11,12 @@ import java.util.LinkedHashMap;
 public class JottoMoveModel {
     private String word;
     private final int size;
-    Map<String, Integer> guessedWord;
+    private ArrayList<Word> guessedWord;
 
     public JottoMoveModel(String word, int size) {
         this.word = word;
         this.size = size;
-        this.guessedWord = new LinkedHashMap<String, Integer>();
+        this.guessedWord = new ArrayList<Word>();
     }
 
     /* 
@@ -30,8 +29,18 @@ public class JottoMoveModel {
         if(!validateWord(guess))
             return -1;
         int amtMatch = amtMatch(guess);
-        this.guessedWord.put(guess, amtMatch);
+        this.guessedWord.add(new Word(guess, amtMatch));
         return amtMatch;
+    }
+
+    /* 
+     * Checks to see if the word was guessed
+     * 
+     * @param guess     Word which was guessed. Check to see if it is equal to the actual word.
+     * @return          True if the guess word is equal to the actual word. False o.w.
+     */
+    public boolean won(String guess) {
+        return this.word.equals(guess);
     }
 
     /*
@@ -58,6 +67,19 @@ public class JottoMoveModel {
     }
 
     /*
+     * Checks to see if the word guess is in guessWord.
+     * 
+     * @param guess     The word to check if it is in guessWord
+     * @return          true if word in the guessWord. false o.w.
+     */
+    private boolean containsWord(String guess) {
+        for(Word w : guessedWord)
+            if(w.getGuess().equals(guess))
+                return true;
+        return false;
+    }
+
+    /*
      * Checks to ensure passed in parameter is exactly length 5 and all leters are unique.
      * Makes sure the word was not already used.
      * 
@@ -66,7 +88,7 @@ public class JottoMoveModel {
      */
     private boolean validateWord(String guess) {
         boolean[] letters = new boolean[26];
-        if(guess.length() == this.size && !this.guessedWord.containsKey(guess)) {
+        if(guess.length() == this.size && !this.containsWord(guess)) {
             // Make sure all letters are unique
             for(int i=0; i<this.size; i++) {
                 if(letters[guess.charAt(i)-65] == true)
@@ -85,7 +107,7 @@ public class JottoMoveModel {
     public int getSize() {
         return this.size;
     }
-    public Map<String, Integer> getGuessedWords() {
+    public ArrayList<Word> getGuessedWords() {
         return this.guessedWord;
     }
 }
