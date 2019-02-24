@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { GameService } from 'src/app/services/game.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-game',
@@ -8,12 +10,13 @@ import { GameService } from 'src/app/services/game.service';
   styleUrls: ['./game.component.scss']
 })
 export class GameComponent implements OnInit {
+  private winner = '';
   private enteredWord = ''; // While use is typing
   private enteredError = '';
   private aiWord = '';
   private userWord = '';
 
-  private guessWord = '';
+  private userGuessWord = '';
   private guessError = '';
 
   //private userGuesses = [];
@@ -26,9 +29,13 @@ export class GameComponent implements OnInit {
     'J': 1, 'K': 1, 'L': 1, 'M': 1, 'N': 1, 'O': 1, 'P': 1, 'Q': 1, 'R': 1, 'S': 1, 'T': 1, 'U': 1,
   'V': 1, 'W': 1, 'X': 1, 'Y': 1, 'Z': 1 };
 
+  @ViewChild('win') modalContent: TemplateRef<any>;
+
   constructor(
     private user: UserService,
-    private game: GameService
+    private game: GameService,
+    private modal: NgbModal,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -62,12 +69,30 @@ export class GameComponent implements OnInit {
   onGuess(): void {
     this.guessError = '';
     /*
-    this.game.guess(this.guessWord)
+    this.game.guess(this.userGuessWord)
       .subscribe(res => {
         console.log('GUESS RETURN DATA:', res);
         if (res.status === 'success') {
           const resUser = res.user; // # of matches for the user's guess
           const resBot = res.bot; // The actual bot's guess and # of matches
+
+          // If bot guesses correctly, display winning for bot
+          if (res.bot.word === this.userWord) {
+            this.modal.open(this.modalContent, { centered: true }).result.then((result) => {
+              if (result === 'Play again') {
+                // Reset everything
+                this.winner = '';
+                this.aiWord = '';
+                this.userWord = '';
+                this.userGuessWord = '';
+                this.aiGuesses = [];
+                this.userGuesses = [];
+                Object.keys(this.alphaToggle).forEach(key => this.alphaToggle[key] = 1);
+              } else {
+                this.router.navigate(['/']);
+              }
+            });
+          }
 
           const newUserGuess = this.userWord.toUpperCase().split('');
           newUserGuess.push(''); // Just for spacing, probably don't need
