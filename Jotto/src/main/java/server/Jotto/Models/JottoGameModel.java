@@ -11,13 +11,9 @@ public class JottoGameModel {
     public String id;
     private String answerword;
     private ArrayList<JottoMoveModel> moves;
-    private int moveamount;
-    private final int moveLimit;
 
     public JottoGameModel() {
-        this.moveLimit = 15;
         this.answerword = generateAnswerWord();
-        this.moveamount = 0;
         this.moves = new ArrayList<JottoMoveModel>();
     }
 
@@ -44,12 +40,5 @@ public class JottoGameModel {
     }
     public void setMoves(ArrayList<JottoMoveModel> newMoveList) {
         this.moves = newMoveList;
-        this.moveamount = moves.size();
-    }
-    public int getMoveAmount() {
-        return this.moveamount;
-    }
-    public int getMoveLimit() {
-        return this.moveLimit;
     }
 }

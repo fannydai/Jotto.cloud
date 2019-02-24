@@ -58,3 +58,6 @@ https://www2.cs.duke.edu/courses/spring06/cps100/assign/jotto/code/kwords5.txt
 
 https://www2.cs.duke.edu/courses/spring06/cps100/assign/jotto/
 
+### Libraries
+* For hashing the password.
+https://docs.spring.io/spring-security/site/docs/5.0.x/api/org/springframework/security/crypto/bcrypt/BCrypt.html
