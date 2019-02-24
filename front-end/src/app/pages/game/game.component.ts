@@ -27,6 +27,7 @@ export class GameComponent implements OnInit {
   /**
    * Checks to ensure word is exactly length 5 and all letters are unique and are a-z or A-Z
    */
+  /*
   validateWord(word: string): boolean {
     if (word.length !== 5) {
       return false;
@@ -42,10 +43,11 @@ export class GameComponent implements OnInit {
       map.set(w, 1);
     }
     return true;
-  }
+  }*/
 
   submitAIWord(): void {
     this.enteredError = '';
+    /*
     if (!this.validateWord(this.enteredWord)) {
       this.enteredError = 'The word must have exactly 5 distinct letters';
     } else if (!this.game.validateWord(this.enteredWord)) {
@@ -54,11 +56,21 @@ export class GameComponent implements OnInit {
       console.log('Entered word valid');
       this.aiWord = this.enteredWord;
       this.enteredWord = '';
-    }
+    }*/
+    this.game.pickWord(this.enteredWord)
+      .subscribe(res => {
+        if (res.status === 'success') {
+          this.aiWord = this.enteredWord;
+          this.enteredWord = '';
+        } else {
+          this.enteredError = res.error;
+        }
+      });
   }
 
   onGuess(): void {
     this.guessError = '';
+    /*
     if (!this.validateWord(this.guessWord)) {
       this.guessError = 'The word must have exactly 5 distinct letters';
     } else if (!this.game.validateWord(this.enteredWord)) {
@@ -69,7 +81,16 @@ export class GameComponent implements OnInit {
         .subscribe(data => {
           console.log('GUESS RETURN DATA:', data);
         });
-    }
+    }*/
+    this.game.guess(this.guessWord)
+      .subscribe(res => {
+        console.log('GUESS RETURN DATA:', res);
+        if (res.status === 'success') {
+
+        } else {
+          this.guessError = res.error;
+        }
+      });
   }
 
 }
