@@ -17,7 +17,7 @@ export class GameComponent implements OnInit {
   private guessError = '';
 
   //private userGuesses = [];
-  private aiGuesses = [];
+  private aiGuesses = [['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0]];
 
   private userGuesses = [['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0]];
 
@@ -50,7 +50,7 @@ export class GameComponent implements OnInit {
           this.enteredError = res.error;
         }
       });*/
-      this.aiWord = this.enteredWord;
+      this.aiWord = this.enteredWord.toUpperCase();
       this.enteredWord = '';
   }
 
@@ -66,11 +66,20 @@ export class GameComponent implements OnInit {
       .subscribe(res => {
         console.log('GUESS RETURN DATA:', res);
         if (res.status === 'success') {
+          const resUser = res.user; // # of matches for the user's guess
+          const resBot = res.bot; // The actual bot's guess and # of matches
 
+          const newUserGuess = this.userWord.toUpperCase().split('');
+          newUserGuess.push(''); // Just for spacing, probably don't need
+          newUserGuess.push(resUser);
+
+          const newBotGuess = resBot.word.toUpperCase().split('');
+          newBotGuess.push('');
+          newBotGuess.push(res.bot.matches);
         } else {
           this.guessError = res.error;
         }
-      }); */
+      });*/
   }
 
   /**
@@ -103,6 +112,15 @@ export class GameComponent implements OnInit {
       return 1;
     }
     return this.alphaToggle[letter];
+  }
+
+  checkAIColor(letter: string): number {
+    if (!('' + letter).match(/[a-z]/i)) {
+      return 1;
+    }
+    console.log(letter);
+    console.log(this.aiWord);
+    return this.aiWord.indexOf(letter) > -1 ? 2 : 3;
   }
 
 }

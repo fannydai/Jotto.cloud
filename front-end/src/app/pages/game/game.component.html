@@ -77,7 +77,28 @@
       </div>
     </ng-template>
   </div>
-  <div class="ai-container col">
-
+  <div *ngIf="aiWord" class="ai-container col">
+    <div class="ai-heading-container">
+      <h3>Computer's Guesses</h3>
+    </div>
+    <div class="ai-guess-container">
+      <table>
+        <tbody>
+          <tr *ngFor="let aiGuess of aiGuesses">
+            <td *ngFor="let letter of aiGuess">
+              <div [ngStyle]="{color: '#061110'}" *ngIf="checkAIColor(letter) == 1">
+                {{letter}}
+              </div>
+              <div [ngStyle]="{color: '#41B3A3'}" *ngIf="checkAIColor(letter) == 2">
+                {{letter}}
+              </div>
+              <div [ngStyle]="{color: '#C38D9E'}" *ngIf="checkAIColor(letter) == 3">
+                {{letter}}
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
