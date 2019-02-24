@@ -5,6 +5,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { IndexComponent } from './pages/index/index.component';
 import { GameComponent } from './pages/game/game.component';
 import { AuthGuard } from './guards/auth.guard';
+import { ResultsComponent } from './pages/results/results.component';
 
 const routes: Routes = [
   {
@@ -12,18 +13,13 @@ const routes: Routes = [
     component: IndexComponent
   },
   {
-    path: 'login',
-    component: LoginComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'register',
-    component: RegisterComponent,
-    canActivate: [AuthGuard]
-  },
-  {
     path: 'game',
     component: GameComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'results',
+    component: ResultsComponent,
     canActivate: [AuthGuard]
   }
 ];

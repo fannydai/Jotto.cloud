@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { IndexComponent } from './pages/index/index.component';
 import { GameComponent } from './pages/game/game.component';
 import { NavbarComponent } from './pages/navbar/navbar.component';
+import { ResultsComponent } from './pages/results/results.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { NavbarComponent } from './pages/navbar/navbar.component';
     RegisterComponent,
     IndexComponent,
     GameComponent,
-    NavbarComponent
+    NavbarComponent,
+    ResultsComponent
   ],
   imports: [
     BrowserModule,
