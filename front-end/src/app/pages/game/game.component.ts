@@ -16,6 +16,14 @@ export class GameComponent implements OnInit {
   private guessWord = '';
   private guessError = '';
 
+  private userGuesses = [];
+  private aiGuesses = [];
+
+  // State of each button. 1 is default, 2 is green, 3 is red
+  private alphaToggle = {'a': 1, 'b': 1, 'c': 1, 'd': 1, 'e': 1, 'f': 1, 'g': 1, 'h': 1, 'i': 1,
+    'j': 1, 'k': 1, 'l': 1, 'm': 1, 'n': 1, 'o': 1, 'p': 1, 'q': 1, 'r': 1, 's': 1, 't': 1, 'u': 1,
+  'v': 1, 'w': 1, 'x': 1, 'y': 1, 'z': 1 };
+
   constructor(
     private user: UserService,
     private game: GameService
@@ -57,6 +65,7 @@ export class GameComponent implements OnInit {
       this.aiWord = this.enteredWord;
       this.enteredWord = '';
     }*/
+    /*
     this.game.pickWord(this.enteredWord)
       .subscribe(res => {
         if (res.status === 'success') {
@@ -65,7 +74,9 @@ export class GameComponent implements OnInit {
         } else {
           this.enteredError = res.error;
         }
-      });
+      });*/
+      this.aiWord = this.enteredWord;
+      this.enteredWord = '';
   }
 
   onGuess(): void {
@@ -82,6 +93,7 @@ export class GameComponent implements OnInit {
           console.log('GUESS RETURN DATA:', data);
         });
     }*/
+    /*
     this.game.guess(this.guessWord)
       .subscribe(res => {
         console.log('GUESS RETURN DATA:', res);
@@ -90,7 +102,21 @@ export class GameComponent implements OnInit {
         } else {
           this.guessError = res.error;
         }
-      });
+      }); */
+  }
+
+  toggleAlpha(event) {
+    console.log(event);
+    const letter = event.path[0].innerHTML.toLowerCase();
+    const toggleNumber = this.alphaToggle[letter];
+    if (toggleNumber === 1) {
+      this.alphaToggle[letter] = 2;
+    } else if (this.alphaToggle[letter] = 2) {
+      this.alphaToggle[letter] = 3;
+    } else {
+      this.alphaToggle[letter] = 1;
+    }
+
   }
 
 }
