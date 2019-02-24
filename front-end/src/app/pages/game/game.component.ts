@@ -13,6 +13,9 @@ export class GameComponent implements OnInit {
   private aiWord = '';
   private userWord = '';
 
+  private guessWord = '';
+  private guessError = '';
+
   constructor(
     private user: UserService,
     private game: GameService
@@ -21,9 +24,18 @@ export class GameComponent implements OnInit {
   ngOnInit() {
   }
 
-  checkForDuplicates(word: string): boolean {
+  /**
+   * Checks to ensure word is exactly length 5 and all letters are unique and are a-z or A-Z
+   */
+  validateWord(word: string): boolean {
+    if (word.length !== 5) {
+      return false;
+    }
     const map = new Map();
     for (const w of word) {
+      if (!w.match(/[a-z]/i)) {
+        return false;
+      }
       if (map.get(w)) {
         return false;
       }
@@ -33,14 +45,30 @@ export class GameComponent implements OnInit {
   }
 
   submitAIWord(): void {
-    // TODO: Check if word is valid
     this.enteredError = '';
-    if (this.enteredWord.length !== 5 || !this.checkForDuplicates(this.enteredWord)) {
+    if (!this.validateWord(this.enteredWord)) {
       this.enteredError = 'The word must have exactly 5 distinct letters';
+    } else if (!this.game.validateWord(this.enteredWord)) {
+      this.enteredError = 'The word is not valid';
     } else {
       console.log('Entered word valid');
       this.aiWord = this.enteredWord;
       this.enteredWord = '';
+    }
+  }
+
+  onGuess(): void {
+    this.guessError = '';
+    if (!this.validateWord(this.guessWord)) {
+      this.guessError = 'The word must have exactly 5 distinct letters';
+    } else if (!this.game.validateWord(this.enteredWord)) {
+      this.guessError = 'The word is not valid';
+    } else {
+      console.log('Guessing...');
+      this.game.guess(this.guessWord)
+        .subscribe(data => {
+          console.log('GUESS RETURN DATA:', data);
+        });
     }
   }
 
