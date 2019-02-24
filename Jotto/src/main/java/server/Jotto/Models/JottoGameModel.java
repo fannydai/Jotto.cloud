@@ -89,8 +89,18 @@ public class JottoGameModel {
      * 
      * @param guess     Takes in a char and removes words with/without that char       
      */
-    private Word removeLetter(Word word) {
-        return null;
+    private String removeLetter(Word word){
+        String temp = "";
+        for(int i=0; i<word.getGuess().length(); i++){
+            for(int j=0; j<userMoves.getWord().length(); j++){
+                if(word.getGuess().charAt(i) == userMoves.getWord().charAt(j)) //detects matching character
+                    botLetters[word.getGuess().charAt(i)-65] = 1; //setting to true if character is in guessed word
+                else
+                    temp += word.getGuess().charAt(i); //adds all letter not in guess to temporary string
+            }
+        }
+        botWords.add(new Word(temp, word.getAmtMatch()));
+        return temp;
     }
 
     /*
@@ -119,5 +129,4 @@ public class JottoGameModel {
             filterBotWord(word);
         }
     }
-
 }
