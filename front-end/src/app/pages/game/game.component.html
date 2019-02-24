@@ -16,7 +16,7 @@
         <div class="enter-guess-container">
           <form (ngSubmit)="onGuess();" class="form-inline">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Guess" name="guessWord" [(ngModel)]="guessWord" required>
+              <input type="text" class="form-control" placeholder="Guess" name="userGuessWord" [(ngModel)]="userGuessWord" required>
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
           </form>
@@ -102,3 +102,17 @@
     </div>
   </div>
 </div>
+
+<ng-template #win let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Game Over!</h4>
+  </div>
+  <div class="modal-body">
+    <p>The winner is: {{ winner == 'player' ? 'you': 'computer' }}. 
+      Your guess word was: {{ userWord }}. The computer's word was {{ this.aiWord }}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="modal.close('Play again')">Play again</button>
+    <button type="button" class="btn btn-danger" (click)="modal.close('Exit')">Exit</button>
+  </div>
+</ng-template>
