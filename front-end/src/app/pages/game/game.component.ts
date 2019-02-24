@@ -16,13 +16,15 @@ export class GameComponent implements OnInit {
   private guessWord = '';
   private guessError = '';
 
-  private userGuesses = [];
+  //private userGuesses = [];
   private aiGuesses = [];
 
+  private userGuesses = [['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0]];
+
   // State of each button. 1 is default, 2 is green, 3 is red
-  private alphaToggle = {'a': 1, 'b': 1, 'c': 1, 'd': 1, 'e': 1, 'f': 1, 'g': 1, 'h': 1, 'i': 1,
-    'j': 1, 'k': 1, 'l': 1, 'm': 1, 'n': 1, 'o': 1, 'p': 1, 'q': 1, 'r': 1, 's': 1, 't': 1, 'u': 1,
-  'v': 1, 'w': 1, 'x': 1, 'y': 1, 'z': 1 };
+  private alphaToggle = {'A': 1, 'B': 1, 'C': 1, 'D': 1, 'E': 1, 'F': 1, 'G': 1, 'H': 1, 'I': 1,
+    'J': 1, 'K': 1, 'L': 1, 'M': 1, 'N': 1, 'O': 1, 'P': 1, 'Q': 1, 'R': 1, 'S': 1, 'T': 1, 'U': 1,
+  'V': 1, 'W': 1, 'X': 1, 'Y': 1, 'Z': 1 };
 
   constructor(
     private user: UserService,
@@ -33,38 +35,11 @@ export class GameComponent implements OnInit {
   }
 
   /**
-   * Checks to ensure word is exactly length 5 and all letters are unique and are a-z or A-Z
+   * Submit a word for the AI. Set an error message message if invalid.
+   * Otherwise aiWord is set, updating the view to show the game.
    */
-  /*
-  validateWord(word: string): boolean {
-    if (word.length !== 5) {
-      return false;
-    }
-    const map = new Map();
-    for (const w of word) {
-      if (!w.match(/[a-z]/i)) {
-        return false;
-      }
-      if (map.get(w)) {
-        return false;
-      }
-      map.set(w, 1);
-    }
-    return true;
-  }*/
-
   submitAIWord(): void {
     this.enteredError = '';
-    /*
-    if (!this.validateWord(this.enteredWord)) {
-      this.enteredError = 'The word must have exactly 5 distinct letters';
-    } else if (!this.game.validateWord(this.enteredWord)) {
-      this.enteredError = 'The word is not valid';
-    } else {
-      console.log('Entered word valid');
-      this.aiWord = this.enteredWord;
-      this.enteredWord = '';
-    }*/
     /*
     this.game.pickWord(this.enteredWord)
       .subscribe(res => {
@@ -79,20 +54,13 @@ export class GameComponent implements OnInit {
       this.enteredWord = '';
   }
 
+  /**
+   * Submit a guess for the player. Set an error message if invalid.
+   * Otherwise, the payload should include the AI guess
+   * and aiGuesses and userGuesses should be updated.
+   */
   onGuess(): void {
     this.guessError = '';
-    /*
-    if (!this.validateWord(this.guessWord)) {
-      this.guessError = 'The word must have exactly 5 distinct letters';
-    } else if (!this.game.validateWord(this.enteredWord)) {
-      this.guessError = 'The word is not valid';
-    } else {
-      console.log('Guessing...');
-      this.game.guess(this.guessWord)
-        .subscribe(data => {
-          console.log('GUESS RETURN DATA:', data);
-        });
-    }*/
     /*
     this.game.guess(this.guessWord)
       .subscribe(res => {
@@ -105,9 +73,16 @@ export class GameComponent implements OnInit {
       }); */
   }
 
-  toggleAlpha(event) {
-    console.log(event);
-    const letter = event.path[0].innerHTML.toLowerCase();
+  /**
+   * Cycles through the colors when an alphabet button is pressed.
+   * 1 - default (black)
+   * 2 - user thinks is in word (green)
+   * 3 - user thinks is not in word (red)
+   *
+   * @param event - The mouse click event.
+   */
+  toggleAlpha(event): void {
+    const letter = event.path[0].innerHTML;
     const toggleNumber = this.alphaToggle[letter];
     if (toggleNumber === 1) {
       this.alphaToggle[letter] = 2;
@@ -116,6 +91,18 @@ export class GameComponent implements OnInit {
     } else {
       this.alphaToggle[letter] = 1;
     }
+  }
+
+  /**
+   * Check to see which buttons are pressed, color each letter accordingly.
+   *
+   * @param letter - Letter to check for again the buttons
+   */
+  checkColor(letter: string): number {
+    if (!('' + letter).match(/[a-z]/i)) {
+      return 1;
+    }
+    return this.alphaToggle[letter];
   }
 
 }

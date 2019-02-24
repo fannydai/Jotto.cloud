@@ -8,9 +8,9 @@ public class BotLogic {
     // -1 = not in word. 0 = idk. 1 = is in word. Chars that indicate if it is in the word the bot is guessing.
     private Integer[] botLetters;
 
-    public BotLogic(ArrayList<String> botWordList) {
-        this.
-    }
+    // public BotLogic(ArrayList<String> botWordList) {
+    //     this.
+    // }
 
     private String generateAnswerWord() {
         return botWordList.get((int)Math.random() * botWordList.size());
