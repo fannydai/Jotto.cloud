@@ -34,13 +34,28 @@ public class JottoGameModel {
         return botWordList.get((int)Math.random() * botWordList.size());
     }
 
+    public JottoMoveModel getUserMoves() {
+        return this.userMoves;
+    }
+    public JottoMoveModel getBotMoves() {
+        return this.botMoves;
+    }
+    public int getSize() {
+        return this.size;
+    }
+
+    /*
+     * #########################################################################################################
+     *                          THIS IS WHERE THE BOT LOGIC BEGINS
+     * #########################################################################################################
+     */
     /*
      * Removes all possible guess words for the bot with that certain char -- THIS WAS TESTED AND WORKS -- FANNY
      * @param character     Takes in a char and removes words with/without that char
      * @param flag          True = character is in the word. Find all words that do not have it and remove it
      *                      False = character is not in the word. Find all words that have this char and remove it
      */
-    private void removeChar(char character, boolean flag) {
+    private void removeWord(char character, boolean flag) {
         ArrayList<String> tempBotWordList = new ArrayList<String> ();
         for(String word : botWordList) {
             boolean hasChar = false;
@@ -52,15 +67,5 @@ public class JottoGameModel {
                 tempBotWordList.add(word);
 		}
 		botWordList = tempBotWordList;
-    }
-
-    public JottoMoveModel getUserMoves() {
-        return this.userMoves;
-    }
-    public JottoMoveModel getBotMoves() {
-        return this.botMoves;
-    }
-    public int getSize() {
-        return this.size;
     }
 }
