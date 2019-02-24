@@ -14,12 +14,7 @@ public class UserModel {
     public String id;
     private String username;
     private String password;
-    private String salt;
     private ArrayList<JottoGameModel> games;
-
-    public UserModel() {
-
-    }
 
     public UserModel(String username, String password) {
         this.username = username;
@@ -32,28 +27,23 @@ public class UserModel {
         return String.format("User[id = %s, username = %s, password = %s]",id,username,password);
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-    public String getUsername() {
-        return this.username;
-    }
-    public void setPassword(String password) {
-        this.salt = BCrypt.gensalt();
-        this.password = BCrypt.hashpw(password, this.salt);
-    }
-    public String getPassword() {
-        return this.password;
-    }
-    public String getSalt() {
-        return this.salt;
-    }
     public boolean checkPassword(String password) {
         if (BCrypt.checkpw(password, this.password))
             return true;
         else
             return false;
     }
+
+    public String getUsername() {
+        return this.username;
+    }
+    public void setPassword(String password) {
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
+    }
+    public String getPassword() {
+        return this.password;
+    }
+    
     public ArrayList<JottoGameModel> getGamesList() {
         return this.games;
     }

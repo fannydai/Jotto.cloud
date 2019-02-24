@@ -19,6 +19,7 @@ public class UserRestController {
     public Principal user(Principal user) {
         return user;
     }
+
     /**
      * Controller for registration form POST
      * Enforces unique username requirement -- pasword requirements should be enforced on the front-end.
@@ -32,7 +33,7 @@ public class UserRestController {
         RegistrationLoginResult res = new RegistrationLoginResult();
 
         if(userRepository.findByusername(regform.getUsername()) == null) {
-            UserModel user = new UserModel(regform.getUsername(),regform.getPassword());
+            UserModel user = new UserModel(regform.getUsername(), regform.getPassword());
             userRepository.save(user);
             res.setStatus("success");
             res.setUsername(user.getUsername());
@@ -55,20 +56,15 @@ public class UserRestController {
     public RegistrationLoginResult login(@RequestBody RegistrationLoginForm logform){
         RegistrationLoginResult res = new RegistrationLoginResult();
         UserModel loginRequestUser = userRepository.findByusername(logform.getUsername());
-        if(loginRequestUser != null) {
-            if(loginRequestUser.checkPassword(logform.getPassword())) {
-                //TODO -- configure Java Security Token for Angular -- I need to learn it first (Sean)
-                // For now we just pass username and success statement to the front end to imitate 
 
-                User securityUser = new User(loginRequestUser.getUsername(),loginRequestUser.getPassword(),true,true,true,true,getAuthorities());
-                    
-                res.setStatus("success");
-                res.setUsername(loginRequestUser.getUsername());
-            } else {
-                //Incorrect login details
-                res.setStatus("failure");
-                res.setUsername("");
-            }
+        if(loginRequestUser != null && loginRequestUser.checkPassword(logform.getPassword())) {
+            //TODO -- configure Java Security Token for Angular -- I need to learn it first (Sean)
+            // For now we just pass username and success statement to the front end to imitate 
+
+            User securityUser = new User(loginRequestUser.getUsername(),loginRequestUser.getPassword(),true,true,true,true,getAuthorities());
+                
+            res.setStatus("success");
+            res.setUsername(loginRequestUser.getUsername());
         } else {
             //Incorrect login details
             res.setStatus("failure");
