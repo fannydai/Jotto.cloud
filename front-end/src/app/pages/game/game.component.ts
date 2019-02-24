@@ -21,7 +21,13 @@ export class GameComponent implements OnInit {
   ngOnInit() {
   }
 
-  checkForDuplicates(word: string): boolean {
+  /**
+   * Checks to ensure word is exactly length 5 and all letters are unique
+   */
+  validateWord(word: string): boolean {
+    if (word.length !== 5) {
+      return false;
+    }
     const map = new Map();
     for (const w of word) {
       if (map.get(w)) {
@@ -33,10 +39,11 @@ export class GameComponent implements OnInit {
   }
 
   submitAIWord(): void {
-    // TODO: Check if word is valid
     this.enteredError = '';
-    if (this.enteredWord.length !== 5 || !this.checkForDuplicates(this.enteredWord)) {
+    if (!this.validateWord(this.enteredWord)) {
       this.enteredError = 'The word must have exactly 5 distinct letters';
+    } else if (!this.game.validateWord(this.enteredWord)) {
+      this.enteredError = 'The word is not valid';
     } else {
       console.log('Entered word valid');
       this.aiWord = this.enteredWord;

@@ -1,11 +1,28 @@
+@import '../../../styles.scss';
+
 .index-container {
     height: 100vh;
     width: 100%;
-    padding-top: 12.5vh;
-    background-color: #E3F2FD;
-
-    #background-div {
-        background-size: cover;
-        background-image: url("../../../assets/jotto-background.jpg");
+    .menu-container {
+        background-color: $bg-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        a {
+            margin: 5px;
+        }
     }
+    .login-container {
+        background-color: #DAAD86;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .sign-up-container {
+        background-color: $bg-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
 }
