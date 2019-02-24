@@ -13,7 +13,6 @@ import java.util.concurrent.ThreadLocalRandom;
 
 @RestController
 public class GameRestController /*implements JottoGameModelRepository*/{
-    private int size = 5;
     ArrayList<String> random5LetterWords; // using for testing, gonna get rid of later
 
     // add decorators and spring shit
@@ -69,32 +68,6 @@ public class GameRestController /*implements JottoGameModelRepository*/{
         //go thorugh db and shows games results
         //takes a user as json
         //sends back json
-    }
-
-    /*
-     * Counts the amount of matching letters between the actual and guessed word
-     * 
-     * @param guess     The word which was guessed
-     * @param actual    The actual word
-     * 
-     * @return          The total amount of letters that overlap btw guess & actual
-     */
-    public int amtMatch(String guess, String actual) {
-        int counter = 0;
-        boolean[] letters = new boolean[26];
-        
-        guess = guess.toUpperCase();
-        actual = actual.toUpperCase();
-        
-        for(int i=0; i<size; i++) {
-            letters[actual.charAt(i)-65] = true;
-        }
-        for(int i=0; i<size; i++) {
-            if(letters[guess.charAt(i)-65] == true) {
-                counter++;
-            }
-        }
-        return counter;
     }
 
     // @CrossOrigin(origins = "http://localhost:4200")
