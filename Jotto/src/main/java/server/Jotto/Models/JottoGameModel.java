@@ -1,6 +1,7 @@
 package server.Jotto.Models;
 
 import java.util.ArrayList;
+import java.util.regex.*;
 import org.springframework.data.annotation.Id;
 
 /**
@@ -18,12 +19,12 @@ public class JottoGameModel {
 
     // A list of words that the bot can guess.
     private ArrayList<String> botDict;
-    // -1 = not in word. 0 = idk. 1 = is in word. Chars that indicate if it is in the word the bot is guessing.
-    private Integer[] botLetters;
+    // false means we don't know if is in word or not. True means it is either in word or not (We don't care bc we modify the dictionary as we figure it out)
+    private Boolean[] botLetters;
 
     public JottoGameModel(String answerWord, ArrayList<String> botDict) {
         this.size = 5;
-        botLetters = new Integer[26];           // Default value is set to 0
+        botLetters = new Boolean[26];           // Default value is set to false
         this.botDict = botDict;
 
         this.userMoves = new JottoMoveModel(generateAnswerWord(), this.size);
@@ -55,25 +56,24 @@ public class JottoGameModel {
      * @param flag          True = character is in the word. Find all words that do not have it and remove it
      *                      False = character is not in the word. Find all words that have this char and remove it
      */
-    private void removeWord(char character, boolean flag) {
-        if(botLetters[((int)character)-65] != 0)
-            return;
-
-        if(flag) {
-            botLetters[((int)character)-65] = 1;
-        } else if(!flag) {
-            botLetters[((int)character)-65] = -1;
-        }
-
+    private void removeWord(char[] chars, boolean flag) {
         ArrayList<String> tempBotWordList = new ArrayList<String> ();
-        for(String word : botDict) {
-            boolean hasChar = false;
-			for(char c: word.toCharArray()) {
-                if(character == c)
-                    hasChar = true;
+
+        // Make my regex for letters to remove
+        String regex = "";
+        for(char c : chars) {
+            if(botLetters[(int)c-65]==false) {
+                botLetters[(int)c-65] = true;
+                regex += c;
             }
-            if(hasChar == flag)
-                tempBotWordList.add(word);
+        }
+        if(regex.length()==0) return;
+        regex = "\"[" + regex + "] \"";
+
+        for(String dictWord : botDict) {
+            if(Pattern.matches(dictWord, regex) == flag) {
+                tempBotWordList.add(dictWord);
+            }
 		}
 		botDict = tempBotWordList;
     }
