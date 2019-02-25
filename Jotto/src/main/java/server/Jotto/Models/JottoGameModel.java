@@ -1,8 +1,6 @@
 package server.Jotto.Models;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Arrays;
 import java.util.regex.*;
 import org.springframework.data.annotation.Id;
 
@@ -19,20 +17,18 @@ public class JottoGameModel {
     private JottoMoveModel userMoves;
     private JottoMoveModel botMoves;
 
-    // Words that the bot has to calclate
-    private HashMap<String,Integer> botWords;
-
     // A list of words that the bot can guess.
     private ArrayList<String> botDict;
-    // false means we don't know if is in word or not. True means it is either in word or not (We don't care bc we modify the dictionary as we figure it out)
-    private Boolean[] botLetters;
+    // Words that the bot has to calclate
+    private ArrayList<Word> botWords;
+    // -1 = not in word. 0 = idk. 1 = is in word. Chars that indicate if it is in the word the bot is guessing.
+    private int[] botLetters;
     
     public JottoGameModel(String answerWord, ArrayList<String> botDict) {
         this.size = 5;
         this.botDict = botDict;
-
-        botLetters = new Boolean[26];
-        Arrays.fill(botLetters, Boolean.FALSE);
+        this.botWords = new ArrayList<Word>();
+        this.botLetters = new int[26];
 
         this.userMoves = new JottoMoveModel(generateAnswerWord(), this.size);
         this.botMoves = new JottoMoveModel(answerWord, this.size);
@@ -70,8 +66,8 @@ public class JottoGameModel {
         // Make my regex for letters to remove
         String regex = "";
         for(char c : str.toCharArray()) {
-            if(botLetters[(int)c-65]==false) {
-                botLetters[(int)c-65] = true;
+            if(botLetters[(int)c-65]==0) {
+                botLetters[(int)c-65] = (flag ? 1 : -1);
                 regex += c;
             }
         }
@@ -87,50 +83,50 @@ public class JottoGameModel {
     }
 
     /*
+     * Removes all letters from given word.
+     * If the value d.n.e in actual word, remove it from the String guess
+     * If the value exist (botLettters[char]=1) then remove that letter and also -- on amtMatch
+     * 
+     * @param guess     Takes in a char and removes words with/without that char       
+     */
+    private String removeLetter(Word word){
+        String temp = "";
+        for(int i=0; i<word.getGuess().length(); i++){
+            for(int j=0; j<userMoves.getWord().length(); j++){
+                if(word.getGuess().charAt(i) == userMoves.getWord().charAt(j)) //detects matching character
+                    botLetters[word.getGuess().charAt(i)-65] = 1; //setting to true if character is in guessed word
+                else
+                    temp += word.getGuess().charAt(i); //adds all letter not in guess to temporary string
+            }
+        }
+        botWords.add(new Word(temp, word.getAmtMatch()));
+        return temp;
+    }
+
+    /*
      * Find the common characters that both str1 & str2 has. Return those values as a string.
      * 
-     * @param str1      String1 to look for common letters
-     * @param str2      String2 to look for common letters
-     * 
-     * @return          A String which each chars are in both str1 and str2
+     * @param guess     String1 to look for common letters
      */
-    private String unique_char(String str1, String str2) {
-        // boolean[] letters = new boolean[26];
-        
-        // for(int i=0; i<size; i++) {
-        //     letters[this.word.charAt(i)-65] = true;
-        // }
-        // for(int i=0; i<size; i++) {
-        //     if(letters[guess.charAt(i)-65] == true) {
-        //         counter++;
-        //     }
-        // }
-
+    private void filterBotWord(Word word) {
+        removeLetter(word);
+        for(Word w : botWords) {
+            
+            // case 1: If the difference of the 2 amtMatch are 1 & the String only have 1 value in difference
+        }
     }
 
     private void botLogic(String guess) {
         int amtMatch = botMoves.addGuessWord(guess);
-        switch(amtMatch) {
-            case 0:
-                removeWord(guess, false);
-                break;
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                if(botMoves.wong()) {
-                    // Bot won
-                } else {
-                    removeWord(guess, true);
-                }
-                break;
-            default:
-                // there was an error with the word
+        if(amtMatch == 0) {                         // If none of the letters were guessed
+            removeWord(guess, false);
+        } else if(amtMatch == guess.length()) {     // If all the letters matched
+            removeWord(guess, true);
+        } else {
+            // remove all letters we know are in/not in the String.
+            Word word = new Word(guess, amtMatch);
+            word = removeLetter(word);
+            filterBotWord(word);
         }
     }
 }
