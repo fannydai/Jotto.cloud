@@ -9,9 +9,9 @@
       <form #login="ngForm" (ngSubmit)="onLogin();">
         <h1>Log in</h1>
         <div *ngIf="loginError" class="warning-message">{{loginError}}</div>
-        <input type="text" class="form-control" placeholder="Username" 
+        <input type="text" class="form-control mb-2" placeholder="Username" 
           name="loginName" [(ngModel)]="loginName" required>
-        <input type="password" class="form-control" placeholder="Password" 
+        <input type="password" class="form-control mb-2" placeholder="Password" 
           name="loginPassword" [(ngModel)]="loginPassword" required>
         <button class="btn btn-lg btn-primary btn-block" [disabled]="!login.form.valid">Log In</button>
       </form>
@@ -20,11 +20,11 @@
       <form #signup="ngForm" (ngSubmit)="onSignUp();">
         <h1>Sign Up</h1>
         <div *ngIf="signupError" class="warning-message">{{signupError}}</div>
-        <input type="text" class="form-control" placeholder="Username" 
+        <input type="text" class="form-control mb-2" placeholder="Username" 
           name="signupName" [(ngModel)]="signupName" required>
-        <input type="password" class="form-control" placeholder="Password" 
+        <input type="password" class="form-control mb-2" placeholder="Password" 
           name="signupPassword" [(ngModel)]="signupPassword" required>
-        <input type="password" class="form-control" placeholder="Confirm Password" 
+        <input type="password" class="form-control mb-2" placeholder="Confirm Password" 
           name="signupConfirm" [(ngModel)]="signupConfirm"  required>
         <button class="btn btn-lg btn-primary btn-block" [disabled]="!signup.form.valid">Sign Up</button>
       </form>
