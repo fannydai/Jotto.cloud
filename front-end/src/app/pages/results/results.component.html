@@ -1,3 +1,15 @@
-<p>
-  results works!
-</p>
+<div class="results-container">
+  <div class="results-heading-container">
+    <h1>Past Game Results</h1>
+    <h3 *ngIf="errorMessage" class="warning-message">{{errorMessage}}</h3>
+    <a routerLink="/" class="btn btn-primary">Home</a>
+  </div>
+  <div class="results-content-container">
+    <div class="results-player-container">
+
+    </div>
+    <div class="results-computer-container">
+
+    </div>
+  </div>
+</div>
