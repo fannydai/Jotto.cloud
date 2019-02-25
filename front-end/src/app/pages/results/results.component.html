@@ -2,14 +2,45 @@
   <div class="results-heading-container">
     <h1>Past Game Results</h1>
     <h3 *ngIf="errorMessage" class="warning-message">{{errorMessage}}</h3>
-    <a routerLink="/" class="btn btn-primary">Home</a>
+    <a routerLink="/" class="btn btn-default"><b>Home</b></a>
   </div>
   <div class="results-content-container">
     <div class="results-player-container">
-
+      <h3>Player's Guesses</h3>
+      <table>
+        <tbody *ngIf="playerMoves">
+          <tr *ngFor="let move of playerMoves">
+            <td *ngFor="let letter of move">
+              <div *ngIf="isInPlayerWord(letter)" class="correct-letter">
+                {{letter}}
+              </div>
+              <div *ngIf="!isInPlayerWord(letter)" class="incorrect-letter">
+                {{letter}}
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="playerWord">
+        <p>Answer: {{playerWord}}</p>
+      </div>
     </div>
     <div class="results-computer-container">
-
+      <h3>Computer's Guesses</h3>
+      <table>
+        <tbody *ngIf="computerMoves">
+          <tr *ngFor="let move of computerMoves">
+            <td *ngFor="let letter of move">
+              <div *ngIf="isInComputerWord(letter)" class="correct-letter">
+                {{letter}}
+              </div>
+              <div *ngIf="!isInComputerWord(letter)" class="incorrect-letter">
+                {{letter}}
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

@@ -10,13 +10,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./game.component.scss']
 })
 export class GameComponent implements OnInit {
-  private winner = '';
+  private winner = ''; // Either player or computer
   private enteredWord = ''; // While use is typing
   private enteredError = '';
-  private aiWord = '';
-  private userWord = '';
+  private aiWord = ''; // Chosen by the player for the computer
+  private userWord = ''; // Chosen by the computer for the player
 
-  private userGuessWord = '';
+  private userGuessWord = ''; // The current guess of the user
   private guessError = '';
 
   //private userGuesses = [];

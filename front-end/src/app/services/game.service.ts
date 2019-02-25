@@ -40,7 +40,7 @@ export class GameService {
     return this.http.post<any>(`${environment.api_path}/previousGame`, { username: localStorage.getItem('username') })
       .pipe(
         map(res => res),
-        catchError(e => of(null));
-      )
+        catchError(e => of(null))
+      );
   }
 }
