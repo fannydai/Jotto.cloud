@@ -1,0 +1,39 @@
+@import '../../../styles.scss';
+
+.warning-message {
+    color: $red;
+}
+
+.results-container {
+    height: 100vh;
+    width: 100%;
+    background-color: $bg-color;
+    display: flex;
+    flex-direction: column;
+    .results-heading-container {
+        display: flex;
+        * {
+            display: flex;
+            align-items: center;
+        }
+        :first-child {
+            margin-right: auto;
+        }
+        :last-child {
+            margin-left: auto;
+        }
+    }
+    .results-content-container {
+        flex: 1;
+        background-color: yellow;
+        display: flex;
+        .results-player-container {
+            background-color: $red;
+            width: 50%;
+        }
+        .results-computer-container {
+            background-color: $green;
+            width: 50%;
+        }
+    }
+}
