@@ -5,13 +5,15 @@
 }
 
 .correct-letter {
-    color: $green;
+    color: green;
     font-weight: bolder;
+    font-size: larger;
 }
 
 .incorrect-letter {
-    color: $red;
+    color: red;
     font-weight: bolder;
+    font-size: larger;
 }
 
 .results-container {
@@ -22,6 +24,7 @@
     flex-direction: column;
     .results-heading-container {
         display: flex;
+        /*
         * {
             display: flex;
             align-items: center;
@@ -31,7 +34,12 @@
         }
         :last-child {
             margin-left: auto;
-        }
+        }*/
+        justify-content: space-between;
+    }
+    .results-error-container {
+        height: 5%;
+        text-align: center;
     }
     .results-content-container {
         flex: 1;
@@ -45,8 +53,11 @@
             flex-direction: column;
             align-items: center;
             table {
-                width: 100%;
+                width: 50%;
                 flex: 1;
+                div {
+                    text-align: center;
+                }
             }
         }
         .results-computer-container {
@@ -56,8 +67,11 @@
             flex-direction: column;
             align-items: center;
             table {
-                width: 100%;
+                width: 50%;
                 flex: 1;
+                div {
+                    text-align: center;
+                }
             }
         }
     }
