@@ -21,6 +21,11 @@ const routes: Routes = [
     path: 'results',
     component: ResultsComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: '**',
+    redirectTo: '/',
+    pathMatch: 'full'
   }
 ];
 

@@ -1,8 +1,10 @@
 <div class="index-container row">
   <div class="menu-container col" *ngIf="user.isLoggedIn(); else loginSignup">
-    <a routerLink="/game" class="btn btn-primary btn-lg">Play</a>
-    <a routerLink="/results" class="btn btn-success btn-lg">Results</a>
-    <a class="btn btn-danger btn-lg" (click)="onLogout();">Logout</a>
+    <div class="menu-button-container">
+      <a routerLink="/game" class="btn btn-primary btn-lg">Play</a>
+      <a routerLink="/results" class="btn btn-success btn-lg">Results</a>
+      <a class="btn btn-danger btn-lg" (click)="onLogout();">Logout</a>
+    </div>
   </div>
   <ng-template #loginSignup>
     <div class="login-container text-center col">
