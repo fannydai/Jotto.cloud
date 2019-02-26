@@ -1,6 +1,8 @@
 package server.Jotto.Models;
 
-public class Word{
+public class Word {
+    @Id
+    public String id;
     private String guess;
     private int amtMatch;
 

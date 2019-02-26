@@ -9,6 +9,8 @@ import java.util.ArrayList;
  * This class is the moves of the user and the bot. All moves go here. Verifying the word will also be done here.
  */
 public class JottoMoveModel {
+    @Id
+    public String id;
     private String word;
     private final int size;
     private ArrayList<Word> guessedWord;

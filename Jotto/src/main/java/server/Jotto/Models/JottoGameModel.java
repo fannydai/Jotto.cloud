@@ -69,6 +69,7 @@ public class JottoGameModel {
      * Fills out a boolean array where each index is associated with a letter
      * If str has this letter, the index associated will = true
      * o.w. this associated index = false
+     * helper method for the other methods in this class
      * 
      * @param str           A string to fill the boolean array
      * @return              A boolean array with the associated values of string
@@ -113,7 +114,51 @@ public class JottoGameModel {
     }
 
     /*
-     * Removes all letters from given word.
+     * Removes all possible guess words for the bot with that certain char using the botLetters
+     */
+    private void removeWordDict2() {
+        ArrayList<String> tempBotWordList = new ArrayList<String> ();
+
+        // Fills out the boolean array. Also sets botLetters to the correct value.
+        boolean[] got = new boolean[26];
+        boolean[] nogot = new boolean[26];
+        Arrays.fill(got, Boolean.FALSE);
+        Arrays.fill(nogot, Boolean.FALSE);
+        boolean gotCounter = false;
+
+        // fill in the arrays accordingly
+        for(int num=0; num<botLetters.length; num++) {
+            int val = botLetters[num];
+            if(val<0) {             // no got
+                nogot[num] = true;
+            } else if(val>0) {      // got
+                got[num] = true;
+                gotCounter = true;
+            }
+        }
+
+        for(String w : botDict) {
+            boolean hasChar = false;
+            boolean noHasChar = false;
+            for(char c : w.toCharArray()) {
+                if(nogot[(int)c - 65]) {
+                    noHasChar = false;
+                }  else if(got[(int)c - 65]) {        // There is a letter which we found is def in the actual string
+                    hasChar = true;
+                }
+            }
+
+            // !noHasChar means all letters are either 0 or 1
+            // If we have 1 -> that means that that letter must be in the word. Thus, we must add it in.
+            // If there are no 1's ... only 0 & -1 then we only add in 0's
+            if((!noHasChar && hasChar && gotCounter) || (!noHasChar && !gotCounter))
+                tempBotWordList.add(w);
+		}
+        botDict = tempBotWordList;
+    }
+
+    /*
+     * Removes all letters (botLetters) from given word.
      * If the value d.n.e in actual word, remove it from the String guess
      * If the value exist (botLettters[char]=1) then remove that letter and also -- on amtMatch
      * 
@@ -124,9 +169,9 @@ public class JottoGameModel {
         int amtMatch = word.getAmtMatch();
         for(char c : word.getGuess().toCharArray()) {
             if(botLetters[(int)c-65]==0) {
-                temp += c;
+                temp += c;      // Add into the string. We are keeping
             } else if(botLetters[(int)c-65]>0) {
-                amtMatch --;
+                amtMatch --;    // Do not add into temp (remove the letter) & amtMatch-- bc letter is in the actual word.
             }
         }
         word.setGuess(temp);
@@ -167,14 +212,14 @@ public class JottoGameModel {
             // Char found. This char is def in the actual word
             if(!l[(int)c-65]) {
                 this.botLetters[(int)c-65] = 1;
-                removeWordDict(Character.toString(c), true);
+                // removeWordDict(Character.toString(c), true);
             }
         }
         for(char c : w2.getGuess().toCharArray()) {
             // Char found. This char is def NOT in the actual word
             if(!l[(int)c-65]) {
                 this.botLetters[(int)c-65] = -1;
-                removeWordDict(Character.toString(c), false);
+                // removeWordDict(Character.toString(c), false);
             }
         }
 
@@ -205,16 +250,18 @@ public class JottoGameModel {
         }
     }
 
-    private void botLogic(String guess) {
+    public void botLogic(String guess) {
         int amtMatch = botMoves.addGuessWord(guess);
         if(amtMatch == -1) {
             // There was an error with the word. Not valid word
         }
+
+        removeWordDict2();
         
         // remove all letters we know are in/not in the String.
         Word word = new Word(guess, amtMatch);
         word = removeLetter(word);
-        if(amtMatch == 0) {                  // If none of the letters were guessed
+        if(amtMatch == 0) {                         // If none of the letters were guessed
             removeWordDict(guess, false);
         } else if(amtMatch == this.size) {          // If all the letters matched
             removeWordDict(guess, true);
