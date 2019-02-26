@@ -55,6 +55,14 @@ public class JottoGameModel {
      * #########################################################################################################
      */
 
+    /*
+     * Fills out a boolean array where each index is associated with a letter
+     * If str has this letter, the index associated will = true
+     * o.w. this associated index = false
+     * 
+     * @param str           A string to fill the boolean array
+     * @return              A boolean array with the associated values of string
+     */
     private boolean[] letters(String str) {
         boolean[] l = new boolean[26];
         Arrays.fill(l, Boolean.FALSE);
@@ -62,6 +70,7 @@ public class JottoGameModel {
             l[(int)c - 65] = true;
         return l;
     }
+
     /*
      * Removes all possible guess words for the bot with that certain char -- THIS WAS TESTED AND WORKS -- FANNY
      * 
@@ -72,6 +81,7 @@ public class JottoGameModel {
     private void removeWordDict(String str, boolean flag) {
         ArrayList<String> tempBotWordList = new ArrayList<String> ();
 
+        // Fills out the boolean array. Also sets botLetters to the correct value.
         boolean[] l = new boolean[26];
         Arrays.fill(l, Boolean.FALSE);
         for(char c : str.toCharArray()) {
