@@ -3,6 +3,7 @@ package server.Jotto;
 import java.util.ArrayList;
 
 import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.FileReader;
 import java.io.BufferedReader;
@@ -14,8 +15,17 @@ import java.io.FileNotFoundException;
 import java.util.NoSuchElementException;
 import java.io.IOException;
 
+import server.Jotto.Models.*;
+
 @RestController
 public class GameRestController /*implements JottoGameModelRepository*/{
+
+    @Autowired
+    JottoGameModelRepository gameRepository;
+    @Autowired
+    private UserRepository userRepository;
+
+
     private static ArrayList<String> dictionary;
 
     // add decorators and spring shit
@@ -25,9 +35,26 @@ public class GameRestController /*implements JottoGameModelRepository*/{
         fillUpWords();
     }
 
-    // @CrossOrigin(origins = "http://localhost:4200")
-    // @RequestMapping(value = "/playPage", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
-    // @ResponseBody
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "/pickWord", method = RequestMethod.POST, consumes = {"application/json"}) //pickword game.service.ts
+    public PickWordResult pickWord(@RequestBody PickWordForm form ){
+        PickWordResult res = new PickWordResult();
+        if(form.getWord().length() == 5 && form.getWord().matches("[a-zA-Z]+") && dictionary.contains(form.getWord())){
+            JottoGameModel newGame = new JottoGameModel(form.getWord(), dictionary);
+            gameRepository.save(newGame);
+            res.setValid(true);
+        }else{
+            res.setValid(false);
+        }
+        
+        return res;
+
+
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "/1", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
+    @ResponseBody
     public void UserMakeGuess(@RequestBody String user) { //takes json, send back matching num letters as json
         //validate guess
         //cal num matching letters
@@ -36,7 +63,7 @@ public class GameRestController /*implements JottoGameModelRepository*/{
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/playPage", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
+    @RequestMapping(value = "/2", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
     @ResponseBody
     public void showGuesses() { //of current game of user and comp **add current user as arg**
         //go through db and get guesses
@@ -44,9 +71,9 @@ public class GameRestController /*implements JottoGameModelRepository*/{
         //sends back json
     }
 
-    // @CrossOrigin(origins = "http://localhost:4200")
-    // @RequestMapping(value = "/", method = RequestMethod.POST, consumes = {"application/json"}) //index page??
-    // @ResponseBody
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "/3", method = RequestMethod.POST, consumes = {"application/json"}) //index page??
+    @ResponseBody
     public void showPastGameResults(@RequestBody String user) { //add user as arg
         //go thorugh db and shows games results
         //takes a user as json
