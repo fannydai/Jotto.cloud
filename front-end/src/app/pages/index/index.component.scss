@@ -6,7 +6,7 @@
     background-image: url("../../../assets/bg2.jpg");
     background-size: cover;
     .menu-container {
-        // background-color: $bg-color;
+        // background-color: $white;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -16,8 +16,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            // background-color: rgba(255, 255, 255, 0.5);
-            background: radial-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.1));
+            background: radial-gradient(rgba(229, 229, 229, 0.8), rgba(229, 229, 229, 0.8));
             a {
                 margin: 5px;
                 color: white;
@@ -35,19 +34,18 @@
             align-items: center;
             height: 50%;
             width: 50%;
-            // background-color: rgba($color: #FFFFFF, $alpha: 0.5);
-            background: radial-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.1));
+            background: radial-gradient(rgba(89, 229, 229, 0.8), rgba(229, 229, 229, 0.8));
             h1 {
                 font-weight: 1000;
-                color: $terra-cotta;
+                color: $purple;
             }
             input {
-                border-color: $terra-cotta;
+                border-color: $team-color;
             }
         }
     }
     .sign-up-container {
-        // background-color: $bg-color;
+        // background-color: $white;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -57,13 +55,13 @@
             align-items: center;
             height: 50%;
             width: 50%;
-            background-color: rgba($color: #FFFFFF, $alpha: 0.5);
+            background: radial-gradient(rgba(229, 229, 229, 0.8), rgba(229, 229, 229, 0.4));
             h1 {
                 font-weight: 1000;
-                color: $terra-cotta;
+                color: $purple;
             }
             input {
-                border-color: $terra-cotta;
+                border-color: $team-color;
             }
         }
     }
@@ -78,5 +76,13 @@
     }
     a:active {
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.40), 0 17px 50px 0 rgba(0, 0, 0, 0.35);
+    }
+    button {
+        border-color: $orange;
+        background-color: rgba($color: $black, $alpha: 0.5);
+        background-color: $black;
+        color: $orange;
+        font-weight: bold;
+
     }
 }
