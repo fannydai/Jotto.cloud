@@ -51,7 +51,7 @@ public class GameRestController {
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/userMove", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
     @ResponseBody
-    public void UserMakeGuess(@RequestBody UserMoveForm form) { //takes json, send back matching num letters as json
+    public UserMoveResult UserMakeGuess(@RequestBody UserMoveForm form) { //takes json, send back matching num letters as json
         UserMoveResult res = new UserMoveResult();
 
         String gameId = form.getGameId();
@@ -67,20 +67,19 @@ public class GameRestController {
             //game with given game ID does not exist.
             res.setResult(-2);
         }
+        return res;
 
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/", method = RequestMethod.GET, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
+    @RequestMapping(value = "/botMove", method = RequestMethod.GET, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
     @ResponseBody
-    public void showGuesses() { //of current game of user and comp **add current user as arg**
-        //go through db and get guesses
-        //cal num matching letters
-        //sends back json
+    public void botMove() { 
+
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/3", method = RequestMethod.POST, consumes = {"application/json"}) //index page??
+    @RequestMapping(value = "/pastGames", method = RequestMethod.POST, consumes = {"application/json"}) //index page??
     @ResponseBody
     public void showPastGameResults(@RequestBody String user) { //add user as arg
         //go thorugh db and shows games results
