@@ -25,7 +25,8 @@ export class GameService {
         map(res => {
           console.log(res);
           return res;
-        })
+        }),
+        catchError(e => of(null))
       );
   }
 

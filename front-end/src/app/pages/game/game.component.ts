@@ -47,18 +47,26 @@ export class GameComponent implements OnInit {
    */
   submitAIWord(): void {
     this.enteredError = '';
-    this.game.pickWord(this.enteredWord)
-      .subscribe(res => {
-        /*
-        if (res.status === 'success') {
-          this.aiWord = this.enteredWord;
-          this.enteredWord = '';
-        } else {
-          this.enteredError = res.error;
-        }*/
-      });
-      this.aiWord = this.enteredWord.toUpperCase();
-      this.enteredWord = '';
+    if (this.enteredWord.length !== 5) {
+      this.enteredError = 'Must be 5 letters.';
+    } else if (!this.enteredWord.match(/^[a-z]+$/i)) {
+      this.enteredError = 'Must be all letters.';
+    } else if (this.enteredWord.match(/(.).*\1/i)) {
+      this.enteredError = 'Must have distinct letters.';
+    } else {
+      this.game.pickWord(this.enteredWord)
+        .subscribe(res => {
+          console.log('RES IS:', res);
+          if (res === null) {
+            this.enteredError = 'Server Error.';
+          } else if (res.valid === true) {
+            this.aiWord = this.enteredWord.toUpperCase();
+            this.enteredWord = '';
+          } else {
+            this.enteredError = 'Not a valid word';
+          }
+        });
+    }
   }
 
   /**
@@ -143,8 +151,6 @@ export class GameComponent implements OnInit {
     if (!('' + letter).match(/[a-z]/i)) {
       return 1;
     }
-    //console.log(letter);
-    //console.log(this.aiWord);
     return this.aiWord.indexOf(letter) > -1 ? 2 : 3;
   }
 
