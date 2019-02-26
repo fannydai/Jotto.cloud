@@ -17,7 +17,7 @@
             justify-content: center;
             align-items: center;
             // background-color: rgba(255, 255, 255, 0.5);
-            background: radial-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.1));
+            background: radial-gradient(rgba(255, 255, 255, 1.0), rgba(255, 255, 255, 0.5));
             a {
                 margin: 5px;
                 color: white;
@@ -36,7 +36,7 @@
             height: 50%;
             width: 50%;
             // background-color: rgba($color: #FFFFFF, $alpha: 0.5);
-            background: radial-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.1));
+            background: radial-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.1));
             h1 {
                 font-weight: 1000;
                 color: $terra-cotta;

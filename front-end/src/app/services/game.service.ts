@@ -14,7 +14,7 @@ export class GameService {
   ) {}
 
   /**
-   * Picks the word for the AI to start the game. Backend should make sure word is valid.
+   * Picks the word for the AI to start the game as POST request. Backend should make sure word is valid.
    *
    * @param word - word that will be passed to the backend to be checked (ALL CAPITALIZED)
    */
@@ -31,20 +31,42 @@ export class GameService {
   }
 
   /**
-   * Sends in a user guess to be processed. Backend should make sure word is valid.
+   * Sends in a user guess to be processed as POST request. Backend should make sure word is valid.
    *
    * @param word - guess that the backend checks (ALL CAPITALIZED)
    */
-  guess(word: string): Observable<any> {
-    return this.http.post<any>(`${environment.api_path}/playGame`,
-      { guess: word.toUpperCase(), username: localStorage.getItem('username') });
+  userMove(word: string, gameId: string): Observable<any> {
+    return this.http.post<any>(`${environment.api_path}/userMove`, { guess: word.toUpperCase(), gameId: gameId })
+      .pipe(
+        map(res => {
+          return res;
+        }),
+        catchError(e => of(null))
+      );
   }
 
   /**
-   * Gets the previous game associated with a user.
+   * Gets the move of the computer via GET request. Word is assumed to be valid.
+   * 
+   * @param gameId - The current game that is being played
+   */
+  botMove(gameId: string): Observable<any> {
+    return this.http.get<any>(`${environment.api_path}/botMove/${gameId}`)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+        catchError(e => of(null))
+      );
+  }
+
+
+
+  /**
+   * Gets the previous game associated with a user as GET request.
    */
   getPreviousGame(): Observable<any> {
-    return this.http.post<any>(`${environment.api_path}/previousGame`, { username: localStorage.getItem('username') })
+    return this.http.get<any>(`${environment.api_path}/previousGame/${localStorage.getItem('username')}`)
       .pipe(
         map(res => res),
         catchError(e => of(null))
