@@ -26,7 +26,7 @@ export class GameService {
           console.log(res);
           return res;
         });
-      )
+      );
   }
 
   /**
