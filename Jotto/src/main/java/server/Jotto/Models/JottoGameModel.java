@@ -1,8 +1,8 @@
 package server.Jotto.Models;
+import org.springframework.data.annotation.Id;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import org.springframework.data.annotation.Id;
 
 /**
  * POJO representation of Jotto game
@@ -56,7 +56,18 @@ public class JottoGameModel {
      */
   
 
-
+    /*
+     * Bot won
+     * User won
+     * -User enter word that is invalid
+     * Continue game
+     */
+    public int userLogic(String guess) {
+        if(userMoves.won(guess)) {
+            return 6;
+        }
+        return userMoves.addGuessWord(guess);
+    }
 
     /*
      * #########################################################################################################
@@ -110,7 +121,7 @@ public class JottoGameModel {
             boolean noHasChar = false;
             for(char c : w.toCharArray()) {
                 if(nogot[(int)c - 65]) {
-                    noHasChar = false;
+                    noHasChar = true;
                 }  else if(got[(int)c - 65]) {        // There is a letter which we found is def in the actual string
                     hasChar = true;
                 }
@@ -221,26 +232,28 @@ public class JottoGameModel {
      * -User enter word that is invalid
      * Continue game
      */
-    public String botLogic(String guess) {
-        if(userMoves.won(guess)) {
-            return "User won!";
+    public String botLogic() {
+        // The bots random word
+        String botWord = generateAnswerWord();
+        int amtMatch = botMoves.addGuessWord(botWord);
+        while(amtMatch == -1) {
+            botWord = generateAnswerWord();
+            amtMatch = botMoves.addGuessWord(botWord);
         }
-
-        // Adds to the word list that bot has guessed
-        int amtMatch = userMoves.addGuessWord(guess);
-        if(amtMatch == -1) {
-            return "Error with Word";
+        if(botMoves.won(botWord)){
+            return "Bot won!";
         }
+        botDict.remove(botWord);
 
         // remove all letters we know are in/not in the String.
-        Word word = new Word(guess, amtMatch);
+        Word word = new Word(botWord, amtMatch);
         botWords.add(word);
 
         if(amtMatch == 0) {                         // If none of the letters were guessed
-            for(char c : guess.toCharArray())
+            for(char c : botWord.toCharArray())
                 botLetters[(int)c-65] = -1;
         } else if(amtMatch == this.size) {          // If all the letters matched
-            for(char c : guess.toCharArray())
+            for(char c : botWord.toCharArray())
                 botLetters[(int)c-65] = 1;
         } else {
             filterBotWord(word);
@@ -252,15 +265,6 @@ public class JottoGameModel {
             w = removeLetter(w);
         // Remove words we don't need
         removeWordDict();
-
-        // The bots random word
-        String botWord = generateAnswerWord();
-        while(botMoves.addGuessWord(botWord) != -1) {
-            botWord = generateAnswerWord();
-        }
-        if(botMoves.won(botWord)){
-            return "Bot won!";
-        }
 
         return botWord;
     }
