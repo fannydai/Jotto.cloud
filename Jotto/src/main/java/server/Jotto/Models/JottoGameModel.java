@@ -271,6 +271,6 @@ public class JottoGameModel {
         // Remove words we don't need
         removeWordDict();
 
-        return botWord;
+        return botWord+amtMatch;
     }
 }
