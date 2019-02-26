@@ -23,7 +23,14 @@ export class ResultsComponent implements OnInit {
     ['S', 'P', 'E', 'A', 'R'],
     ['P', 'R', 'A', 'N', 'K'],
     ['S', 'P', 'R', 'A', 'Y'],
-    ['G', 'R', 'A', 'S', 'P']
+    ['G', 'R', 'A', 'S', 'P'],
+    ['G', 'R', 'A', 'S', 'P'],
+    ['G', 'R', 'A', 'S', 'P'],
+    ['G', 'R', 'A', 'S', 'P'],
+    ['G', 'R', 'A', 'S', 'P'],
+    ['G', 'R', 'A', 'S', 'P'],
+    ['G', 'R', 'A', 'S', 'P'],
+    ['G', 'R', 'A', 'S', 'P'],
   ];
 
   private computerMoves = [
@@ -32,7 +39,17 @@ export class ResultsComponent implements OnInit {
     ['P', 'R', 'A', 'Y', 'S'],
     ['S', 'P', 'R', 'I', 'T'],
     ['S', 'T', 'I', 'N', 'G'],
-    ['P', 'I', 'T', 'C', 'H']
+    ['P', 'I', 'T', 'C', 'H'],
+    ['P', 'I', 'T', 'C', 'H'],
+    ['P', 'I', 'T', 'C', 'H'],
+    ['P', 'I', 'T', 'C', 'H'],
+    ['P', 'I', 'T', 'C', 'H'],
+    ['P', 'I', 'T', 'C', 'H'],
+    ['P', 'I', 'T', 'C', 'H'],
+    ['P', 'I', 'T', 'C', 'H'],
+    ['P', 'I', 'T', 'C', 'H'],
+    ['P', 'I', 'T', 'C', 'H'],
+    ['P', 'I', 'T', 'C', 'H'],
   ];
 
   constructor(
