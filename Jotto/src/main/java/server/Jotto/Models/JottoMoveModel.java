@@ -94,6 +94,10 @@ public class JottoMoveModel {
         if(guess.length() == this.size && !this.containsWord(guess)) {
             // Make sure all letters are unique
             for(int i=0; i<this.size; i++) {
+                // Makes sure chars are upper case letters only!
+                if(guess.charAt(i)<65 || guess.charAt(i)>90) {
+                    return false;
+                }
                 if(letters[guess.charAt(i)-65] == true)
                     return false;
                 else

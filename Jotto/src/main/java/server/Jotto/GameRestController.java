@@ -9,11 +9,8 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.File;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import java.io.FileNotFoundException;
 import java.util.NoSuchElementException;
-import java.io.IOException;
 
 import server.Jotto.Models.*;
 
@@ -51,7 +48,7 @@ public class GameRestController {
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/userMove", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
     @ResponseBody
-    public void UserMakeGuess(@RequestBody UserMoveForm form) { //takes json, send back matching num letters as json
+    public UserMoveResult UserMakeGuess(@RequestBody UserMoveForm form) { //takes json, send back matching num letters as json
         UserMoveResult res = new UserMoveResult();
 
         String gameId = form.getGameId();
@@ -67,20 +64,19 @@ public class GameRestController {
             //game with given game ID does not exist.
             res.setResult(-2);
         }
+        return res;
 
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/", method = RequestMethod.GET, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
+    @RequestMapping(value = "/botMove", method = RequestMethod.GET, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
     @ResponseBody
-    public void showGuesses() { //of current game of user and comp **add current user as arg**
-        //go through db and get guesses
-        //cal num matching letters
-        //sends back json
+    public void botMove() { 
+
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/3", method = RequestMethod.POST, consumes = {"application/json"}) //index page??
+    @RequestMapping(value = "/pastGames", method = RequestMethod.POST, consumes = {"application/json"}) //index page??
     @ResponseBody
     public void showPastGameResults(@RequestBody String user) { //add user as arg
         //go thorugh db and shows games results
@@ -96,6 +92,25 @@ public class GameRestController {
     //     return random5LetterWords.get(rand_num);
     // }
 
+    /*
+     * Used for the first word the user enters - the word the bot will guess
+     * Want to make sure it is valid
+     * 
+     * @param s     The string which the user passed in - want the bot to guess
+     * @param dict  The dictionary with all the word (was called using fullUpWords - just pass that in)
+     * 
+     * @return      True if the word is in the dictionary
+     *              False if the word is not valid
+     */
+    private boolean validGuessWord(String s, ArrayList<String> dict) {
+        if(!s.matches("^[A-Z][A-Z][A-Z][A-Z][A-Z]$"))
+            return false;
+        for(String w : dict) {
+            if(w.equals(s))
+                return true;
+        }
+        return false;
+    }
     /*
      * This method fills up the possible words that the bot can call. It should only be CALLED ONCE!!!
      * Bc it will prob take mad long. I'm WARNING YOU!!!

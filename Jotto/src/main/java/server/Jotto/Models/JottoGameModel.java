@@ -24,6 +24,10 @@ public class JottoGameModel {
     private JottoMoveModel userMoves;
     private JottoMoveModel botMoves;
     
+    /*
+     * @param answerWord    the word which user wants the bot to guess
+     * @botDict             a complete dictionary with valid words
+     */
     public JottoGameModel(String answerWord, ArrayList<String> botDict) {
         this.size = 5;
         this.botDict = botDict;
@@ -244,7 +248,7 @@ public class JottoGameModel {
             botWord = generateAnswerWord();
             amtMatch = botMoves.addGuessWord(botWord);
         }
-        if(botMoves.won(botWord)){
+        if(botMoves.won(botWord)) {
             return "Bot won!";
         }
         botDict.remove(botWord);
