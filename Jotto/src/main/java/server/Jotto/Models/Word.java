@@ -1,4 +1,5 @@
 package server.Jotto.Models;
+import org.springframework.data.annotation.Id;
 
 public class Word {
     @Id

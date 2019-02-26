@@ -1,6 +1,7 @@
 package server.Jotto.Models;
 
 import java.util.ArrayList;
+import org.springframework.data.annotation.Id;
 
 /**
  * POJO model representation of move in Jotto game.
@@ -88,7 +89,7 @@ public class JottoMoveModel {
      * @param word      String which the user typed & needs to be checked
      * @return          true if word is length 5 and all letters are unique (case insensitive) and word was not used previously
      */
-    public boolean validateWord(String guess) {
+    private boolean validateWord(String guess) {
         boolean[] letters = new boolean[26];
         if(guess.length() == this.size && !this.containsWord(guess)) {
             // Make sure all letters are unique

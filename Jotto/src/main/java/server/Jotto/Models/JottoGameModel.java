@@ -36,7 +36,7 @@ public class JottoGameModel {
     }
 
     private String generateAnswerWord() {
-        return botDict.get((int)Math.random() * botDict.size());
+        return botDict.get((int)(Math.random() * botDict.size()));
     }
 
     public JottoMoveModel getUserMoves() {
@@ -54,7 +54,6 @@ public class JottoGameModel {
      *                          THIS IS WHERE THE User LOGIC BEGINS
      * #########################################################################################################
      */
-
   
 
 
@@ -83,40 +82,9 @@ public class JottoGameModel {
     }
 
     /*
-     * Removes all possible guess words for the bot with that certain char -- THIS WAS TESTED AND WORKS -- FANNY
-     * 
-     * @param character     Takes in a char and removes words with/without that char
-     * @param flag          True = character is in the word. Find all words that do not have it and remove it
-     *                      False = character is not in the word. Find all words that have this char and remove it
-     */
-    private void removeWordDict(String str, boolean flag) {
-        ArrayList<String> tempBotWordList = new ArrayList<String> ();
-
-        // Fills out the boolean array. Also sets botLetters to the correct value.
-        boolean[] l = new boolean[26];
-        Arrays.fill(l, Boolean.FALSE);
-        for(char c : str.toCharArray()) {
-            if(botLetters[(int)c-65] == 0) {
-                botLetters[(int)c-65] = flag?1:-1;
-                l[(int)c - 65] = true;
-            }
-        }
-
-        for(String w : botDict) {
-            boolean hasChar = false;
-            for(char c : w.toCharArray()) {
-                if(l[(int)c - 65]) hasChar = true;
-            }
-            // Filtering out the word accoring to the flag
-            if(hasChar == flag) tempBotWordList.add(w);
-		}
-        botDict = tempBotWordList;
-    }
-
-    /*
      * Removes all possible guess words for the bot with that certain char using the botLetters
      */
-    private void removeWordDict2() {
+    private void removeWordDict() {
         ArrayList<String> tempBotWordList = new ArrayList<String> ();
 
         // Fills out the boolean array. Also sets botLetters to the correct value.
@@ -222,16 +190,13 @@ public class JottoGameModel {
                 // removeWordDict(Character.toString(c), false);
             }
         }
-
-        // Update our list.
-        for(Word w : botWords)
-            removeLetter(w);
     }
 
     /*
      * Find the common characters that both str1 & str2 has. Return those values as a string.
+     * The case with Ramps3 and Lamps2
      * 
-     * @param guess     String1 to look for common letters
+     * @param word     The word which we are checking with the other strings
      */
     private void filterBotWord(Word word) {
         for(Word w : botWords) {
@@ -250,23 +215,53 @@ public class JottoGameModel {
         }
     }
 
-    public void botLogic(String guess) {
-        int amtMatch = botMoves.addGuessWord(guess);
-        if(amtMatch == -1) {
-            // There was an error with the word. Not valid word
+    /*
+     * Bot won
+     * User won
+     * -User enter word that is invalid
+     * Continue game
+     */
+    public String botLogic(String guess) {
+        if(userMoves.won(guess)) {
+            return "User won!";
         }
 
-        removeWordDict2();
-        
+        // Adds to the word list that bot has guessed
+        int amtMatch = userMoves.addGuessWord(guess);
+        if(amtMatch == -1) {
+            return "Error with Word";
+        }
+
         // remove all letters we know are in/not in the String.
         Word word = new Word(guess, amtMatch);
-        word = removeLetter(word);
+        botWords.add(word);
+
         if(amtMatch == 0) {                         // If none of the letters were guessed
-            removeWordDict(guess, false);
+            for(char c : guess.toCharArray())
+                botLetters[(int)c-65] = -1;
         } else if(amtMatch == this.size) {          // If all the letters matched
-            removeWordDict(guess, true);
+            for(char c : guess.toCharArray())
+                botLetters[(int)c-65] = 1;
         } else {
             filterBotWord(word);
         }
+
+
+        // Update our list -- according to the letters
+        for(Word w : botWords)
+            w = removeLetter(w);
+        // Remove words we don't need
+        removeWordDict();
+
+        // The bots random word
+        String botWord = generateAnswerWord();
+        while(botMoves.addGuessWord(botWord) != -1) {
+            botWord = generateAnswerWord();
+        }
+        if(botMoves.won(botWord)){
+            return "Bot won!";
+        }
+
+        return botWord;
     }
 }
