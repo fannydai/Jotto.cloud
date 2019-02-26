@@ -51,8 +51,23 @@ public class GameRestController {
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/userMove", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
     @ResponseBody
-    public void UserMakeGuess(@RequestBody String user) { //takes json, send back matching num letters as json
-        
+    public void UserMakeGuess(@RequestBody UserMoveForm form) { //takes json, send back matching num letters as json
+        UserMoveResult res = new UserMoveResult();
+
+        String gameId = form.getGameId();
+        String move = form.getMove();
+
+        JottoGameModel game = gameRepository.findByid(gameId);
+
+        if(game != null){
+            int result = game.userLogic(move);
+            res.setResult(result);
+        }
+        else{
+            //game with given game ID does not exist.
+            res.setResult(-2);
+        }
+
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
