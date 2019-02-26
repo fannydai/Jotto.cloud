@@ -4,6 +4,9 @@ public class UserMoveForm {
     private String move;
     private String gameId;
 
+    public UserMoveForm(){
+
+    }
     public String getMove() {
         return this.move;
     }

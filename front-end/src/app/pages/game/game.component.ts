@@ -19,6 +19,8 @@ export class GameComponent implements OnInit {
   private userGuessWord = ''; // The current guess of the user
   private guessError = '';
 
+  private gameId = '';
+
   //private userGuesses = [];
   private aiGuesses = [['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0]];
 
@@ -62,8 +64,9 @@ export class GameComponent implements OnInit {
           } else if (res.valid === true) {
             this.aiWord = this.enteredWord.toUpperCase();
             this.enteredWord = '';
+            this.gameId = res.gameId;
           } else {
-            this.enteredError = 'Not a valid word';
+            this.enteredError = 'Word is invalid.';
           }
         });
     }
@@ -76,35 +79,31 @@ export class GameComponent implements OnInit {
    */
   onGuess(): void {
     this.guessError = '';
-    /*
-    this.game.guess(this.userGuessWord)
+    this.game.userMove(this.userGuessWord, this.gameId)
       .subscribe(res => {
         console.log('GUESS RETURN DATA:', res);
+        if (res === null) {
+          this.guessError = 'Server is down.';
+        } else if (res.result === -1) {
+          this.guessError = 'Word is invalid';
+        } else if (res.result === -2) {
+          this.guessError = 'Game ID is invalid.';
+        } else if (res.result === 6) {
+          this.showWinScreen();
+        } else {
+          const newUserGuess = this.userWord.toUpperCase().split('');
+          newUserGuess.push(''); // Just for spacing, probably don't need
+          newUserGuess.push(res.result); // Number of correct letters
+          // Ask for bot's guess
+          this.game.botMove(this.gameId)
+            .subscribe(result => {
+
+            });
+        }
         if (res.status === 'success') {
           const resUser = res.user; // # of matches for the user's guess
           const resBot = res.bot; // The actual bot's guess and # of matches
 
-          // If bot guesses correctly, display winning for bot
-          if (res.bot.word === this.userWord) {
-            this.modal.open(this.modalContent, { centered: true }).result.then((result) => {
-              if (result === 'Play again') {
-                // Reset everything
-                this.winner = '';
-                this.aiWord = '';
-                this.userWord = '';
-                this.userGuessWord = '';
-                this.aiGuesses = [];
-                this.userGuesses = [];
-                Object.keys(this.alphaToggle).forEach(key => this.alphaToggle[key] = 1);
-              } else {
-                this.router.navigate(['/']);
-              }
-            });
-          }
-
-          const newUserGuess = this.userWord.toUpperCase().split('');
-          newUserGuess.push(''); // Just for spacing, probably don't need
-          newUserGuess.push(resUser);
 
           const newBotGuess = resBot.word.toUpperCase().split('');
           newBotGuess.push('');
@@ -112,7 +111,7 @@ export class GameComponent implements OnInit {
         } else {
           this.guessError = res.error;
         }
-      });*/
+      });
   }
 
   /**
@@ -154,4 +153,23 @@ export class GameComponent implements OnInit {
     return this.aiWord.indexOf(letter) > -1 ? 2 : 3;
   }
 
+  /**
+   * Shows the win modal on user win or bot win.
+   */
+  showWinScreen() {
+    this.modal.open(this.modalContent, { centered: true }).result.then((result) => {
+      if (result === 'Play again') {
+        // Reset everything
+        this.winner = '';
+        this.aiWord = '';
+        this.userWord = '';
+        this.userGuessWord = '';
+        this.aiGuesses = [];
+        this.userGuesses = [];
+        Object.keys(this.alphaToggle).forEach(key => this.alphaToggle[key] = 1);
+      } else {
+        this.router.navigate(['/']);
+      }
+    });
+  }
 }
