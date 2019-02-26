@@ -9,11 +9,8 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.File;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import java.io.FileNotFoundException;
 import java.util.NoSuchElementException;
-import java.io.IOException;
 
 import server.Jotto.Models.*;
 
@@ -95,6 +92,25 @@ public class GameRestController {
     //     return random5LetterWords.get(rand_num);
     // }
 
+    /*
+     * Used for the first word the user enters - the word the bot will guess
+     * Want to make sure it is valid
+     * 
+     * @param s     The string which the user passed in - want the bot to guess
+     * @param dict  The dictionary with all the word (was called using fullUpWords - just pass that in)
+     * 
+     * @return      True if the word is in the dictionary
+     *              False if the word is not valid
+     */
+    private boolean validGuessWord(String s, ArrayList<String> dict) {
+        if(!s.matches("^[A-Z][A-Z][A-Z][A-Z][A-Z]$"))
+            return false;
+        for(String w : dict) {
+            if(w.equals(s))
+                return true;
+        }
+        return false;
+    }
     /*
      * This method fills up the possible words that the bot can call. It should only be CALLED ONCE!!!
      * Bc it will prob take mad long. I'm WARNING YOU!!!
