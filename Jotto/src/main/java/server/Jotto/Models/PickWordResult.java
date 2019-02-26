@@ -5,9 +5,8 @@ public class PickWordResult {
     private String gameId;
 
     public PickWordResult(){
-        
-    }
 
+    }
     public boolean getValid(){
         return this.valid;
     }
