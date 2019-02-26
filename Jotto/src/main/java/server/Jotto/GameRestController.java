@@ -90,8 +90,7 @@ public class GameRestController /*implements JottoGameModelRepository*/{
     private ArrayList<String> fillUpWords() {
         ArrayList <String> dictionary = new ArrayList<String>();
         try {
-            
-            FileReader fileReader = new FileReader(new File("./dictionary.txt"));
+            FileReader fileReader = new FileReader(new File(System.getProperty("user.dir") + "/src/main/java/server/Jotto/" + "dictionary.txt"));
             BufferedReader buffReader = new BufferedReader(fileReader);
             String word;
             while ((word = buffReader.readLine()) != null) {
