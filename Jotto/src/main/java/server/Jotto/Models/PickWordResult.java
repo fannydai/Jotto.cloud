@@ -4,6 +4,10 @@ public class PickWordResult {
     private boolean valid;
     private String gameId;
 
+    public PickWordResult(){
+        
+    }
+
     public boolean getValid(){
         return this.valid;
     }
