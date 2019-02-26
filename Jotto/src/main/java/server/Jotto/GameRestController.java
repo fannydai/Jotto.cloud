@@ -25,20 +25,14 @@ public class GameRestController /*implements JottoGameModelRepository*/{
     @Autowired
     private UserRepository userRepository;
 
-
-    private static ArrayList<String> dictionary;
-
     // add decorators and spring shit
     // finish this class and add more models
-
-    public GameRestController() throws IOException {
-        fillUpWords();
-    }
 
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/pickWord", method = RequestMethod.POST, consumes = {"application/json"}) //pickword game.service.ts
     public PickWordResult pickWord(@RequestBody PickWordForm form ){
         PickWordResult res = new PickWordResult();
+        final  ArrayList<String> dictionary = fillUpWords();
         if(form.getWord().length() == 5 && form.getWord().matches("[a-zA-Z]+") && dictionary.contains(form.getWord())){
             JottoGameModel newGame = new JottoGameModel(form.getWord(), dictionary);
             gameRepository.save(newGame);
@@ -92,8 +86,10 @@ public class GameRestController /*implements JottoGameModelRepository*/{
      * This method fills up the possible words that the bot can call. It should only be CALLED ONCE!!!
      * Bc it will prob take mad long. I'm WARNING YOU!!!
      */
-    private void fillUpWords() {
+    private ArrayList<String> fillUpWords() {
+        ArrayList <String> dictionary = new ArrayList<String>();
         try {
+            
             FileReader fileReader = new FileReader(new File("./dictionary.txt"));
             BufferedReader buffReader = new BufferedReader(fileReader);
             String word;
@@ -101,6 +97,7 @@ public class GameRestController /*implements JottoGameModelRepository*/{
                 dictionary.add(word);
             }
             fileReader.close();
+            
         } catch (FileNotFoundException e) {
 			System.out.println("\nFile Not Found.\n");
 		} catch(NoSuchElementException e){
@@ -108,5 +105,6 @@ public class GameRestController /*implements JottoGameModelRepository*/{
 		} catch (Exception ex) {
 
         }
+        return dictionary;
     }
 }
