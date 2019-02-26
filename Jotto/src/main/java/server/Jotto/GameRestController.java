@@ -25,9 +25,6 @@ public class GameRestController /*implements JottoGameModelRepository*/{
     @Autowired
     private UserRepository userRepository;
 
-    // add decorators and spring shit
-    // finish this class and add more models
-
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/pickWord", method = RequestMethod.POST, consumes = {"application/json"}) //pickword game.service.ts
     @ResponseBody
@@ -37,6 +34,10 @@ public class GameRestController /*implements JottoGameModelRepository*/{
         if(form.getWord().length() == 5 && form.getWord().matches("[a-zA-Z]+") && dictionary.contains(form.getWord())){
             JottoGameModel newGame = new JottoGameModel(form.getWord(), dictionary);
             gameRepository.save(newGame);
+
+            UserModel user = userRepository.findByusername(form.getUsername());
+            user.getGamesList().add(newGame);
+            userRepository.save(user);
             res.setValid(true);
         }else{
             res.setValid(false);
