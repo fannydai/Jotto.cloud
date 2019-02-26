@@ -31,7 +31,7 @@ public class UserRestController {
     @ResponseBody
     public RegistrationLoginResult register(@RequestBody RegistrationLoginForm regform) {
         RegistrationLoginResult res = new RegistrationLoginResult();
-
+        
         if(userRepository.findByusername(regform.getUsername()) == null) {
             UserModel user = new UserModel(regform.getUsername(), regform.getPassword());
             userRepository.save(user);

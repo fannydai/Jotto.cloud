@@ -24,17 +24,6 @@
     flex-direction: column;
     .results-heading-container {
         display: flex;
-        /*
-        * {
-            display: flex;
-            align-items: center;
-        }
-        :first-child {
-            margin-right: auto;
-        }
-        :last-child {
-            margin-left: auto;
-        }*/
         justify-content: space-between;
     }
     .results-error-container {

@@ -14,12 +14,12 @@ public class UserModel {
     public String id;
     private String username;
     private String password;
-    private ArrayList<JottoGameModel> games;
+    private ArrayList<String> gamesId;
 
     public UserModel(String username, String password) {
         this.username = username;
         this.setPassword(password);
-        this.games = new ArrayList<JottoGameModel>();
+        this.gamesId = new ArrayList<String>();
     }
 
     @Override
@@ -44,13 +44,13 @@ public class UserModel {
         return this.password;
     }
     
-    public ArrayList<JottoGameModel> getGamesList() {
-        return this.games;
+    public ArrayList<String> getGamesList() {
+        return this.gamesId;
     }
     public void emptyGamesList() {
-        this.games = new ArrayList<JottoGameModel>();
+        this.gamesId = new ArrayList<String>();
     }
-    public void setGamesList(ArrayList<JottoGameModel> newGamesList) {
-        this.games = newGamesList;
+    public void setGamesList(ArrayList<String> newGamesList) {
+        this.gamesId = newGamesList;
     }
 }

@@ -2,14 +2,15 @@
   <div class="player-container col">
     <div class="enter-word-container" *ngIf="!aiWord; else start">
       <form #chooseWord="ngForm" (ngSubmit)="submitAIWord();">
-        <div *ngIf="enteredError" class="warning-message row">{{enteredError}}</div>
         <div class="form-group">
-          <!--<label for="enteredWord">Word for Computer</label>-->
           <h1>Word for Computer</h1>
           <input type="text" class="form-control" id="enteredWord" name="enteredWord" [(ngModel)]="enteredWord" required>
         </div>
-        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        <button type="submit" class="btn btn-success btn-block">Submit</button>
       </form>
+      <div class="entered-error-container">
+        <p *ngIf="enteredError" class="warning-message">{{enteredError}}</p>
+      </div>
     </div>
     <ng-template #start>
       <div class="start-container">

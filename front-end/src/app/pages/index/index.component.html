@@ -16,7 +16,7 @@
             name="loginName" [(ngModel)]="loginName" required>
           <input type="password" class="form-control mb-2" placeholder="Password" 
             name="loginPassword" [(ngModel)]="loginPassword" required>
-          <button class="btn btn-lg btn-primary btn-block" [disabled]="!login.form.valid">Log In</button>
+          <button class="btn btn-lg btn-success btn-block" [disabled]="!login.form.valid">Log In</button>
         </form>
       </div>
     </div>
@@ -31,7 +31,7 @@
             name="signupPassword" [(ngModel)]="signupPassword" required>
           <input type="password" class="form-control mb-2" placeholder="Confirm Password" 
             name="signupConfirm" [(ngModel)]="signupConfirm"  required>
-          <button class="btn btn-lg btn-primary btn-block" [disabled]="!signup.form.valid">Sign Up</button>
+          <button class="btn btn-lg btn-success btn-block" [disabled]="!signup.form.valid">Sign Up</button>
         </form>
       </div>
     </div>
