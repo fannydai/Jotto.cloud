@@ -47,16 +47,16 @@ export class GameComponent implements OnInit {
    */
   submitAIWord(): void {
     this.enteredError = '';
-    /*
     this.game.pickWord(this.enteredWord)
       .subscribe(res => {
+        /*
         if (res.status === 'success') {
           this.aiWord = this.enteredWord;
           this.enteredWord = '';
         } else {
           this.enteredError = res.error;
-        }
-      });*/
+        }*/
+      });
       this.aiWord = this.enteredWord.toUpperCase();
       this.enteredWord = '';
   }
@@ -143,8 +143,8 @@ export class GameComponent implements OnInit {
     if (!('' + letter).match(/[a-z]/i)) {
       return 1;
     }
-    console.log(letter);
-    console.log(this.aiWord);
+    //console.log(letter);
+    //console.log(this.aiWord);
     return this.aiWord.indexOf(letter) > -1 ? 2 : 3;
   }
 

@@ -30,6 +30,7 @@ public class GameRestController /*implements JottoGameModelRepository*/{
 
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/pickWord", method = RequestMethod.POST, consumes = {"application/json"}) //pickword game.service.ts
+    @ResponseBody
     public PickWordResult pickWord(@RequestBody PickWordForm form ){
         PickWordResult res = new PickWordResult();
         final  ArrayList<String> dictionary = fillUpWords();

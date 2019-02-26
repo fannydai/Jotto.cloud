@@ -20,7 +20,13 @@ export class GameService {
    */
   pickWord(word: string): Observable<any> {
     return this.http.post<any>(`${environment.api_path}/pickWord`,
-      { word: word.toUpperCase(), username: localStorage.getItem('username') });
+      { word: word.toUpperCase(), username: localStorage.getItem('username') })
+      .pipe(
+        map(res => {
+          console.log(res);
+          return res;
+        });
+      )
   }
 
   /**
