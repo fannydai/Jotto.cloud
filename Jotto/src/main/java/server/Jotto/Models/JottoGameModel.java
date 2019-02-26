@@ -57,10 +57,14 @@ public class JottoGameModel {
   
 
     /*
-     * Bot won
-     * User won
-     * -User enter word that is invalid
-     * Continue game
+     * This handles the users logic for the game. We do not need to do anything except let the user know
+     * if their word is valid or not. And if is valid, it will return the amt of letters matched to the 
+     * actual word.
+     * 
+     * @param guess     The word which the user gave
+     * @return          -1 if the word is not valid
+     *                  6 if the user won
+     *                  0-5 the amt of letters matched   
      */
     public int userLogic(String guess) {
         if(userMoves.won(guess)) {
@@ -81,8 +85,8 @@ public class JottoGameModel {
      * o.w. this associated index = false
      * helper method for the other methods in this class
      * 
-     * @param str           A string to fill the boolean array
-     * @return              A boolean array with the associated values of string
+     * @param str       A string to fill the boolean array
+     * @return          A boolean array with the associated values of string
      */
     private boolean[] letters(String str) {
         boolean[] l = new boolean[26];
@@ -211,15 +215,15 @@ public class JottoGameModel {
      */
     private void filterBotWord(Word word) {
         for(Word w : botWords) {
+            // Make sure you are not comparing the same word
+            if(w.getGuess().equals(word.getGuess()))
+                continue;
             // case 1: If the difference of the 2 amtMatch are 1 & the String only have 1 value in difference
-            if(w.getAmtMatch() == 4) {
-                String union = union(word.getGuess(), w.getGuess());
-                if(union.length() != 4)
-                    continue;
-                // If the union (common chars = 4)
-                if(w.getAmtMatch()+1 == word.getAmtMatch()) {
+            String union = union(word.getGuess(), w.getGuess());
+            if(w.getGuess().length() == word.getGuess().length() && union.length() == w.getGuess().length()-1) {
+                if (w.getAmtMatch() + 1 == word.getAmtMatch()) {
                     caseOne(word, w, union);
-                } else if(word.getAmtMatch()+1 == w.getAmtMatch()) {
+                } else if (word.getAmtMatch() + 1 == w.getAmtMatch()) {
                     caseOne(w, word, union);
                 }
             }
@@ -259,7 +263,8 @@ public class JottoGameModel {
             filterBotWord(word);
         }
 
-
+        for(Word w: botWords)
+            filterBotWord(w);
         // Update our list -- according to the letters
         for(Word w : botWords)
             w = removeLetter(w);

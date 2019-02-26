@@ -18,7 +18,7 @@ import java.io.IOException;
 import server.Jotto.Models.*;
 
 @RestController
-public class GameRestController /*implements JottoGameModelRepository*/{
+public class GameRestController {
 
     @Autowired
     JottoGameModelRepository gameRepository;
