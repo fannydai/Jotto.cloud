@@ -39,25 +39,24 @@ public class GameRestController {
             user.getGamesList().add(newGame.id);
             userRepository.save(user);
             res.setValid(true);
+            res.setGameId(newGame.id);
         }else{
             res.setValid(false);
+            res.setGameId(null);
         }
         
         return res;
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/1", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
+    @RequestMapping(value = "/userMove", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
     @ResponseBody
     public void UserMakeGuess(@RequestBody String user) { //takes json, send back matching num letters as json
-        //validate guess
-        //cal num matching letters
-        //add to db 
-        //check winner
+        
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/2", method = RequestMethod.POST, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
+    @RequestMapping(value = "/", method = RequestMethod.GET, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
     @ResponseBody
     public void showGuesses() { //of current game of user and comp **add current user as arg**
         //go through db and get guesses
