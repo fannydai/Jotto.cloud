@@ -36,7 +36,7 @@ public class GameRestController /*implements JottoGameModelRepository*/{
             gameRepository.save(newGame);
 
             UserModel user = userRepository.findByusername(form.getUsername());
-            user.getGamesList().add(newGame);
+            user.getGamesList().add(newGame.id);
             userRepository.save(user);
             res.setValid(true);
         }else{
@@ -44,8 +44,6 @@ public class GameRestController /*implements JottoGameModelRepository*/{
         }
         
         return res;
-
-
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
