@@ -4,7 +4,10 @@
     height: 100vh;
     width: 100%;
     background-image: url("../../../assets/bg2.jpg");
+    background-attachment: fixed;
     background-size: cover;
+    background-size: 100% 100%;
+
     .menu-container {
         // background-color: $white;
         display: flex;
@@ -19,22 +22,28 @@
             background: radial-gradient(rgba(229, 229, 229, 0.8), rgba(229, 229, 229, 0.8));
             a {
                 margin: 5px;
-                color: white;
+                color: $white;
             }
         }
     }
-    .login-container {
+    .container {
         // background-color: #DAAD86;
         display: flex;
         justify-content: center;
         align-items: center;
-        .login-box-container {
+
+        .box-container {
+            border-radius: 1rem;
+            box-shadow: 0 0 15px 2px $black;
             display: flex; 
             justify-content: center;
             align-items: center;
             height: 50%;
             width: 50%;
-            background: radial-gradient(rgba(89, 229, 229, 0.8), rgba(229, 229, 229, 0.8));
+
+            min-width: 250px;
+            min-height: 250px;
+            background: white;
             h1 {
                 font-weight: 1000;
                 color: $purple;
@@ -42,35 +51,23 @@
             input {
                 border-color: $team-color;
             }
-        }
-    }
-    .sign-up-container {
-        // background-color: $white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        .sign-up-box-container {
-            display: flex; 
-            justify-content: center;
-            align-items: center;
-            height: 50%;
-            width: 50%;
-            background: radial-gradient(rgba(229, 229, 229, 0.8), rgba(229, 229, 229, 0.4));
-            h1 {
-                font-weight: 1000;
-                color: $purple;
-            }
-            input {
-                border-color: $team-color;
+            :focus { 
+                outline: none;
+                box-shadow: 0 0 10px $team-color;
             }
         }
     }
     button:hover {
+        border-color: $orange   !important;
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.15), 0 17px 50px 0 rgba(0, 0, 0, 0.10);
     }
     button:active {
+        background: $black      !important;
+        color: $orange          !important;
+        border-color: $orange   !important;
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.40), 0 17px 50px 0 rgba(0, 0, 0, 0.35);
     }
+
     a:hover {
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.15), 0 17px 50px 0 rgba(0, 0, 0, 0.10);
     }
@@ -83,6 +80,5 @@
         background-color: $black;
         color: $orange;
         font-weight: bold;
-
     }
 }

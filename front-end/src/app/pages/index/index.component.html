@@ -7,10 +7,10 @@
     </div>
   </div>
   <ng-template #loginSignup>
-    <div class="login-container text-center col">
-      <div class="login-box-container">
+    <div class="container text-center col">
+      <div class="box-container">
         <form #login="ngForm" (ngSubmit)="onLogin();">
-          <h1>Log in</h1>
+          <h1>Existing Users</h1>
           <div *ngIf="loginError" class="warning-message">{{loginError}}</div>
           <input type="text" class="form-control mb-2" placeholder="Username" 
             name="loginName" [(ngModel)]="loginName" required>
@@ -20,14 +20,14 @@
         </form>
       </div>
     </div>
-    <div class="sign-up-container text-center col">
-      <div class="sign-up-box-container">
+    <div class="container text-center col">
+      <div class="box-container">
         <form #signup="ngForm" (ngSubmit)="onSignUp();">
-          <h1>Sign Up</h1>
+          <h1>New Player?</h1>
           <div *ngIf="signupError" class="warning-message">{{signupError}}</div>
-          <input type="text" class="form-control mb-2" placeholder="Username" 
+          <input type="text" class="form-control mb-2" placeholder="Choose a username" 
             name="signupName" [(ngModel)]="signupName" required>
-          <input type="password" class="form-control mb-2" placeholder="Password" 
+          <input type="password" class="form-control mb-2" placeholder="Create a password" 
             name="signupPassword" [(ngModel)]="signupPassword" required>
           <input type="password" class="form-control mb-2" placeholder="Confirm Password" 
             name="signupConfirm" [(ngModel)]="signupConfirm"  required>
