@@ -62,5 +62,12 @@ https://www2.cs.duke.edu/courses/spring06/cps100/assign/jotto/
 * For hashing the password.
 https://docs.spring.io/spring-security/site/docs/5.0.x/api/org/springframework/security/crypto/bcrypt/BCrypt.html
 
-[ ] User gives in the same word twice in one game
+[x] User gives in the same word twice in one game - solved in backend
 [ ] What happens if the website crashes?
+[ ] Delete word after user enters it.
+[ ] Results page. Change background. - Maybe use the css for game.
+[ ] Register -> login with that value does not work
+[ ] Game page should have a back button(Home). Maybe an alert box that asks "Data for this game will be lost. Are you sure you want to quit"
+[ ] Game page. "Computer guess" text should change color of text
+[ ] Game page. Color of button should be change to use the css of index page.
+[ ] Nav bar that [home,game,result,log out] - maybe use the one from my person website. I will give the css & code?
