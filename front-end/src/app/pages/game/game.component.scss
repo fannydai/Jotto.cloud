@@ -1,7 +1,7 @@
 @import '../../../styles.scss';
 
 .warning-message {
-    color: $red;
+    color: darken($red, 30%);
 }
 
 button:hover {
@@ -14,6 +14,7 @@ button:active {
 .game-container {
     width: 100%;
     height: 100vh;
+    background-image: url('../../../assets/bg2.jpg');
     .player-container {
         // background-color: #E27D60;
         // background-image: url('../../../assets/bg2.jpg');
@@ -28,6 +29,7 @@ button:active {
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            background-color: rgba(255,255, 255, 0.7);
             form {
                 display: flex;
                 flex-direction: column;
@@ -42,22 +44,40 @@ button:active {
         }
     }
     .start-container {
-        min-height: 100%;
+        max-height: 100vh;
         display: flex;
         flex-direction: column;
+        overflow: hidden;
         .enter-guess-container {
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 10%;
+            min-height: 10vh;
         }
         .guess-list-container {
-            flex: 1;
+            height: 80vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(255,255, 255, 0.7);
+            .table-scrollable {
+                width: 50%;
+                height: 100%;
+                overflow-y: auto;
+                display: flex;
+                justify-content: center;
+                table {
+                    flex: 1;
+                    div {
+                        text-align: center;
+                        font-weight: 1000;
+                    }
+                }
+            }
         }
         .guess-alpha-container {
-            min-height: 10%;
+            min-height: 10vh;
+            background-color: rgba(255,255, 255, 0.7);
             .btn {
                 font-weight: 1000;
             }
@@ -68,22 +88,39 @@ button:active {
     }
 
     .ai-container {
-        background-color: #89CFF0;
+        // background-color: #89CFF0;
         display: flex;
         flex-direction: column;
         min-height: 100%;
         .ai-heading-container {
             align-items: center;
             justify-content: center;
-            min-height: 10%;
+            height: 10vh;
             h3 {
                 text-align: center;
             }
         }
         .ai-guess-container {
-            flex: 1;
+            height: 90vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+            background-color: rgba(255,255, 255, 0.7);
+            .table-scrollable {
+                width: 50%;
+                height: 100%;
+                overflow-y: auto;
+                display: flex;
+                justify-content: center;
+                table {
+                    flex: 1;
+                    div {
+                        text-align: center;
+                        font-weight: 1000;
+                    }
+                }
+            }
         }
     }
 }

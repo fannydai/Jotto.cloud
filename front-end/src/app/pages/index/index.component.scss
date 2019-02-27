@@ -1,5 +1,9 @@
 @import '../../../styles.scss';
 
+.warning-message {
+    color: darken($red, 30%);
+}
+
 .index-container {
     height: 100vh;
     width: 100%;

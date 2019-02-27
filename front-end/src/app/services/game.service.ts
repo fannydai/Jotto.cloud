@@ -36,7 +36,7 @@ export class GameService {
    * @param word - guess that the backend checks (ALL CAPITALIZED)
    */
   userMove(word: string, gameId: string): Observable<any> {
-    return this.http.post<any>(`${environment.api_path}/userMove`, { guess: word.toUpperCase(), gameId: gameId })
+    return this.http.post<any>(`${environment.api_path}/userMove`, { move: word.toUpperCase(), gameId: gameId })
       .pipe(
         map(res => {
           return res;

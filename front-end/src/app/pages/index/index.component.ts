@@ -47,7 +47,7 @@ export class IndexComponent implements OnInit {
     console.log('Confirm:', this.signupConfirm);
     this.signupError = '';
     if (this.signupPassword !== this.signupConfirm) {
-      this.signupError = 'Password and Confirm Password must match';
+      this.signupError = 'Password must match Confirm.';
     } else {
       this.user.register(this.signupName, this.signupPassword)
         .subscribe(data => {
@@ -56,7 +56,7 @@ export class IndexComponent implements OnInit {
           } else if (data.status === 'success') {
             this.user.setLoggedIn(data.username);
           } else {
-            this.loginError = 'Username has been taken.';
+            this.signupError = 'Username has been taken.';
           }
         });
     }

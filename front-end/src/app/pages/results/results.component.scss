@@ -1,7 +1,7 @@
 @import '../../../styles.scss';
 
 .warning-message {
-    color: $red;
+    color: darken($red, 30%);
 }
 
 .correct-letter {
@@ -19,7 +19,7 @@
 .results-container {
     height: 100vh;
     width: 100%;
-    background-color: $bg-color;
+    background-color: $team-color;
     display: flex;
     flex-direction: column;
     .results-heading-container {
@@ -32,7 +32,6 @@
     }
     .results-content-container {
         flex: 1;
-        background-color: $bg-color;
         display: flex;
         align-items: center;
         .results-player-container {

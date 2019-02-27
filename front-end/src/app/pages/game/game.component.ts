@@ -21,10 +21,27 @@ export class GameComponent implements OnInit {
 
   private gameId = '';
 
-  //private userGuesses = [];
-  private aiGuesses = [['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0]];
+  // private userGuesses = [];
+  // private aiGuesses = [];
+  private aiGuesses = [['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0], 
+  ['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0], ['F', 'I', 'R', 'S', 'T', '', 3],
+  ['A', 'C', 'O', 'R', 'N', '', 0], ['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0],
+  ['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0], ['F', 'I', 'R', 'S', 'T', '', 3],
+  ['A', 'C', 'O', 'R', 'N', '', 0], ['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0],
+  ['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0], ['F', 'I', 'R', 'S', 'T', '', 3],
+  ['A', 'C', 'O', 'R', 'N', '', 0], ['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0],
+  ['A', 'C', 'O', 'R', 'N', '', 0], ['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0],
+  ['A', 'C', 'O', 'R', 'N', '', 0], ['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0],
+  ['A', 'C', 'O', 'R', 'N', '', 0], ['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0],
+  ['A', 'C', 'O', 'R', 'N', '', 0], ['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0]];
 
-  private userGuesses = [['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0]];
+  private userGuesses = [['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0],
+    ['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0], ['F', 'I', 'R', 'S', 'T', '', 3],
+    ['A', 'C', 'O', 'R', 'N', '', 0], ['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0],
+    ['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0], ['F', 'I', 'R', 'S', 'T', '', 3],
+    ['A', 'C', 'O', 'R', 'N', '', 0], ['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0],
+    ['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0], ['F', 'I', 'R', 'S', 'T', '', 3],
+    ['A', 'C', 'O', 'R', 'N', '', 0], ['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0]];
 
   // State of each button. 1 is default, 2 is green, 3 is red
   private alphaToggle = {'A': 1, 'B': 1, 'C': 1, 'D': 1, 'E': 1, 'F': 1, 'G': 1, 'H': 1, 'I': 1,
@@ -94,22 +111,15 @@ export class GameComponent implements OnInit {
           const newUserGuess = this.userWord.toUpperCase().split('');
           newUserGuess.push(''); // Just for spacing, probably don't need
           newUserGuess.push(res.result); // Number of correct letters
+          this.userGuesses.unshift(newUserGuess);
           // Ask for bot's guess
           this.game.botMove(this.gameId)
             .subscribe(result => {
-
+              const newBotGuess = result.word.toUpperCase().split('');
+              newBotGuess.push('');
+              newBotGuess.push(result.result);
+              this.aiGuesses.unshift(newBotGuess);
             });
-        }
-        if (res.status === 'success') {
-          const resUser = res.user; // # of matches for the user's guess
-          const resBot = res.bot; // The actual bot's guess and # of matches
-
-
-          const newBotGuess = resBot.word.toUpperCase().split('');
-          newBotGuess.push('');
-          newBotGuess.push(res.bot.matches);
-        } else {
-          this.guessError = res.error;
         }
       });
   }

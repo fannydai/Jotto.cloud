@@ -1,4 +1,4 @@
-<div class="game-container row">
+<div class="game-container row ml-0">
   <div class="player-container col">
     <div class="enter-word-container" *ngIf="!aiWord; else start">
       <form #chooseWord="ngForm" (ngSubmit)="submitAIWord();">
@@ -14,7 +14,7 @@
     </div>
     <ng-template #start>
       <div class="start-container">
-        <div class="enter-guess-container mt-3">
+        <div class="enter-guess-container pt-3">
           <form (ngSubmit)="onGuess();" class="form-inline">
             <div class="form-group">
               <input type="text" class="form-control" placeholder="Guess" name="userGuessWord" [(ngModel)]="userGuessWord" required>
@@ -23,23 +23,25 @@
           </form>
         </div>
         <div class="guess-list-container py-3 pl-3">
-          <table>
-            <tbody>
-              <tr *ngFor="let userGuess of userGuesses">
-                <td *ngFor="let letter of userGuess">
-                  <div [ngStyle]="{color: '#061110'}" *ngIf="checkColor(letter) == 1">
+          <div class="table-scrollable">
+            <table>
+              <tbody>
+                <tr *ngFor="let userGuess of userGuesses">
+                  <td *ngFor="let letter of userGuess">
+                    <div [ngStyle]="{color: '#061110'}" *ngIf="checkColor(letter) == 1">
                       {{letter}}
-                  </div>
-                  <div [ngStyle]="{color: '#41B3A3'}" *ngIf="checkColor(letter) == 2">
-                    {{letter}}
-                  </div>
-                  <div [ngStyle]="{color: '#C38D9E'}" *ngIf="checkColor(letter) == 3">
-                    {{letter}}
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                    </div>
+                    <div [ngStyle]="{color: '#41B3A3'}" *ngIf="checkColor(letter) == 2">
+                      {{letter}}
+                    </div>
+                    <div [ngStyle]="{color: '#C38D9E'}" *ngIf="checkColor(letter) == 3">
+                      {{letter}}
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
         <div class="guess-alpha-container">
           <div class="btn-toolbar">
@@ -79,27 +81,29 @@
     </ng-template>
   </div>
   <div *ngIf="aiWord" class="ai-container col">
-    <div class="ai-heading-container mt-3">
+    <div class="ai-heading-container pt-3">
       <h3>Computer's Guesses</h3>
     </div>
     <div class="ai-guess-container">
-      <table>
-        <tbody>
-          <tr *ngFor="let aiGuess of aiGuesses">
-            <td *ngFor="let letter of aiGuess">
-              <div [ngStyle]="{color: '#061110'}" *ngIf="checkAIColor(letter) == 1">
-                {{letter}}
-              </div>
-              <div [ngStyle]="{color: '#41B3A3'}" *ngIf="checkAIColor(letter) == 2">
-                {{letter}}
-              </div>
-              <div [ngStyle]="{color: '#C38D9E'}" *ngIf="checkAIColor(letter) == 3">
-                {{letter}}
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-scrollable">
+        <table>
+          <tbody>
+            <tr *ngFor="let aiGuess of aiGuesses">
+              <td *ngFor="let letter of aiGuess">
+                <div [ngStyle]="{color: '#061110'}" *ngIf="checkAIColor(letter) == 1">
+                  {{letter}}
+                </div>
+                <div [ngStyle]="{color: '#41B3A3'}" *ngIf="checkAIColor(letter) == 2">
+                  {{letter}}
+                </div>
+                <div [ngStyle]="{color: '#C38D9E'}" *ngIf="checkAIColor(letter) == 3">
+                  {{letter}}
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
