@@ -63,7 +63,7 @@ https://www2.cs.duke.edu/courses/spring06/cps100/assign/jotto/
 https://docs.spring.io/spring-security/site/docs/5.0.x/api/org/springframework/security/crypto/bcrypt/BCrypt.html
 
 [x] User gives in the same word twice in one game - solved in backend
-[ ] What happens if the website crashes?
+[ ] What happens if the website crashes? - Delete the game in progress.
 [ ] Delete word after user enters it.
 [ ] Results page. Change background. - Maybe use the css for game.
 [ ] Register -> login with that value does not work
