@@ -12,7 +12,8 @@ import java.util.Arrays;
 public class JottoGameModel {
     @Id
     public String id;
-    private final int size;
+    private int size;
+    private String answerWord;
 
     // A list of words that the bot can guess.
     private ArrayList<String> botDict;
@@ -31,6 +32,7 @@ public class JottoGameModel {
     public JottoGameModel(String answerWord, ArrayList<String> botDict) {
         this.size = 5;
         this.botDict = botDict;
+        this.answerWord = answerWord;
         this.botWords = new ArrayList<Word>();
         this.botLetters = new int[26];
         Arrays.fill(this.botLetters, 0);
@@ -51,6 +53,9 @@ public class JottoGameModel {
     }
     public int getSize() {
         return this.size;
+    }
+    public void setSize(int size) {
+        this.size = size;
     }
 
     /*

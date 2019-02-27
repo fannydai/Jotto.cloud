@@ -50,12 +50,18 @@ button:active {
         overflow: hidden;
         .enter-guess-container {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
+            // justify-content: center;
             min-height: 10vh;
+            .guess-error-container {
+                text-align: center;
+                height: 5vh;
+                width: 100%;
+            }
         }
         .guess-list-container {
-            height: 80vh;
+            height: 75vh;
             display: flex;
             flex-direction: column;
             align-items: center;

@@ -14,7 +14,10 @@
     </div>
     <ng-template #start>
       <div class="start-container">
-        <div class="enter-guess-container pt-3">
+        <div class="enter-guess-container">
+          <div class="guess-error-container">
+            <p *ngIf="guessError" class="warning-message mb-0">{{guessError}}</p>
+          </div>
           <form (ngSubmit)="onGuess();" class="form-inline">
             <div class="form-group">
               <input type="text" class="form-control" placeholder="Guess" name="userGuessWord" [(ngModel)]="userGuessWord" required>
@@ -113,8 +116,8 @@
     <h4 class="modal-title">Game Over!</h4>
   </div>
   <div class="modal-body">
-    <p>The winner is: {{ winner == 'player' ? 'you': 'computer' }}. 
-      Your guess word was: {{ userWord }}. The computer's word was {{ this.aiWord }}</p>
+    <p>The winner is: {{ winner == 'player' ? 'you': 'computer' }}! 
+      You had to guess: {{ userWord }}. The computer had to guess: {{ aiWord }}.</p>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-primary" (click)="modal.close('Play again')">Play again</button>

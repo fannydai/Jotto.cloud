@@ -25,7 +25,7 @@ public class JottoApplication {
             http.addFilterBefore(new CorsSupport(), ChannelProcessingFilter.class);
             http
             .authorizeRequests()
-            .antMatchers("/","/register","/login", "/pickWord", "/userMove")
+            .antMatchers("/","/register","/login", "/pickWord", "/userMove", "/botMove/*")
             .permitAll()
             .and()
             .authorizeRequests()

@@ -18,7 +18,7 @@ import server.Jotto.Models.*;
 public class GameRestController {
 
     @Autowired
-    JottoGameModelRepository gameRepository;
+    private JottoGameModelRepository gameRepository;
     @Autowired
     private UserRepository userRepository;
 
@@ -69,10 +69,20 @@ public class GameRestController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/botMove", method = RequestMethod.GET, consumes = {"application/json"}) //MAKE A PAGE FOR THE ACTUAL GAME
+    @RequestMapping(value = "/botMove/{gameId}", method = RequestMethod.GET) //MAKE A PAGE FOR THE ACTUAL GAME
     @ResponseBody
-    public void botMove() { 
-
+    public BotMoveResult botMove(@PathVariable("gameId") String gameId) { 
+        BotMoveResult res = new BotMoveResult();
+        System.out.println(gameId);
+        JottoGameModel game = gameRepository.findByid(gameId);
+        if (game != null) {
+            String result = game.botLogic();
+            System.out.println(result);
+            res.setResult(result);
+        } else {
+            res.setResult("Game ID does not exist.");
+        }
+        return res;
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
