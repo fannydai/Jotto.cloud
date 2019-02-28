@@ -24,10 +24,13 @@
           <tbody *ngIf="playerMoves">
             <tr *ngFor="let move of playerMoves[pageNumber]">
               <td *ngFor="let letter of move">
-                <div *ngIf="isInPlayerWord(letter, pageNumber)" class="correct-letter">
+                <div *ngIf="isInPlayerWord(letter, pageNumber) === 1" class="correct-letter">
                   {{letter}}
                 </div>
-                <div *ngIf="!isInPlayerWord(letter, pageNumber)" class="incorrect-letter">
+                <div *ngIf="isInPlayerWord(letter, pageNumber) === 0" class="number-letter">
+                  {{letter}}
+                </div>
+                <div *ngIf="isInPlayerWord(letter, pageNumber) === -1" class="incorrect-letter">
                   {{letter}}
                 </div>
               </td>
@@ -46,10 +49,13 @@
           <tbody *ngIf="computerMoves">
             <tr *ngFor="let move of computerMoves[pageNumber]">
               <td *ngFor="let letter of move">
-                <div *ngIf="isInComputerWord(letter, pageNumber)" class="correct-letter">
+                <div *ngIf="isInComputerWord(letter, pageNumber) === 1" class="correct-letter">
                   {{letter}}
                 </div>
-                <div *ngIf="!isInComputerWord(letter, pageNumber)" class="incorrect-letter">
+                <div *ngIf="isInComputerWord(letter, pageNumber) === 0" class="number-letter">
+                  {{letter}}
+                </div>
+                <div *ngIf="isInComputerWord(letter, pageNumber) === -1" class="incorrect-letter">
                   {{letter}}
                 </div>
               </td>

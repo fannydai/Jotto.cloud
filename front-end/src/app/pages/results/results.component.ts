@@ -30,19 +30,23 @@ export class ResultsComponent implements OnInit {
           const userMovesList = res.userMovesList;
           botMovesList.forEach(move => {
             this.computerWord.push(move.word);
-            const computerGuess = move.guessedWords.map(guess => guess.guess);
+            const computerGuess = move.guessedWords.map(guess => guess.guess + String(guess.amtMatch));
             const letters = [];
             for (const word of computerGuess) {
-              letters.push(word.split(''));
+              const splitWord = word.split('');
+              splitWord.splice(splitWord.length - 1, 0, ' ');
+              letters.push(splitWord);
             }
             this.computerMoves.push(letters);
           });
           userMovesList.forEach(move => {
             this.playerWord.push(move.word);
-            const playerGuess = move.guessedWords.map(guess => guess.guess);
+            const playerGuess = move.guessedWords.map(guess => guess.guess + String(guess.amtMatch));
             const letters = [];
             for (const word of playerGuess) {
-              letters.push(word.split(''));
+              const splitWord = word.split('');
+              splitWord.splice(splitWord.length - 1, 0, ' ');
+              letters.push(splitWord);
             }
             this.playerMoves.push(letters);
           });
@@ -56,24 +60,30 @@ export class ResultsComponent implements OnInit {
 
   /**
    * Checks whether the letter is in the word that the player had to guess in a certain game.
-   * Returns true if it is in the word, false otherwise.
+   * Returns 1 if it is in the word, 0 if not a letter, and -1 if not in the word.
    *
    * @param letter - Letter to be checked.
    * @param pageNum - The game that the user is viewing
    */
-  isInPlayerWord(letter: string, pageNum: number): boolean {
-    return this.playerWord[pageNum].indexOf(letter) > -1;
+  isInPlayerWord(letter: string, pageNum: number): number {
+    if (!letter.match(/[a-z]/i)) {
+      return 0;
+    }
+    return this.playerWord[pageNum].indexOf(letter) > -1 ? 1 : -1;
   }
 
   /**
    * Checks whether the letter is in the word that the computer had to guess in a certain game.
-   * Returns true if it is in the word, false otherwise.
+   * Returns 1 if it is in the word, 0 if not a letter, and -1 if not in the word.
    *
    * @param letter - Letter to be checked.
    * @param pageNum - The game that the user is viewing.
    */
-  isInComputerWord(letter: string, pageNum: number): boolean {
-    return this.computerWord[pageNum].indexOf(letter) > -1;
+  isInComputerWord(letter: string, pageNum: number): number {
+    if (!letter.match(/[a-z]/i)) {
+      return 0;
+    }
+    return this.computerWord[pageNum].indexOf(letter) > -1 ? 1 : -1;
   }
 
   /**
