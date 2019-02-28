@@ -140,11 +140,14 @@ public class JottoGameModel {
                 }
             }
 
-            if (gotCounter == 5) {
+            if (gotCounter == 5) {                  // All 5 letters were found
                 if (hasChar == 5)
                     tempBotWordList.add(w);
-            } else if (!noHasChar && (hasChar > 0 || gotCounter == 0)) {
-                tempBotWordList.add(w);
+            } else if(!noHasChar) {
+                // If the letters were found, we want to eliminate all the other words that have less than the amt match
+                // We do not have any letters we know are in the word, then we just make sure the word has no letters which we know are def not in the word
+                if((gotCounter>0 && gotCounter == hasChar) || gotCounter == 0)
+                    tempBotWordList.add(w);
             }
             botDict = tempBotWordList;
         }
@@ -274,8 +277,8 @@ public class JottoGameModel {
             filterBotWord(word);
         }
 
-        // for(Word w: botWords)
-        //     filterBotWord(w);
+        for(Word w: botWords)
+            filterBotWord(w);
         // Update our list -- according to the letters
         for(Word w : botWords)
             w = removeLetter(w);
