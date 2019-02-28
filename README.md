@@ -84,3 +84,4 @@ https://docs.spring.io/spring-security/site/docs/5.0.x/api/org/springframework/s
 	* Check win first round
 	* Check if user enters the same word twice
 	* Check for all upper/lower/mixed
+* After bot/winner wins, the results page should have the last word that was guessed
