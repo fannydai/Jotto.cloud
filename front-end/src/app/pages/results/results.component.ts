@@ -46,6 +46,10 @@ export class ResultsComponent implements OnInit {
             }
             this.playerMoves.push(letters);
           });
+          this.computerMoves.reverse();
+          this.playerMoves.reverse();
+          this.computerWord.reverse();
+          this.playerWord.reverse();
         }
       });
   }

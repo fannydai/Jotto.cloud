@@ -78,9 +78,15 @@ public class GameRestController {
         if (game != null) {
             String result = game.botLogic();
             gameRepository.save(game);
+            if (result == "Bot won!") {
+                res.setWord(game.getBotMoves().getWord());
+            } else {
+                res.setWord("");
+            }
             res.setResult(result);
         } else {
             res.setResult("Game ID does not exist.");
+            res.setWord("");
         }
         return res;
     }

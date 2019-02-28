@@ -100,11 +100,13 @@ export class GameComponent implements OnInit {
           newUserGuess.push(''); // Just for spacing, probably don't need
           newUserGuess.push(res.result); // Number of correct letters
           this.userGuesses.unshift(newUserGuess);
+          this.userGuessWord = '';
           // Ask for bot's guess
           this.game.botMove(this.gameId)
             .subscribe(result => {
               if (result.result === 'Bot won!') {
                 this.winner = 'computer';
+                this.userWord = result.word;
                 this.showWinScreen();
               } else {
                 const newBotGuess = result.result.toUpperCase().split('');
