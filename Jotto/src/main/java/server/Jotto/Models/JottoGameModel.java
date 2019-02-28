@@ -109,44 +109,44 @@ public class JottoGameModel {
      * Removes all possible guess words for the bot with that certain char using the botLetters
      */
     private void removeWordDict() {
-        ArrayList<String> tempBotWordList = new ArrayList<String> ();
-
         // Fills out the boolean array. Also sets botLetters to the correct value.
         boolean[] got = new boolean[26];
         boolean[] nogot = new boolean[26];
         Arrays.fill(got, Boolean.FALSE);
         Arrays.fill(nogot, Boolean.FALSE);
-        boolean gotCounter = false;
+        int gotCounter = 0;
 
         // fill in the arrays accordingly
-        for(int num=0; num<botLetters.length; num++) {
+        for (int num = 0; num < botLetters.length; num++) {
             int val = botLetters[num];
-            if(val<0) {             // no got
+            if (val < 0) {             // no got
                 nogot[num] = true;
-            } else if(val>0) {      // got
+            } else if (val > 0) {      // got
                 got[num] = true;
-                gotCounter = true;
+                gotCounter++;
             }
         }
 
-        for(String w : botDict) {
-            boolean hasChar = false;
+        ArrayList<String> tempBotWordList = new ArrayList<String>();
+        for (String w : botDict) {
+            int hasChar = 0;
             boolean noHasChar = false;
-            for(char c : w.toCharArray()) {
-                if(nogot[(int)c - 65]) {
+            for (char c : w.toCharArray()) {
+                if (nogot[(int) c - 65]) {
                     noHasChar = true;
-                }  else if(got[(int)c - 65]) {        // There is a letter which we found is def in the actual string
-                    hasChar = true;
+                } else if (got[(int) c - 65]) {        // There is a letter which we found is def in the actual string
+                    hasChar++;
                 }
             }
 
-            // !noHasChar means all letters are either 0 or 1
-            // If we have 1 -> that means that that letter must be in the word. Thus, we must add it in.
-            // If there are no 1's ... only 0 & -1 then we only add in 0's
-            if((!noHasChar && hasChar && gotCounter) || (!noHasChar && !gotCounter))
+            if (gotCounter == 5) {
+                if (hasChar == 5)
+                    tempBotWordList.add(w);
+            } else if (!noHasChar && (hasChar > 0 || gotCounter == 0)) {
                 tempBotWordList.add(w);
-		}
-        botDict = tempBotWordList;
+            }
+            botDict = tempBotWordList;
+        }
     }
 
     /*
@@ -158,16 +158,16 @@ public class JottoGameModel {
      */
     private Word removeLetter(Word word) {
         String temp = "";
-        int amtMatch = word.getAmtMatch();
         for(char c : word.getGuess().toCharArray()) {
             if(botLetters[(int)c-65]==0) {
                 temp += c;      // Add into the string. We are keeping
             } else if(botLetters[(int)c-65]>0) {
+                int amtMatch = word.getAmtMatch();
                 amtMatch --;    // Do not add into temp (remove the letter) & amtMatch-- bc letter is in the actual word.
+                word.setAmtMatch(amtMatch);
             }
         }
         word.setGuess(temp);
-        word.setAmtMatch(amtMatch);
         return word;
     }
 
@@ -272,8 +272,8 @@ public class JottoGameModel {
             filterBotWord(word);
         }
 
-        for(Word w: botWords)
-            filterBotWord(w);
+        // for(Word w: botWords)
+        //     filterBotWord(w);
         // Update our list -- according to the letters
         for(Word w : botWords)
             w = removeLetter(w);
@@ -282,4 +282,34 @@ public class JottoGameModel {
 
         return botWord+amtMatch;
     }
+
+    /*
+     * #########################################################################################################
+     *                      THESE METHODS ARE NOT USED. BUT MAY COME IN HANDY IN THE FUTURE
+     * #########################################################################################################
+     */
+
+    /*
+     * Helper method for hasFiverLetters which checks if String s has all five letters.
+     */
+    // private boolean allInWord(boolean[] got, String s) {
+    //     for(char c : s.toCharArray())
+    //         if(!got[(int)c - 65])
+    //             return false;
+    //     return true;
+    // }
+
+    /*
+     * Checks to make sure all words in the dict has 5 letters which we already predicted is there.
+     */
+    // private void hasFiveLetters(boolean[] got) {
+    //     ArrayList<String> tempBotWordList = new ArrayList<String> ();
+    //     for(String w : this.botDict) {
+    //         boolean hasChar = false;
+    //         boolean noHasChar = false;
+    //         if(allInWord(got, w))
+    //             tempBotWordList.add(w);
+    //     }
+    //     this.botDict = tempBotWordList;
+    // }
 }
