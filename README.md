@@ -74,7 +74,7 @@ https://docs.spring.io/spring-security/site/docs/5.0.x/api/org/springframework/s
 
 ### NOTES
 * comment out hashing password (sean)
-* change background - sean 
+* change background (dark/neutral color) - sean 
 * add navigation - jeffrey
 * home(logo) play results					log out
 * home page(about) & add how to play - jeffrey
