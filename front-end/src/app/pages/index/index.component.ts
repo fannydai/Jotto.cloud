@@ -25,9 +25,6 @@ export class IndexComponent implements OnInit {
 
   onLogin(): void {
     this.loginError = '';
-    console.log('LOGGING IN');
-    console.log('Username:', this.loginName);
-    console.log('Password:', this.loginPassword);
     this.user.login(this.loginName, this.loginPassword)
       .subscribe(data => {
         if (data === null) {
@@ -41,10 +38,6 @@ export class IndexComponent implements OnInit {
   }
 
   onSignUp(): void {
-    console.log('SIGNING UP');
-    console.log('Username:', this.signupName);
-    console.log('Password:', this.signupPassword);
-    console.log('Confirm:', this.signupConfirm);
     this.signupError = '';
     if (this.signupPassword !== this.signupConfirm) {
       this.signupError = 'Password must match Confirm.';
@@ -63,7 +56,6 @@ export class IndexComponent implements OnInit {
   }
 
   onLogout(): void {
-    console.log('LOGGING OUT');
     this.user.logout();
   }
 }

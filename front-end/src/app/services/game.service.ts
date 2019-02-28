@@ -23,7 +23,6 @@ export class GameService {
       { word: word.toUpperCase(), username: localStorage.getItem('username') })
       .pipe(
         map(res => {
-          console.log(res);
           return res;
         }),
         catchError(e => of(null))

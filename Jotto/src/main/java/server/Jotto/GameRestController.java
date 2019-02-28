@@ -74,12 +74,10 @@ public class GameRestController {
     @ResponseBody
     public BotMoveResult botMove(@PathVariable("gameId") String gameId) { 
         BotMoveResult res = new BotMoveResult();
-        System.out.println(gameId);
         JottoGameModel game = gameRepository.findByid(gameId);
         if (game != null) {
             String result = game.botLogic();
             gameRepository.save(game);
-            System.out.println(result);
             res.setResult(result);
         } else {
             res.setResult("Game ID does not exist.");
@@ -88,25 +86,16 @@ public class GameRestController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/pastGames/{username}", method = RequestMethod.GET) //index page??
+    @RequestMapping(value = "/pastGames/{username}", method = RequestMethod.GET)
     @ResponseBody
-    public PastGamesResult showPastGameResults(@PathVariable("username") String username) { //add user as arg
-        //System.out.println(gameRepository.findAll());
+    public PastGamesResult showPastGameResults(@PathVariable("username") String username) {
         PastGamesResult res = new PastGamesResult();
         UserModel user = userRepository.findByusername(username);
-        System.out.println("User");
-        System.out.println(user);
-        System.out.println(user.getGamesList());
         ArrayList<Object> botMoves = new ArrayList<Object>();
         ArrayList<Object> userMoves = new ArrayList<Object>();
         for (String gameId : user.getGamesList()) {
-            System.out.println(gameId);
             JottoGameModel game = gameRepository.findByid(gameId);
             if (game != null) {
-                System.out.println(game);
-                System.out.println("MOVES");
-                System.out.println(game.getBotMoves());
-                System.out.println(game.getUserMoves());
                 botMoves.add(game.getBotMoves());
                 userMoves.add(game.getUserMoves());
             }

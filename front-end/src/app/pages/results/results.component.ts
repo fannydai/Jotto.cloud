@@ -21,7 +21,6 @@ export class ResultsComponent implements OnInit {
   ngOnInit() {
     this.game.getPreviousGames()
       .subscribe(res => {
-        console.log(res);
         if (res === null) {
           this.errorMessage = 'Server is down.';
         } else if (res.botMovesList.length === 0) {

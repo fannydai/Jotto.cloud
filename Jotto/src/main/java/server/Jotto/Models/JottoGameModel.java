@@ -77,6 +77,7 @@ public class JottoGameModel {
      */
     public int userLogic(String guess) {
         if(userMoves.won(guess)) {
+            userMoves.addGuessWord(guess);
             return 6;
         }
         return userMoves.addGuessWord(guess);
@@ -254,6 +255,7 @@ public class JottoGameModel {
             amtMatch = botMoves.addGuessWord(botWord);
         }
         if(botMoves.won(botWord)) {
+            botMoves.addGuessWord(botWord);
             return "Bot won!";
         }
         botDict.remove(botWord);

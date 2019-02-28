@@ -13,7 +13,7 @@ export class GameComponent implements OnInit {
   private winner = ''; // Either player or computer
   private enteredWord = ''; // While use is typing
   private enteredError = '';
-  private aiWord = 'MEOWS'; // Chosen by the player for the computer
+  private aiWord = ''; // Chosen by the player for the computer
   private userWord = ''; // Chosen by the computer for the player
 
   private userGuessWord = ''; // The current guess of the user
@@ -56,7 +56,6 @@ export class GameComponent implements OnInit {
     } else {
       this.game.pickWord(this.enteredWord)
         .subscribe(res => {
-          console.log('RES IS:', res);
           if (res === null) {
             this.enteredError = 'Server Error.';
           } else if (res.valid === true) {
@@ -77,7 +76,6 @@ export class GameComponent implements OnInit {
    */
   onGuess(): void {
     this.guessError = '';
-    console.log('hello');
     if (this.userGuessWord.length !== 5) {
       this.guessError = 'Must be 5 letters.';
     } else if (!this.userGuessWord.match(/^[a-z]+$/i)) {
@@ -87,7 +85,6 @@ export class GameComponent implements OnInit {
     } else {
       this.game.userMove(this.userGuessWord, this.gameId)
       .subscribe(res => {
-        console.log('GUESS RETURN DATA:', res);
         if (res === null) {
           this.guessError = 'Server is down.';
         } else if (res.result === -1) {
