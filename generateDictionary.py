@@ -22,7 +22,7 @@ def filter():
         if len(line)==5 and (line not in lst) and unique(line):
             lst.append(line.replace('\n',''))
 
-    lst = sorted(lst)
+    # lst = sorted(lst)
 
     file = open("./Jotto/src/main/java/server/Jotto/dictionary.txt","w")
     for i in lst:

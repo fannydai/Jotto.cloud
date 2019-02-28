@@ -1,5 +1,3 @@
-package server.Jotto.Models;
-
 import java.io.FileNotFoundException;
 import java.util.NoSuchElementException;
 import java.util.ArrayList;
@@ -10,41 +8,48 @@ import java.io.File;
 
 import java.util.Scanner;
 
-/**
- * Designed for testing the game to make sure it works.
- */
-
 public class gameTest {
-
     public static void main(String[] args) {
         System.out.println("Starting new game");
+
+        int amtMoves = 100;
+        int sum = 0;
+        for(int i=0; i<amtMoves; i++) {
+            sum += runGame();
+        }
+        System.out.println("The avg of " + amtMoves + " games for bot moves are:\t" + sum/amtMoves);
+    }
+
+    private static int runGame() {
         JottoGameModel game = new JottoGameModel("STRAY", fillUpWords());
 
         Scanner stdin = new Scanner(System.in);
 
         int counter = 0;
         while(true) {
-            int userResult = -1;
-            while(userResult == -1) {
-                userResult = game.userLogic(stdin.nextLine().trim());
-                if (userResult == 6) {
-                    System.out.println("User Won!");
-                    System.exit(0);
-                }
-            }
-            System.out.println("Your match is:\t" + userResult);
+//            int userResult = -1;
+//            while(userResult == -1) {
+//                userResult = game.userLogic(stdin.nextLine().trim());
+//                if (userResult == 6) {
+//                    System.out.println("User Won!");
+//                    return counter;
+//                }
+//            }
+//            System.out.println("Your match is:\t" + userResult);
 
             String status = game.botLogic();
             System.out.println(status);
-            if(status.equals("Bot won!")) break;
+            if(status.charAt(0)=='-') {
+                System.out.println(counter + "\tBot Won!");
+                return counter;
+            }
 
-//            if (game.userLogic(status) == 6) {
-//                System.out.println("User Won!");
-//                break;
-//            }
-//            counter++;
+            if (game.userLogic(status) == 6) {
+                System.out.println("User Won!" + counter);
+                return counter;
+            }
+            counter++;
         }
-        System.out.println(counter);
     }
 
     private static ArrayList<String> fillUpWords() {
