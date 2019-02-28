@@ -53,7 +53,7 @@ button:active {
             flex-direction: column;
             align-items: center;
             // justify-content: center;
-            min-height: 10vh;
+            height: 12vh;
             .guess-error-container {
                 text-align: center;
                 height: 5vh;
@@ -61,11 +61,11 @@ button:active {
             }
         }
         .guess-list-container {
-            height: 75vh;
+            height: 73vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: rgba(255,255, 255, 0.7);
+            background-color: rgba(255,255, 255, 0.9);
             .table-scrollable {
                 width: 50%;
                 height: 100%;
@@ -83,7 +83,7 @@ button:active {
         }
         .guess-alpha-container {
             min-height: 10vh;
-            background-color: rgba(255,255, 255, 0.7);
+            background-color: rgba(255,255, 255, 0.9);
             .btn {
                 font-weight: 1000;
             }
@@ -101,18 +101,19 @@ button:active {
         .ai-heading-container {
             align-items: center;
             justify-content: center;
-            height: 10vh;
+            height: 13vh;
             h3 {
                 text-align: center;
+                margin-bottom: 0;
             }
         }
         .ai-guess-container {
-            height: 90vh;
+            height: 87vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             overflow: hidden;
-            background-color: rgba(255,255, 255, 0.7);
+            background-color: rgba(255,255, 255, 0.9);
             .table-scrollable {
                 width: 50%;
                 height: 100%;

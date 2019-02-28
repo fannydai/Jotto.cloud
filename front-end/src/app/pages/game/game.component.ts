@@ -13,7 +13,7 @@ export class GameComponent implements OnInit {
   private winner = ''; // Either player or computer
   private enteredWord = ''; // While use is typing
   private enteredError = '';
-  private aiWord = ''; // Chosen by the player for the computer
+  private aiWord = 'MEOWS'; // Chosen by the player for the computer
   private userWord = ''; // Chosen by the computer for the player
 
   private userGuessWord = ''; // The current guess of the user
@@ -23,27 +23,6 @@ export class GameComponent implements OnInit {
 
   private userGuesses = [];
   private aiGuesses = [];
-  /*
-  private aiGuesses = [['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0], 
-  ['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0], ['F', 'I', 'R', 'S', 'T', '', 3],
-  ['A', 'C', 'O', 'R', 'N', '', 0], ['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0],
-  ['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0], ['F', 'I', 'R', 'S', 'T', '', 3],
-  ['A', 'C', 'O', 'R', 'N', '', 0], ['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0],
-  ['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0], ['F', 'I', 'R', 'S', 'T', '', 3],
-  ['A', 'C', 'O', 'R', 'N', '', 0], ['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0],
-  ['A', 'C', 'O', 'R', 'N', '', 0], ['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0],
-  ['A', 'C', 'O', 'R', 'N', '', 0], ['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0],
-  ['A', 'C', 'O', 'R', 'N', '', 0], ['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0],
-  ['A', 'C', 'O', 'R', 'N', '', 0], ['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0]];*/
-
-  /*
-  private userGuesses = [['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0],
-    ['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0], ['F', 'I', 'R', 'S', 'T', '', 3],
-    ['A', 'C', 'O', 'R', 'N', '', 0], ['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0],
-    ['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0], ['F', 'I', 'R', 'S', 'T', '', 3],
-    ['A', 'C', 'O', 'R', 'N', '', 0], ['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0],
-    ['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0], ['F', 'I', 'R', 'S', 'T', '', 3],
-    ['A', 'C', 'O', 'R', 'N', '', 0], ['F', 'I', 'R', 'S', 'T', '', 3], ['A', 'C', 'O', 'R', 'N', '', 0]];*/
 
   // State of each button. 1 is default, 2 is green, 3 is red
   private alphaToggle = {'A': 1, 'B': 1, 'C': 1, 'D': 1, 'E': 1, 'F': 1, 'G': 1, 'H': 1, 'I': 1,
