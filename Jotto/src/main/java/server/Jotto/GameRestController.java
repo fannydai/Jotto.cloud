@@ -58,6 +58,7 @@ public class GameRestController {
 
         if(game != null){
             int result = game.userLogic(move);
+            gameRepository.save(game);
             res.setResult(result);
         }
         else{
@@ -73,22 +74,41 @@ public class GameRestController {
     @ResponseBody
     public BotMoveResult botMove(@PathVariable("gameId") String gameId) { 
         BotMoveResult res = new BotMoveResult();
-        System.out.println(gameId);
         JottoGameModel game = gameRepository.findByid(gameId);
         if (game != null) {
             String result = game.botLogic();
-            System.out.println(result);
+            gameRepository.save(game);
+            if (result == "Bot won!") {
+                res.setWord(game.getBotMoves().getWord());
+            } else {
+                res.setWord("");
+            }
             res.setResult(result);
         } else {
             res.setResult("Game ID does not exist.");
+            res.setWord("");
         }
         return res;
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/pastGames", method = RequestMethod.POST, consumes = {"application/json"}) //index page??
+    @RequestMapping(value = "/pastGames/{username}", method = RequestMethod.GET)
     @ResponseBody
-    public void showPastGameResults(@RequestBody String user) { //add user as arg
+    public PastGamesResult showPastGameResults(@PathVariable("username") String username) {
+        PastGamesResult res = new PastGamesResult();
+        UserModel user = userRepository.findByusername(username);
+        ArrayList<Object> botMoves = new ArrayList<Object>();
+        ArrayList<Object> userMoves = new ArrayList<Object>();
+        for (String gameId : user.getGamesList()) {
+            JottoGameModel game = gameRepository.findByid(gameId);
+            if (game != null) {
+                botMoves.add(game.getBotMoves());
+                userMoves.add(game.getUserMoves());
+            }
+        }
+        res.setBotMovesList(botMoves);
+        res.setUserMovesList(userMoves);
+        return res;
         //go thorugh db and shows games results
         //takes a user as json
         //sends back json

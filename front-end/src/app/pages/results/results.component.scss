@@ -16,6 +16,11 @@
     font-size: larger;
 }
 
+.number-letter {
+    font-weight: bolder;
+    font-size: larger;
+}
+
 .results-container {
     height: 100vh;
     width: 100%;
@@ -25,10 +30,20 @@
     .results-heading-container {
         display: flex;
         justify-content: space-between;
+        h2 {
+            padding-left: 13px;
+        }
     }
     .results-error-container {
         height: 5%;
         text-align: center;
+        display: flex;
+        justify-content: space-between;
+        .arrow-container {
+            button {
+                margin-top: -16px;
+            }
+        }
     }
     .results-content-container {
         flex: 1;
@@ -41,6 +56,7 @@
             flex-direction: column;
             align-items: center;
             overflow: hidden;
+            background: radial-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5));
             .table-scrollable {
                 width: 50%;
                 height: 100%;
@@ -62,6 +78,7 @@
             flex-direction: column;
             align-items: center;
             overflow: hidden;
+            background: radial-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5));
             .table-scrollable {
                 width: 50%;
                 height: 100%;

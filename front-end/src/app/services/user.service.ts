@@ -23,7 +23,6 @@ export class UserService {
     return this.http.post<any>(`${environment.api_path}/login`, { username: username, password: password })
       .pipe(
         map(result => {
-          console.log(result);
           return result;
         }),
         catchError(err => of(null))
@@ -40,7 +39,6 @@ export class UserService {
     return this.http.post<any>(`${environment.api_path}/register`, { username: username, password: password })
       .pipe(
         map(result => {
-          console.log(result);
           return result;
         }),
         catchError(err => of(null))

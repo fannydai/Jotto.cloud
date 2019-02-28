@@ -23,7 +23,6 @@ export class GameService {
       { word: word.toUpperCase(), username: localStorage.getItem('username') })
       .pipe(
         map(res => {
-          console.log(res);
           return res;
         }),
         catchError(e => of(null))
@@ -63,10 +62,10 @@ export class GameService {
 
 
   /**
-   * Gets the previous game associated with a user as GET request.
+   * Gets the previous games associated with a user as GET request.
    */
-  getPreviousGame(): Observable<any> {
-    return this.http.get<any>(`${environment.api_path}/previousGame/${localStorage.getItem('username')}`)
+  getPreviousGames(): Observable<any> {
+    return this.http.get<any>(`${environment.api_path}/pastGames/${localStorage.getItem('username')}`)
       .pipe(
         map(res => res),
         catchError(e => of(null))
