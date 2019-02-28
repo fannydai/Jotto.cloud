@@ -79,7 +79,7 @@ public class GameRestController {
             String result = game.botLogic();
             gameRepository.save(game);
             if (result == "Bot won!") {
-                res.setWord(game.getBotMoves().getWord());
+                res.setWord(game.getUserMoves().getWord());
             } else {
                 res.setWord("");
             }
