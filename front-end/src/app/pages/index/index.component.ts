@@ -30,6 +30,8 @@ export class IndexComponent implements OnInit {
         if (data === null) {
           this.loginError = 'Server is down.';
         } else if (data.status === 'success') {
+          this.loginName = '';
+          this.loginPassword = '';
           this.user.setLoggedIn(data.username);
         } else {
           this.loginError = 'Incorrect username and/or password.';
@@ -47,6 +49,9 @@ export class IndexComponent implements OnInit {
           if (data == null) {
             this.signupError = 'Server is down.';
           } else if (data.status === 'success') {
+            this.signupName = '';
+            this.signupPassword = '';
+            this.signupConfirm = '';
             this.user.setLoggedIn(data.username);
           } else {
             this.signupError = 'Username has been taken.';
