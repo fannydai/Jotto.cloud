@@ -57,7 +57,7 @@ public class UserRestController {
         RegistrationLoginResult res = new RegistrationLoginResult();
         UserModel loginRequestUser = userRepository.findByusername(logform.getUsername());
 
-        if(loginRequestUser != null && loginRequestUser.checkPassword(logform.getPassword())) {
+        if(loginRequestUser != null && loginRequestUser.getPassword().equals(logform.getPassword())){
             //TODO -- configure Java Security Token for Angular -- I need to learn it first (Sean)
             // For now we just pass username and success statement to the front end to imitate 
 

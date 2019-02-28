@@ -4,7 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.ArrayList;
-import org.springframework.security.crypto.bcrypt.BCrypt;
+//import org.springframework.security.crypto.bcrypt.BCrypt;
 /**
  * The User class is the User model stored into mongodb
  */
@@ -31,12 +31,12 @@ public class UserModel {
         return String.format("User[id = %s, username = %s, password = %s]",id,username,password);
     }
 
-    public boolean checkPassword(String password) {
-        if (BCrypt.checkpw(password, this.password))
-            return true;
-        else
-            return false;
-    }
+    // public boolean checkPassword(String password) {
+    //     if (BCrypt.checkpw(password, this.password))
+    //         return true;
+    //     else
+    //         return false;
+    // }
 
     public String getUsername() {
         return this.username;
