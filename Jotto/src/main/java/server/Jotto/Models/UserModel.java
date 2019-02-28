@@ -1,6 +1,8 @@
 package server.Jotto.Models;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Field;
+
 import java.util.ArrayList;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 /**
@@ -12,13 +14,15 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 public class UserModel {
     @Id
     public String id;
+    @Field()
     private String username;
     private String password;
     private ArrayList<String> gamesId;
 
     public UserModel(String username, String password) {
         this.username = username;
-        this.setPassword(password);
+        this.password = password;
+        //this.setPassword(password);
         this.gamesId = new ArrayList<String>();
     }
 
@@ -38,7 +42,8 @@ public class UserModel {
         return this.username;
     }
     public void setPassword(String password) {
-        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
+        //this.password = BCrypt.hashpw(password, BCrypt.gensalt());
+        this.password = password;
     }
     public String getPassword() {
         return this.password;
