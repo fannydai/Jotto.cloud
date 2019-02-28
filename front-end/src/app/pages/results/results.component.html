@@ -4,7 +4,17 @@
     <a routerLink="/" class="btn btn-default"><h2>Home</h2></a>
   </div>
   <div class="results-error-container">
+    <div class="arrow-container">
+      <button [disabled]="pageNumber === 0" type="button" class="btn btn-default" (click)="changePageNumber(-1)">
+        <fa-icon [icon]="['fas', 'arrow-left']" size="lg"></fa-icon>
+      </button>
+    </div>
     <p *ngIf="errorMessage" class="warning-message">{{errorMessage}}</p>
+    <div class="arrow-container">
+      <button [disabled]="pageNumber >= playerMoves.length - 1" type="button" class="btn btn-default" (click)="changePageNumber(1)">
+        <fa-icon [icon]="['fas', 'arrow-right']" size="lg"></fa-icon>
+      </button>
+    </div>
   </div>
   <div class="results-content-container">
     <div class="results-player-container">
@@ -12,12 +22,12 @@
       <div class="table-scrollable">
         <table>
           <tbody *ngIf="playerMoves">
-            <tr *ngFor="let move of playerMoves">
+            <tr *ngFor="let move of playerMoves[pageNumber]">
               <td *ngFor="let letter of move">
-                <div *ngIf="isInPlayerWord(letter)" class="correct-letter">
+                <div *ngIf="isInPlayerWord(letter, pageNumber)" class="correct-letter">
                   {{letter}}
                 </div>
-                <div *ngIf="!isInPlayerWord(letter)" class="incorrect-letter">
+                <div *ngIf="!isInPlayerWord(letter, pageNumber)" class="incorrect-letter">
                   {{letter}}
                 </div>
               </td>
@@ -26,7 +36,7 @@
         </table>
       </div>
       <h3 *ngIf="playerWord">
-        <p>Answer: {{playerWord}}</p>
+        <p>Answer: {{playerWord[pageNumber]}}</p>
       </h3>
     </div>
     <div class="results-computer-container">
@@ -34,12 +44,12 @@
       <div class="table-scrollable">
         <table>
           <tbody *ngIf="computerMoves">
-            <tr *ngFor="let move of computerMoves">
+            <tr *ngFor="let move of computerMoves[pageNumber]">
               <td *ngFor="let letter of move">
-                <div *ngIf="isInComputerWord(letter)" class="correct-letter">
+                <div *ngIf="isInComputerWord(letter, pageNumber)" class="correct-letter">
                   {{letter}}
                 </div>
-                <div *ngIf="!isInComputerWord(letter)" class="incorrect-letter">
+                <div *ngIf="!isInComputerWord(letter, pageNumber)" class="incorrect-letter">
                   {{letter}}
                 </div>
               </td>
@@ -48,7 +58,7 @@
         </table>
       </div>
       <h3 *ngIf="computerWord">
-          <p>Answer: {{computerWord}}</p>
+          <p>Answer: {{computerWord[pageNumber]}}</p>
       </h3>
     </div>
   </div>
