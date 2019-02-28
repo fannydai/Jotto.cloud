@@ -62,7 +62,7 @@ https://www2.cs.duke.edu/courses/spring06/cps100/assign/jotto/
 * For hashing the password.
 https://docs.spring.io/spring-security/site/docs/5.0.x/api/org/springframework/security/crypto/bcrypt/BCrypt.html
 
-[x] User gives in the same word twice in one game - solved in backend
+[X] User gives in the same word twice in one game - solved in backend
 [ ] What happens if the website crashes? - Delete the game in progress.
 [ ] Delete word after user enters it.
 [ ] Results page. Change background. - Maybe use the css for game.
@@ -71,17 +71,3 @@ https://docs.spring.io/spring-security/site/docs/5.0.x/api/org/springframework/s
 [ ] Game page. "Computer guess" text should change color of text
 [ ] Game page. Color of button should be change to use the css of index page.
 [ ] Nav bar that [home,game,result,log out] - maybe use the one from my person website. I will give the css & code?
-
-### NOTES
-* comment out hashing password (sean)
-* change background (dark/neutral color) - sean 
-* add navigation - jeffrey
-* home(logo) play results					log out
-* home page(about) & add how to play - jeffrey
-* change css of buttons - so it's all the same css - jeffrey
-* add arrows to show games - jeffrey
-*check to make sure that game is working - Joel
-	* Check win first round
-	* Check if user enters the same word twice
-	* Check for all upper/lower/mixed
-* After bot/winner wins, the results page should have the last word that was guessed
