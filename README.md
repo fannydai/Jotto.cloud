@@ -75,13 +75,17 @@ https://docs.spring.io/spring-security/site/docs/5.0.x/api/org/springframework/s
 ### NOTES
 * comment out hashing password (sean)
 * change background (dark/neutral color) - sean
-* add navigation - jeffrey
-* home(logo) play results	log out
+
+* add navigation Background - jeffrey
+* home(logo) play results	log out - format of the nav bar
+
 * home page(about) & add how to play - jeffrey
 * change css of buttons - so it's all the same css - jeffrey
 * add arrows to show games - jeffrey 
+
 * check to make sure that game is working - Joel
 	* Check win first round
 	* Check if user enters the same word twice
 	* Check for all upper/lower/mixed
-* After bot/winner wins, the results page should have the last word that was guessed
+	* After bot/winner wins, the results page should have the last word that was guessed
+	* log out. Use a different user. Play a game. Log into another user. Check to make sure the result is from that user.

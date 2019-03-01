@@ -4,6 +4,9 @@ li {
     a {
         color: $white;
     }
+    a:hover {
+        color: $team-color !important;
+    }
 }
 
 .logout-btn {
