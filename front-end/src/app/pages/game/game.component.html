@@ -1,111 +1,114 @@
-<div class="game-container row ml-0">
-  <div class="player-container col">
-    <div class="enter-word-container" *ngIf="!aiWord; else start">
-      <form #chooseWord="ngForm" (ngSubmit)="submitAIWord();">
-        <div class="form-group">
-          <h1>Word for Computer</h1>
-          <input type="text" class="form-control" id="enteredWord" name="enteredWord" [(ngModel)]="enteredWord" required>
-        </div>
-        <button type="submit" class="btn btn-success btn-block">Submit</button>
-      </form>
-      <div class="entered-error-container">
-        <p *ngIf="enteredError" class="warning-message">{{enteredError}}</p>
-      </div>
-    </div>
-    <ng-template #start>
-      <div class="start-container">
-        <div class="enter-guess-container">
-          <div class="guess-error-container">
-            <p *ngIf="guessError" class="warning-message mb-0">{{guessError}}</p>
+<div class="game-container">
+  <app-navbar></app-navbar>
+  <div class="game-bottom-container row">
+    <div class="player-container col">
+      <div class="enter-word-container" *ngIf="!aiWord; else start">
+        <form #chooseWord="ngForm" (ngSubmit)="submitAIWord();">
+          <div class="form-group">
+            <h1>Word for Computer</h1>
+            <input type="text" class="form-control" id="enteredWord" name="enteredWord" [(ngModel)]="enteredWord" required>
           </div>
-          <form (ngSubmit)="onGuess();" class="form-inline">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Guess" name="userGuessWord" [(ngModel)]="userGuessWord" required>
-              <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-success btn-block">Submit</button>
+        </form>
+        <div class="entered-error-container">
+          <p *ngIf="enteredError" class="warning-message">{{enteredError}}</p>
+        </div>
+      </div>
+      <ng-template #start>
+        <div class="start-container">
+          <div class="enter-guess-container">
+            <div class="guess-error-container">
+              <p *ngIf="guessError" class="warning-message mb-0">{{guessError}}</p>
             </div>
-          </form>
-        </div>
-        <div class="guess-list-container py-3 pl-3">
-          <div class="table-scrollable">
-            <table>
-              <tbody>
-                <tr *ngFor="let userGuess of userGuesses">
-                  <td *ngFor="let letter of userGuess">
-                    <div [ngStyle]="{color: '#061110'}" *ngIf="checkColor(letter) == 1">
-                      {{letter}}
-                    </div>
-                    <div [ngStyle]="{color: '#41B3A3'}" *ngIf="checkColor(letter) == 2">
-                      {{letter}}
-                    </div>
-                    <div [ngStyle]="{color: '#C38D9E'}" *ngIf="checkColor(letter) == 3">
-                      {{letter}}
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <form (ngSubmit)="onGuess();" class="form-inline">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Guess" name="userGuessWord" [(ngModel)]="userGuessWord" required>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+          </div>
+          <div class="guess-list-container py-3 pl-3">
+            <div class="table-scrollable">
+              <table>
+                <tbody>
+                  <tr *ngFor="let userGuess of userGuesses">
+                    <td *ngFor="let letter of userGuess">
+                      <div [ngStyle]="{color: '#061110'}" *ngIf="checkColor(letter) == 1">
+                        {{letter}}
+                      </div>
+                      <div [ngStyle]="{color: '#41B3A3'}" *ngIf="checkColor(letter) == 2">
+                        {{letter}}
+                      </div>
+                      <div [ngStyle]="{color: '#C38D9E'}" *ngIf="checkColor(letter) == 3">
+                        {{letter}}
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="guess-alpha-container">
+            <div class="btn-toolbar">
+                <div class="btn-group">
+                  <button [ngStyle]="{'color': (alphaToggle.A == 1) ? '#061110' : (alphaToggle.A == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">A</button>
+                  <button [ngStyle]="{'color': (alphaToggle.B == 1) ? '#061110' : (alphaToggle.B == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">B</button>
+                  <button [ngStyle]="{'color': (alphaToggle.C == 1) ? '#061110' : (alphaToggle.C == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">C</button>
+                  <button [ngStyle]="{'color': (alphaToggle.D == 1) ? '#061110' : (alphaToggle.D == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">D</button>
+                  <button [ngStyle]="{'color': (alphaToggle.E == 1) ? '#061110' : (alphaToggle.E == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">E</button>
+                  <button [ngStyle]="{'color': (alphaToggle.F == 1) ? '#061110' : (alphaToggle.F == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">F</button>
+                  <button [ngStyle]="{'color': (alphaToggle.G == 1) ? '#061110' : (alphaToggle.G == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">G</button>
+                  <button [ngStyle]="{'color': (alphaToggle.H == 1) ? '#061110' : (alphaToggle.H == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">H</button>
+                  <button [ngStyle]="{'color': (alphaToggle.I == 1) ? '#061110' : (alphaToggle.I == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">I</button>
+                  <button [ngStyle]="{'color': (alphaToggle.J == 1) ? '#061110' : (alphaToggle.J == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">J</button>
+                  <button [ngStyle]="{'color': (alphaToggle.K == 1) ? '#061110' : (alphaToggle.K == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">K</button>
+                  <button [ngStyle]="{'color': (alphaToggle.L == 1) ? '#061110' : (alphaToggle.L == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">L</button>
+                  <button [ngStyle]="{'color': (alphaToggle.M == 1) ? '#061110' : (alphaToggle.M == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">M</button>
+                </div>
+                <div class="btn-group">
+                  <button [ngStyle]="{'color': (alphaToggle.N == 1) ? '#061110' : (alphaToggle.N == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">N</button>
+                  <button [ngStyle]="{'color': (alphaToggle.O == 1) ? '#061110' : (alphaToggle.O == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">O</button>
+                  <button [ngStyle]="{'color': (alphaToggle.P == 1) ? '#061110' : (alphaToggle.P == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">P</button>
+                  <button [ngStyle]="{'color': (alphaToggle.Q == 1) ? '#061110' : (alphaToggle.Q == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">Q</button>
+                  <button [ngStyle]="{'color': (alphaToggle.R == 1) ? '#061110' : (alphaToggle.R == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">R</button>
+                  <button [ngStyle]="{'color': (alphaToggle.S == 1) ? '#061110' : (alphaToggle.S == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">S</button>
+                  <button [ngStyle]="{'color': (alphaToggle.T == 1) ? '#061110' : (alphaToggle.T == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">T</button>
+                  <button [ngStyle]="{'color': (alphaToggle.U == 1) ? '#061110' : (alphaToggle.U == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">U</button>
+                  <button [ngStyle]="{'color': (alphaToggle.V == 1) ? '#061110' : (alphaToggle.V == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">V</button>
+                  <button [ngStyle]="{'color': (alphaToggle.W == 1) ? '#061110' : (alphaToggle.W == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">W</button>
+                  <button [ngStyle]="{'color': (alphaToggle.X == 1) ? '#061110' : (alphaToggle.X == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">X</button>
+                  <button [ngStyle]="{'color': (alphaToggle.Y == 1) ? '#061110' : (alphaToggle.Y == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">Y</button>
+                  <button [ngStyle]="{'color': (alphaToggle.Z == 1) ? '#061110' : (alphaToggle.Z == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">Z</button>
+                </div>
+            </div>
           </div>
         </div>
-        <div class="guess-alpha-container">
-          <div class="btn-toolbar">
-              <div class="btn-group">
-                <button [ngStyle]="{'color': (alphaToggle.A == 1) ? '#061110' : (alphaToggle.A == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">A</button>
-                <button [ngStyle]="{'color': (alphaToggle.B == 1) ? '#061110' : (alphaToggle.B == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">B</button>
-                <button [ngStyle]="{'color': (alphaToggle.C == 1) ? '#061110' : (alphaToggle.C == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">C</button>
-                <button [ngStyle]="{'color': (alphaToggle.D == 1) ? '#061110' : (alphaToggle.D == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">D</button>
-                <button [ngStyle]="{'color': (alphaToggle.E == 1) ? '#061110' : (alphaToggle.E == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">E</button>
-                <button [ngStyle]="{'color': (alphaToggle.F == 1) ? '#061110' : (alphaToggle.F == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">F</button>
-                <button [ngStyle]="{'color': (alphaToggle.G == 1) ? '#061110' : (alphaToggle.G == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">G</button>
-                <button [ngStyle]="{'color': (alphaToggle.H == 1) ? '#061110' : (alphaToggle.H == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">H</button>
-                <button [ngStyle]="{'color': (alphaToggle.I == 1) ? '#061110' : (alphaToggle.I == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">I</button>
-                <button [ngStyle]="{'color': (alphaToggle.J == 1) ? '#061110' : (alphaToggle.J == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">J</button>
-                <button [ngStyle]="{'color': (alphaToggle.K == 1) ? '#061110' : (alphaToggle.K == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">K</button>
-                <button [ngStyle]="{'color': (alphaToggle.L == 1) ? '#061110' : (alphaToggle.L == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">L</button>
-                <button [ngStyle]="{'color': (alphaToggle.M == 1) ? '#061110' : (alphaToggle.M == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">M</button>
-              </div>
-              <div class="btn-group">
-                <button [ngStyle]="{'color': (alphaToggle.N == 1) ? '#061110' : (alphaToggle.N == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">N</button>
-                <button [ngStyle]="{'color': (alphaToggle.O == 1) ? '#061110' : (alphaToggle.O == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">O</button>
-                <button [ngStyle]="{'color': (alphaToggle.P == 1) ? '#061110' : (alphaToggle.P == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">P</button>
-                <button [ngStyle]="{'color': (alphaToggle.Q == 1) ? '#061110' : (alphaToggle.Q == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">Q</button>
-                <button [ngStyle]="{'color': (alphaToggle.R == 1) ? '#061110' : (alphaToggle.R == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">R</button>
-                <button [ngStyle]="{'color': (alphaToggle.S == 1) ? '#061110' : (alphaToggle.S == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">S</button>
-                <button [ngStyle]="{'color': (alphaToggle.T == 1) ? '#061110' : (alphaToggle.T == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">T</button>
-                <button [ngStyle]="{'color': (alphaToggle.U == 1) ? '#061110' : (alphaToggle.U == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">U</button>
-                <button [ngStyle]="{'color': (alphaToggle.V == 1) ? '#061110' : (alphaToggle.V == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">V</button>
-                <button [ngStyle]="{'color': (alphaToggle.W == 1) ? '#061110' : (alphaToggle.W == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">W</button>
-                <button [ngStyle]="{'color': (alphaToggle.X == 1) ? '#061110' : (alphaToggle.X == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">X</button>
-                <button [ngStyle]="{'color': (alphaToggle.Y == 1) ? '#061110' : (alphaToggle.Y == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">Y</button>
-                <button [ngStyle]="{'color': (alphaToggle.Z == 1) ? '#061110' : (alphaToggle.Z == 2) ? '#41B3A3' : '#C38D9E'}" class="btn btn-default" (click)="toggleAlpha($event)">Z</button>
-              </div>
-          </div>
-        </div>
-      </div>
-    </ng-template>
-  </div>
-  <div *ngIf="aiWord" class="ai-container col">
-    <div class="ai-heading-container pt-3">
-      <h3>Computer's Guesses</h3>
+      </ng-template>
     </div>
-    <div class="ai-guess-container">
-      <div class="table-scrollable">
-        <table>
-          <tbody>
-            <tr *ngFor="let aiGuess of aiGuesses">
-              <td *ngFor="let letter of aiGuess">
-                <div [ngStyle]="{color: '#061110'}" *ngIf="checkAIColor(letter) == 1">
-                  {{letter}}
-                </div>
-                <div [ngStyle]="{color: '#41B3A3'}" *ngIf="checkAIColor(letter) == 2">
-                  {{letter}}
-                </div>
-                <div [ngStyle]="{color: '#C38D9E'}" *ngIf="checkAIColor(letter) == 3">
-                  {{letter}}
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+    <div *ngIf="aiWord" class="ai-container col">
+      <div class="ai-heading-container pt-3">
+        <h3>Computer's Guesses</h3>
+      </div>
+      <div class="ai-guess-container">
+        <div class="table-scrollable">
+          <table>
+            <tbody>
+              <tr *ngFor="let aiGuess of aiGuesses">
+                <td *ngFor="let letter of aiGuess">
+                  <div [ngStyle]="{color: '#061110'}" *ngIf="checkAIColor(letter) == 1">
+                    {{letter}}
+                  </div>
+                  <div [ngStyle]="{color: '#41B3A3'}" *ngIf="checkAIColor(letter) == 2">
+                    {{letter}}
+                  </div>
+                  <div [ngStyle]="{color: '#C38D9E'}" *ngIf="checkAIColor(letter) == 3">
+                    {{letter}}
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
