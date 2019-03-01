@@ -1,0 +1,39 @@
+<div class="index-container row">
+  <div class="menu-container col" *ngIf="user.isLoggedIn(); else loginSignup">
+    <div class="menu-button-container">
+      <a routerLink="/game" class="btn btn-primary btn-lg">Play</a>
+      <a routerLink="/results" class="btn btn-success btn-lg">Results</a>
+      <a class="btn btn-danger btn-lg" (click)="onLogout();">Logout</a>
+    </div>
+  </div>
+  <ng-template #loginSignup>
+    <div class="container text-center col">
+      <div class="box-container">
+        <form #login="ngForm" (ngSubmit)="onLogin();">
+          <h1>Existing Users</h1>
+          <div *ngIf="loginError" class="warning-message">{{loginError}}</div>
+          <input type="text" class="form-control mb-2" placeholder="Username" 
+            name="loginName" [(ngModel)]="loginName" required>
+          <input type="password" class="form-control mb-2" placeholder="Password" 
+            name="loginPassword" [(ngModel)]="loginPassword" required>
+          <button class="btn btn-lg btn-success btn-block" [disabled]="!login.form.valid">Log In</button>
+        </form>
+      </div>
+    </div>
+    <div class="container text-center col">
+      <div class="box-container">
+        <form #signup="ngForm" (ngSubmit)="onSignUp();">
+          <h1>New Player?</h1>
+          <div *ngIf="signupError" class="warning-message">{{signupError}}</div>
+          <input type="text" class="form-control mb-2" placeholder="Choose a username" 
+            name="signupName" [(ngModel)]="signupName" required>
+          <input type="password" class="form-control mb-2" placeholder="Create a password" 
+            name="signupPassword" [(ngModel)]="signupPassword" required>
+          <input type="password" class="form-control mb-2" placeholder="Confirm Password" 
+            name="signupConfirm" [(ngModel)]="signupConfirm"  required>
+          <button class="btn btn-lg btn-success btn-block" [disabled]="!signup.form.valid">Sign Up</button>
+        </form>
+      </div>
+    </div>
+  </ng-template>
+</div>

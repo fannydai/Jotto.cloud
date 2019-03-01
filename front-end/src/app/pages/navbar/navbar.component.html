@@ -1,14 +1,14 @@
-<nav class="navbar fixed-top navbar-light">
-  <a class="navbar-brand" href="/">Jotto</a>
-  <ul class="navbar-nav ml-auto">
-    <li class="nav-item" *ngIf="!user.isLoggedIn(); else loggedIn">
-      <a href="/login" class="btn btn-primary active" role="button" aria-pressed="true">Log in</a>
-      <a href="/register" class="btn btn-primary active" role="button" aria-pressed="true">Sign up</a>
+<nav class="navbar fixed-top">
+  <a class="navbar-brand" href="/">
+    <img src="../../../assets/SmallerLogo.png" width="30" height="30">
+  </a>
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item">
+      <a href="/game" class="btn" role="button" aria-pressed="true">Play</a>
     </li>
-    <ng-template #loggedIn>
-      <li>
-        <a class="btn btn-primary active" role="button" aria-pressed="true" [routerLink]="" (click)="logout()">Log out</a>
-      </li>
-    </ng-template>
+    <li>
+      <a href="/results" class="btn" role="button" aria-pressed="true">Results</a>
+    </li>
   </ul>
+  <a *ngIf="user.isLoggedIn()" class="btn logout-btn" role="button" [routerLink]="" (click)="logout()">Log out</a>
 </nav>

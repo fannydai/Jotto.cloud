@@ -1,5 +1,20 @@
+@import '../../../styles.scss';
+
 li {
     a {
-        margin: 10px;
+        color: $white;
+    }
+}
+
+.logout-btn {
+    color: $red;
+}
+
+.navbar {
+    height: 10vh;
+    width: 100%;
+    .navbar-nav {
+        display: flex;
+        flex-direction: row;
     }
 }

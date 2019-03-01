@@ -10,79 +10,92 @@
     background-image: url("../../../assets/bg2.jpg");
     background-attachment: fixed;
     background-size: cover;
-    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    // background-size: 100%;
+    app-navbar {
+        height: 10vh;
+        width: 100%;
+    }
+    .index-bottom-container {
+        height: 90vh;
+        width: 100%;
+        .game-info-container {
 
-    .menu-container {
-        // background-color: $white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        .menu-button-container {
-            height: 50%;
-            width: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: radial-gradient(rgba(229, 229, 229, 0.8), rgba(229, 229, 229, 0.8));
-            a {
-                margin: 5px;
-                color: $white;
+        }
+
+        .index-landing-container {
+            margin-left: 0;
+            margin-right: 0;
+            .logo-container {
+                height: 90vh;
+                width: 50%;
+                img {
+                    height: 90%;
+                    width: 90%;
+                }
+            }
+            .login-signup-container {
+                height: 90vh;
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                // justify-content: space-between;
+                .login-container {
+                    height: 45%;
+                    width: 50%;
+                    background: white;
+                    border-radius: 1rem;
+                    box-shadow: 0 0 15px 2px $black;
+                    display: flex; 
+                    justify-content: center;
+                    // align-items: center;
+                    .login-warning {
+                        height: 10%;
+                        width: 100%;
+                    }
+                    h1 {
+                        font-weight: 1000;
+                        color: $purple;
+                        margin-bottom: 0;
+                    }
+                    input {
+                        border-color: $team-color;
+                        margin-bottom: 0;
+                    }
+                    :focus { 
+                        outline: none;
+                        box-shadow: 0 0 10px $team-color;
+                    }
+                }
+                .signup-container {
+                    height: 50%;
+                    width: 50%;
+                    background: white;
+                    border-radius: 1rem;
+                    box-shadow: 0 0 15px 2px $black;
+                    display: flex; 
+                    justify-content: center;
+                    .signup-warning {
+                        height: 10%;
+                        width: 100%;
+                    }
+                    h1 {
+                        font-weight: 1000;
+                        color: $purple;
+                        margin-bottom: 0;
+                    }
+                    input {
+                        border-color: $team-color;
+                        margin-bottom: 0;
+                    }
+                    :focus { 
+                        outline: none;
+                        box-shadow: 0 0 10px $team-color;
+                    }
+                }
             }
         }
-    }
-    .container {
-        // background-color: #DAAD86;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        .box-container {
-            border-radius: 1rem;
-            box-shadow: 0 0 15px 2px $black;
-            display: flex; 
-            justify-content: center;
-            align-items: center;
-            height: 50%;
-            width: 50%;
-
-            min-width: 250px;
-            min-height: 250px;
-            background: white;
-            h1 {
-                font-weight: 1000;
-                color: $purple;
-            }
-            input {
-                border-color: $team-color;
-            }
-            :focus { 
-                outline: none;
-                box-shadow: 0 0 10px $team-color;
-            }
-        }
-    }
-    button:hover {
-        border-color: $orange   !important;
-        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.15), 0 17px 50px 0 rgba(0, 0, 0, 0.10);
-    }
-    button:active {
-        background: $black      !important;
-        color: $orange          !important;
-        border-color: $orange   !important;
-        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.40), 0 17px 50px 0 rgba(0, 0, 0, 0.35);
-    }
-
-    a:hover {
-        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.15), 0 17px 50px 0 rgba(0, 0, 0, 0.10);
-    }
-    a:active {
-        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.40), 0 17px 50px 0 rgba(0, 0, 0, 0.35);
-    }
-    button {
-        border-color: $orange;
-        background-color: rgba($color: $black, $alpha: 0.5);
-        background-color: $black;
-        color: $orange;
-        font-weight: bold;
     }
 }
