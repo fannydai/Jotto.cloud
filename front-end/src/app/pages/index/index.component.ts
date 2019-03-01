@@ -32,6 +32,9 @@ export class IndexComponent implements OnInit {
         } else if (data.status === 'success') {
           this.loginName = '';
           this.loginPassword = '';
+          this.signupName = '';
+          this.signupPassword = '';
+          this.signupConfirm = '';
           this.user.setLoggedIn(data.username);
         } else {
           this.loginError = 'Incorrect username and/or password.';
@@ -52,6 +55,8 @@ export class IndexComponent implements OnInit {
             this.signupName = '';
             this.signupPassword = '';
             this.signupConfirm = '';
+            this.loginName = '';
+            this.loginPassword = '';
             this.user.setLoggedIn(data.username);
           } else {
             this.signupError = 'Username has been taken.';

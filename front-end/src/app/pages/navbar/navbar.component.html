@@ -1,14 +1,27 @@
 <nav class="navbar fixed-top">
-  <a class="navbar-brand" href="/">
+  <a [routerLink]="" class="navbar-brand" (click)="navigateHome()">
     <img src="../../../assets/SmallerLogo.png" width="30" height="30">
   </a>
   <ul class="navbar-nav mr-auto">
     <li class="nav-item">
-      <a href="/game" class="btn" role="button" aria-pressed="true">Play</a>
+      <a [routerLink]="" class="btn" role="button" aria-pressed="true" (click)="navigateGame()">Play</a>
     </li>
     <li>
-      <a href="/results" class="btn" role="button" aria-pressed="true">Results</a>
+      <a [routerLink]="" class="btn" role="button" aria-pressed="true" (click)="navigateResult()">Results</a>
     </li>
   </ul>
-  <a *ngIf="user.isLoggedIn()" class="btn logout-btn" role="button" [routerLink]="" (click)="logout()">Log out</a>
+  <a *ngIf="user.isLoggedIn()" [routerLink]="" class="btn logout-btn" role="button" (click)="navigateLogout()">Log out</a>
 </nav>
+
+<ng-template #confirm let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Warning!</h4>
+  </div>
+  <div class="modal-body">
+    <p>If you leave this page, your game will be lost!</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="modal.close('Stay')">Stay</button>
+    <button type="button" class="btn btn-danger" (click)="modal.close('Leave')">Leave</button>
+  </div>
+</ng-template>

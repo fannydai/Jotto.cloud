@@ -5,45 +5,46 @@
 }
 
 .correct-letter {
-    color: green;
-    font-weight: bolder;
+    color: $green;
+    font-weight: 1000;
     font-size: larger;
 }
 
 .incorrect-letter {
-    color: red;
-    font-weight: bolder;
+    color: $red;
+    font-weight: 1000;
     font-size: larger;
 }
 
 .number-letter {
-    font-weight: bolder;
+    font-weight: 1000;
     font-size: larger;
+}
+
+.arrow-container {
+    button {
+        margin-top: -16px;
+    }
+}
+
+button {
+    height: 100px;
+    width: 50px;
 }
 
 .results-container {
     height: 100vh;
     width: 100%;
-    background-color: $team-color;
+    background-image: url('../../../assets/bg2.jpg');
     display: flex;
     flex-direction: column;
-    .results-heading-container {
-        display: flex;
-        justify-content: space-between;
-        h2 {
-            padding-left: 13px;
-        }
+    app-navbar {
+        height: 10vh;
+        width: 100%;
     }
     .results-error-container {
         height: 5%;
         text-align: center;
-        display: flex;
-        justify-content: space-between;
-        .arrow-container {
-            button {
-                margin-top: -16px;
-            }
-        }
     }
     .results-content-container {
         flex: 1;
@@ -53,20 +54,34 @@
             width: 50%;
             height: 100%;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow: hidden;
-            background: radial-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5));
-            .table-scrollable {
-                width: 50%;
+            flex-direction: row;
+            // background: radial-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5));
+            background: rgba(255, 255, 255, 0.5);
+            .results-player-outer-container {
+                width: 25%;
                 height: 100%;
-                overflow-y: auto;
                 display: flex;
                 justify-content: center;
-                table {
-                    flex: 1;
-                    div {
-                        text-align: center;
+                align-items: center;
+            }
+            .results-player-middle-container {
+                width: 50%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                overflow: hidden;
+                .table-scrollable {
+                    width: 100%;
+                    height: 100%;
+                    overflow-y: auto;
+                    display: flex;
+                    justify-content: center;
+                    table {
+                        flex: 1;
+                        div {
+                            text-align: center;
+                        }
                     }
                 }
             }
@@ -75,20 +90,34 @@
             width: 50%;
             height: 100%;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow: hidden;
-            background: radial-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5));
-            .table-scrollable {
-                width: 50%;
+            flex-direction: row;
+            // background: radial-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5));
+            background: rgba(255, 255, 255, 0.5);
+            .results-computer-outer-container {
+                width: 25%;
                 height: 100%;
-                overflow-y: auto;
                 display: flex;
                 justify-content: center;
-                table {
-                    flex: 1;
-                    div {
-                        text-align: center;
+                align-items: center;
+            }
+            .results-computer-middle-container {
+                width: 50%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                overflow: hidden;
+                .table-scrollable {
+                    width: 100%;
+                    height: 100%;
+                    overflow-y: auto;
+                    display: flex;
+                    justify-content: center;
+                    table {
+                        flex: 1;
+                        div {
+                            text-align: center;
+                        }
                     }
                 }
             }

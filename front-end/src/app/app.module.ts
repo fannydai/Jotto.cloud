@@ -4,9 +4,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faAngleRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faArrowLeft, faArrowRight);
+library.add(faAngleLeft, faAngleRight);
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
