@@ -16,18 +16,30 @@ $red:           #FF6AA7;
 $green:         #6AFFA7;
 $black:         #565656;
 
-// .form-control, input[type=text] {
-//     text-align: center !important;
-//     border-color: $team-color !important;
-//     outline: none !important;
-//     :focus { 
-//         outline-color: $team-color !important;
-//         box-shadow: 0 0 10px $team-color !important;
-//     }
-// }
+.form-control, input[type=text] {
+    text-align: center !important;
+    border-color: $team-color !important;
+    outline: none !important;
+    :focus { 
+        outline-color: $team-color !important;
+        box-shadow: 0 0 10px $team-color !important;
+    }
+}
 
-// .btn {
-//     :focus { 
-//         outline-color: $team-color !important;
-//     }
-// }
+.btn {
+    :focus { 
+        outline-color: $team-color !important;
+    }
+}
+
+.btn-primary {
+    border-color: $green !important;
+    color: $green !important;
+    background-color: $black !important;
+}
+
+.btn-danger {
+    border-color: $red !important;
+    color: $red !important;
+    background-color: $black !important;
+}

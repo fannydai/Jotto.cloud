@@ -125,8 +125,9 @@
     <h4 class="modal-title">Game Over!</h4>
   </div>
   <div class="modal-body">
-    <p>The winner is: {{ winner == 'player' ? 'you': 'computer' }}! 
-      You had to guess: {{ userWord }}. The computer had to guess: {{ aiWord }}.</p>
+    <p>The winner is: <strong>{{ winner == 'player' ? 'you': 'computer' }}</strong>!</p>
+    <p>You had to guess: {{ userWord }}.</p>
+    <p>The computer had to guess: {{ aiWord }}.</p>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-primary" (click)="modal.close('Play again')">Play again</button>

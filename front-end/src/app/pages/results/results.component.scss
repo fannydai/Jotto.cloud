@@ -25,6 +25,7 @@
 .arrow-container {
     button {
         margin-top: -16px;
+        color: $white;
     }
 }
 
@@ -34,6 +35,8 @@ button {
 }
 
 .results-container {
+    color: $white;
+
     height: 100vh;
     width: 100%;
     background-image: url('../../../assets/bg2.jpg');
