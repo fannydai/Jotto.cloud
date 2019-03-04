@@ -1,4 +1,4 @@
-# Jotto - jotto.cloud - 206.189.233.154:4200
+# Jotto - [jotto.cloud](jotto.cloud) - [206.189.233.154:4200](206.189.233.154:4200)
 
 ### Technologies
 * Spring Boot 2.1
@@ -62,30 +62,29 @@ https://www2.cs.duke.edu/courses/spring06/cps100/assign/jotto/
 * For hashing the password.
 https://docs.spring.io/spring-security/site/docs/5.0.x/api/org/springframework/security/crypto/bcrypt/BCrypt.html
 
-[X] User gives in the same word twice in one game - solved in backend
-[X] What happens if the website crashes? - Delete the game in progress.
-[X] Delete word after user enters it.
-[X] Results page. Change background. - Maybe use the css for game.
-[X] Register -> login with that value does not work
-[X] Game page should have a back button(Home). Maybe an alert box that asks "Data for this game will be lost. Are you sure you want to quit" - made nav bar for this
-[X] Game page. "Computer guess" text should change color of text
-[X] Game page. Color of button should be changed to use the css of index page.
-[X] Nav bar that [home,game,result,log out] - maybe use the one from my person website. I will give the css & code?
-
 ### NOTES
-* comment out hashing password (sean)
-* change background (dark/neutral color) - sean
+* [X] User gives in the same word twice in one game - solved in backend
+* [X] What happens if the website crashes? - Delete the game in progress.
+* [X] Delete word after user enters it.
+* [X] Results page. Change background. - Maybe use the css for game.
+* [X] Register -> login with that value does not work
+* [X] Game page should have a back button(Home). Maybe an alert box that asks "Data for this game will be lost. Are you sure you want to quit" - made nav bar for this
+* [X] Game page. "Computer guess" text should change color of text
+* [X] Game page. Color of button should be changed to use the css of index page.
+* [X] Nav bar that [home,game,result,log out] - maybe use the one from my person website. I will give the css & code?
+* [X] comment out hashing password (sean)
+* [X] change background (dark/neutral color) - sean
 
-* add navigation Background - jeffrey
-* home(logo) play results	log out - format of the nav bar
+* [X] add navigation Background - jeffrey
+* [X] home(logo) play results	log out - format of the nav bar
 
-* home page(about) & add how to play - jeffrey
-* change css of buttons - so it's all the same css - jeffrey
-* add arrows to show games - jeffrey 
+* [X] home page(about) & add how to play - jeffrey
+* [X] change css of buttons - so it's all the same css - jeffrey
+* [X] add arrows to show games - jeffrey 
 
-* check to make sure that game is working - Joel
-	* Check win first round
-	* Check if user enters the same word twice
-	* Check for all upper/lower/mixed
-	* After bot/winner wins, the results page should have the last word that was guessed
-	* log out. Use a different user. Play a game. Log into another user. Check to make sure the result is from that user.
+* [X] check to make sure that game is working - Joel
+* [X] Check win first round
+* [X] Check if user enters the same word twice
+* [X] Check for all upper/lower/mixed
+* [X] After bot/winner wins, the results page should have the last word that was guessed
+* [X] log out. Use a different user. Play a game. Log into another user. Check to make sure the result is from that user.
