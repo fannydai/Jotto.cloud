@@ -1,4 +1,4 @@
-# Jotto - [jotto.cloud](http://jotto.cloud/){:target="_blank"} - [206.189.233.154:4200](206.189.233.154:4200)
+# Jotto - [jotto.cloud](http://jotto.cloud){:target="_blank"} - [206.189.233.154:4200](206.189.233.154:4200)
 
 ### Technologies
 * Spring Boot 2.1
