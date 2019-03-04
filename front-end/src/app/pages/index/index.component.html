@@ -2,7 +2,15 @@
   <app-navbar></app-navbar>
   <div class="index-bottom-container">
     <div class="game-info-container" *ngIf="user.isLoggedIn(); else loggedOut">
-
+      <h1>How To Play</h1>
+      <ul>
+        <li>Enter a word for the bot to guess.</li>
+        <li>Start guessing the word the bot chooses for you.</li>
+        <li>On the bottom left side of the screen there is a row of letters that can be toggled
+            to help eliminate and include letters.</li>
+        <li>When either you or the bot guesses 
+            the word, a winning message will be displayed.</li>
+      </ul>
     </div>
   </div>
   <ng-template #loggedOut>

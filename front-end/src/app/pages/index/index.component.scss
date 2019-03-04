@@ -21,7 +21,19 @@
         height: 90vh;
         width: 100%;
         .game-info-container {
-
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            h1 {
+                text-align: center;
+                color: $purple;
+            }
+            ul {
+                color: $green;
+                width: 25%;
+            }
         }
 
         .index-landing-container {

@@ -35,6 +35,7 @@ export class IndexComponent implements OnInit {
           this.signupName = '';
           this.signupPassword = '';
           this.signupConfirm = '';
+          this.signupError = '';
           this.user.setLoggedIn(data.username);
         } else {
           this.loginError = 'Incorrect username and/or password.';
@@ -57,6 +58,7 @@ export class IndexComponent implements OnInit {
             this.signupConfirm = '';
             this.loginName = '';
             this.loginPassword = '';
+            this.loginError = '';
             this.user.setLoggedIn(data.username);
           } else {
             this.signupError = 'Username has been taken.';

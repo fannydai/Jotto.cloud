@@ -17,6 +17,7 @@
 }
 
 .number-letter {
+    color: $orange;
     font-weight: 1000;
     font-size: larger;
 }
@@ -56,7 +57,7 @@ button {
             display: flex;
             flex-direction: row;
             // background: radial-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5));
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.4);
             .results-player-outer-container {
                 width: 25%;
                 height: 100%;
@@ -92,7 +93,7 @@ button {
             display: flex;
             flex-direction: row;
             // background: radial-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5));
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.4);
             .results-computer-outer-container {
                 width: 25%;
                 height: 100%;
