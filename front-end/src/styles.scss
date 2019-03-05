@@ -16,6 +16,11 @@ $red:           #FF6AA7;
 $green:         #6AFFA7;
 $black:         #565656;
 
+.main-screen{
+    min-width:650px !important; 
+    min-height:700px !important;
+}
+
 .form-control, input[type=text] {
     text-align: center !important;
     border-color: $team-color !important;
@@ -43,3 +48,4 @@ $black:         #565656;
     color: $red !important;
     background-color: $black !important;
 }
+

@@ -38,6 +38,9 @@ button:active {
                 justify-content: center;
                 align-items: center;
                 background-color: rgba(255,255, 255, 0.7);
+
+                min-height: 300px;
+                min-height: 300px;
                 form {
                     display: flex;
                     flex-direction: column;
@@ -123,6 +126,7 @@ button:active {
                 align-items: center;
                 overflow: hidden;
                 background-color: rgba(255,255, 255, 0.9);
+
                 .table-scrollable {
                     width: 50%;
                     height: 100%;
